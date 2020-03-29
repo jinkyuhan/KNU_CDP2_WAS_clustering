@@ -8,10 +8,13 @@ LABEL maintainer="cheesecat47@gmail.com"
 # ENV LANGUAGE en_US:en
 # ENV LC_ALL en_US.UTF-8
 
-RUN apt update && apt -y upgrade
-RUN apt install -y net-tools
+RUN apt-get update && apt-get -y upgrade
+RUN apt-get install -y net-tools vim
 
-COPY ./src/httpd.conf /usr/local/apache2/conf/httpd.conf
+COPY ./conf/httpd.conf /usr/local/apache2/conf/httpd.conf
+COPY ./scripts/setup_container.sh /usr/local/apache2/setup_container.sh
+
+RUN /bin/sh /usr/local/apache2/setup_container.sh
 
 # vim setting
 # RUN apt install -y vim

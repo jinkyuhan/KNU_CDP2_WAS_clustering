@@ -1,6 +1,10 @@
 FROM tomcat:9.0
 
-RUN apt update && apt -y upgrade
+RUN apt-get update && apt-get -y upgrade
+RUN apt-get -y install vim
 
-COPY ./server.xml /usr/local/tomcat/conf/server.xml
-COPY ./web.xml /usr/local/tomcat/conf/web.xml
+COPY ./conf/server.xml /usr/local/tomcat/conf/server.xml
+COPY ./conf/web.xml /usr/local/tomcat/conf/web.xml
+COPY ./scripts/setup_container.sh /usr/local/tomcat/setup_container.sh
+COPY ./webcontents/* /usr/local/tomcat/webapps/ROOT/
+RUN /bin/sh /usr/local/tomcat/setup_container.sh

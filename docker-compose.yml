@@ -2,12 +2,13 @@ version: "3"
 
 services: 
     httpd:
+        build:
+            context: ./apache_src/
+            dockerfile: ./Dockerfile
         image: httpd:2.4
-        build: ./apache_src/
+        container_name: apache-server
         ports: 
             - "55891:80"
-        volumes: 
-            - ./webcontents/:/usr/local/apache2/htdocs/ #local changes directly apply
         logging: 
             driver: "json-file"
             options: 
@@ -15,15 +16,14 @@ services:
                 max-size: "10m"
 
     tomcat1:
+        build:
+            context: ./tomcat_src/
+            dockerfile: ./Dockerfile
         image: tomcat:9.0
-        build: ./tomcat_src/
+        container_name: tomcat-server1
         ports: 
             - "55991:8080"
             - "55901:8009"  # for sync with apache
-        volumes: 
-            - ./tomcat_src/src/:/usr/local/tomcat/webapps/ROOT
-        # command: 
-            # - /usr/local/tomcat/bin/catalina.sh up    # default
         logging: 
             driver: "json-file"
             options: 
@@ -31,15 +31,14 @@ services:
                 max-size: "10m"
 
     tomcat2:
+        build:
+            context: ./tomcat_src/
+            dockerfile: ./Dockerfile
         image: tomcat:9.0
-        build: ./tomcat_src/
+        container_name: tomcat-server2
         ports: 
             - "55992:8080"
             - "55902:8009"  # for sync with apache
-        volumes: 
-            - ./tomcat_src/src/:/usr/local/tomcat/webapps/ROOT
-        # command: 
-            # - /usr/local/tomcat/bin/catalina.sh up    # default
         logging: 
             driver: "json-file"
             options: 
