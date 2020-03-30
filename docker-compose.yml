@@ -5,7 +5,7 @@ services:
         build:
             context: ./apache_src/
             dockerfile: ./Dockerfile
-        image: httpd:2.4
+        image: myapache
         container_name: apache-server
         ports: 
             - "55891:80"
@@ -19,7 +19,7 @@ services:
         build:
             context: ./tomcat_src/
             dockerfile: ./Dockerfile
-        image: tomcat:9.0
+        image: mytomcat
         container_name: tomcat-server1
         ports: 
             - "55991:8080"
@@ -31,10 +31,12 @@ services:
                 max-size: "10m"
 
     tomcat2:
-        build:
-            context: ./tomcat_src/
-            dockerfile: ./Dockerfile
-        image: tomcat:9.0
+        # build:
+        #     context: ./tomcat_src/
+        #     dockerfile: ./Dockerfile
+        image: mytomcat
+        depends_on:
+            - tomcat1
         container_name: tomcat-server2
         ports: 
             - "55992:8080"

@@ -1,19 +1,23 @@
 FROM httpd:2.4
 LABEL maintainer="cheesecat47@gmail.com"
-# COPY ./webcontents/ /usr/local/apache2/htdocs/
 
-RUN apt-get update
-RUN apt-get -y upgrade
-RUN apt-get install -y net-tools 
-RUN apt-get install -y apt-utils
+ENV DEBIAN_FRONTEND noninteractive
 
+# Copy Local's config file into Container
 COPY ./conf/httpd.conf /usr/local/apache2/conf/httpd.conf
-COPY ./scripts/setup_container.sh /usr/local/apache2/setup_container.sh
+
+# Install Dependencies
+RUN apt-get update
+RUN apt-get -y upgrade --no-install-recommends apt-utils
+RUN apt-get install -y gcc
+RUN apt-get install -y cmake
+RUN apt-get install -y wget
 
 # install mod_jk
-RUN apt-get install -y gcc
-RUN apt-get install -y g++ 
-RUN apt-get install -y apache2-dev 
-RUN apt-get install -y wget
-RUN apt-get install -y libapache2-mod-jk
-RUN /bin/sh /usr/local/apache2/setup_container.sh
+RUN wget -c http://apache.tt.co.kr/tomcat/tomcat-connectors/jk/tomcat-connectors-1.2.48-src.tar.gz
+RUN tar zxvf tomcat-connector*
+RUN rm tomcat-connectors-1.2.48-src.tar.gz
+RUN cd ./tomcat-connectors-1.2.48-src/native/ && \
+    ./configure --with-apxs=/usr/local/apache2/bin/apxs && \
+    make && \
+    make install
