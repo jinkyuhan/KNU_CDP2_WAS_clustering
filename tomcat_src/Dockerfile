@@ -12,5 +12,5 @@ RUN rm -rf /usr/local/tomcat/webapps
 RUN mv /usr/local/tomcat/webapps.dist /usr/local/tomcat/webapps
 RUN rm -rf /usr/local/tomcat/webapps/ROOT/*
 COPY ./webcontents/* /usr/local/tomcat/webapps/ROOT/
-RUN /bin/sh /usr/local/tomcat/setup_container.sh
+
 

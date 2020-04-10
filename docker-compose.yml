@@ -8,7 +8,7 @@ services:
         image: myapache
         container_name: apache-server
         ports: 
-            - "55891:80"
+            - "80:80"
         logging: 
             driver: "json-file"
             options: 
@@ -22,8 +22,8 @@ services:
         image: mytomcat
         container_name: tomcat-server1
         ports: 
-            - "55991:8080"
-            - "55901:8009"  # for sync with apache
+            - "8080:8080"
+            - "8009:8009"  # for sync with apache
         logging: 
             driver: "json-file"
             options: 
@@ -39,8 +39,8 @@ services:
             - tomcat1
         container_name: tomcat-server2
         ports: 
-            - "55992:8080"
-            - "55902:8009"  # for sync with apache
+            - "8180:8080"
+            - "8109:8009"  # for sync with apache
         logging: 
             driver: "json-file"
             options: 
