@@ -1,0 +1,272 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en"><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="../images/docs-stylesheet.css" rel="stylesheet" type="text/css"><title>The Apache Tomcat Connectors - Miscellaneous Documentation (1.2.x) - How to Contribute to the Documentation</title><meta name="author" content="Robert Sowders"><script type="application/javascript" data-comments-identifier="miscellaneous/">
+    "use strict"; // Enable strict mode
+
+    (function() {
+      var thisScript = document.currentScript;
+      if (!thisScript) { // Workaround for IE <= 11
+        var scripts = document.getElementsByTagName("script");
+        thisScript = scripts[scripts.length - 1];
+      }
+      document.addEventListener("DOMContentLoaded", (function() {
+        var commentsDiv = document.getElementById("comments_thread");
+        var commentsShortname = "tomcat";
+        var commentsIdentifier = "https://tomcat.apache.org/" +
+          thisScript.getAttribute("data-comments-identifier") + ".html";
+
+        (function(w, d) {
+          if (w.location.hostname.toLowerCase() == "tomcat.apache.org") {
+            var s = d.createElement("script");
+            s.type = "application/javascript";
+            s.async = true;
+            s.src = "https://comments.apache.org/show_comments.lua?site=" +
+              encodeURIComponent(commentsShortname) +
+              "&page=" + encodeURIComponent(commentsIdentifier);
+            d.head.appendChild(s);
+          } else {
+            commentsDiv.appendChild(d.createTextNode("Comments are disabled for this page at the moment."));
+          }
+        })(window, document);
+      }), false);
+    })();
+  </script></head><body><div id="wrapper"><header><div id="header"><div><div><div class="logo noPrint"><a href="http://tomcat.apache.org/"><img alt="Tomcat Home" src="../images/tomcat.png"></a></div><div style="height: 1px;"></div><div class="asfLogo noPrint"><a href="https://www.apache.org/" target="_blank"><img src="../images/asf-logo.svg" alt="The Apache Software Foundation" style="width: 266px; height: 83px;"></a></div><h1>The Apache Tomcat Connectors - Miscellaneous Documentation</h1><div style="height: 1px;"></div><div style="clear: left;"></div></div></div></div></header><div id="middle"><div><div id="mainLeft" class="noprint"><div><nav><div><h2>Links</h2><ul><li><a href="../index.html">Docs Home</a></li></ul></div><div><h2>Common HowTo</h2><ul><li><a href="../common_howto/quick.html">Quick Start</a></li><li><a href="../common_howto/workers.html">All About Workers</a></li><li><a href="../common_howto/timeouts.html">Timeouts</a></li><li><a href="../common_howto/loadbalancers.html">Load Balancing</a></li><li><a href="../common_howto/proxy.html">Reverse Proxy</a></li></ul></div><div><h2>Web Server HowTo</h2><ul><li><a href="../webserver_howto/apache.html">Apache HTTP Server (mod_jk)</a></li><li><a href="../webserver_howto/iis.html">Microsoft IIS (ISAPI redirector)</a></li><li><a href="../webserver_howto/nes.html">iPlanet Web Server (NSAPI redirector)</a></li></ul></div><div><h2>Reference Guide</h2><ul><li><a href="../reference/workers.html">workers.properties</a></li><li><a href="../reference/uriworkermap.html">uriworkermap.properties</a></li><li><a href="../reference/status.html">Status Worker</a></li><li><a href="../reference/apache.html">Apache HTTP Server (mod_jk)</a></li><li><a href="../reference/iis.html">Microsoft IIS (ISAPI redirector)</a></li></ul></div><div><h2>AJP Protocol Reference</h2><ul><li><a href="../ajp/ajpv13a.html">AJPv13 (ajp13)</a></li><li><a href="../ajp/ajpv13ext.html">AJPv13 Extension Proposal</a></li></ul></div><div><h2>Miscellaneous Documentation</h2><ul><li><a href="../miscellaneous/faq.html">Frequently Asked Questions</a></li><li><a href="../miscellaneous/changelog.html">Changelog</a></li><li><a href="http://issues.apache.org/bugzilla/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=&amp;product=Tomcat+Connectors&amp;long_desc_type=substring&amp;long_desc=&amp;bug_file_loc_type=allwordssubstr&amp;bug_file_loc=&amp;keywords_type=allwords&amp;keywords=&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;emailassigned_to1=1&amp;emailtype1=substring&amp;email1=&amp;emailassigned_to2=1&amp;emailreporter2=1&amp;emailcc2=1&amp;emailtype2=substring&amp;email2=&amp;bugidtype=include&amp;bug_id=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;cmdtype=doit&amp;order=Reuse+same+sort+as+last+time&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=">Current Tomcat Connectors bugs</a></li><li><a href="../miscellaneous/doccontrib.html">Contribute documentation</a></li><li><a href="../miscellaneous/jkstatustasks.html">JK Status Ant Tasks</a></li><li><a href="../miscellaneous/reporttools.html">Reporting Tools</a></li><li><a href="http://tomcat.apache.org/connectors-doc-archive/jk2/index.html">Old JK/JK2 documentation</a></li></ul></div><div><h2>News</h2><ul><li><a href="../news/20180301.html">2018</a></li><li><a href="../news/20160901.html">2016</a></li><li><a href="../news/20150101.html">2015</a></li><li><a href="../news/20140201.html">2014</a></li><li><a href="../news/20120301.html">2012</a></li><li><a href="../news/20110701.html">2011</a></li><li><a href="../news/20100101.html">2010</a></li><li><a href="../news/20090301.html">2009</a></li><li><a href="../news/20081001.html">2008</a></li><li><a href="../news/20070301.html">2007</a></li><li><a href="../news/20060101.html">2006</a></li><li><a href="../news/20050101.html">2005</a></li><li><a href="../news/20041100.html">2004</a></li></ul></div></nav></div></div><div id="mainRight"><div id="content"><h2>How to Contribute to the Documentation</h2><h3 id="Introduction">Introduction</h3><div class="text">
+<p>
+    This document describes how you can easily contribute to the 
+documentation.  I'm going to try to make it easy for everyone to help out with 
+the documentation of Tomcat, more specifically the documentation for the 
+connectors.  This is written from a windows user perspective as I believe they 
+will most benefit from it.  For people using Unix it should be easy for them to 
+apply these steps.  Just substitute Unix syntax where needed.
+</p>
+<p>
+    The documentation is produced using xml with xsl style sheets.  This 
+effectivly seperates the content of the documents from the style, so all that 
+contributers need to worry about the content.  It is much easier to use than 
+html.
+</p>
+<p>
+    It's all really quite simple.  Here is what you will need:
+<ul>
+<li>
+<b>A recent version of Ant</b>
+</li>
+<li>
+<b>The source code for the connectors from subversion</b>
+</li>
+<li>
+<b>Any ascii text editor</b>
+</li>
+</ul>
+</p>
+</div><h3 id="Getting_Started_Step_by_Step">Getting Started Step by Step</h3><div class="text">
+<p>
+    After you get these tools they are simple to set up.
+</p>
+    <div class="subsection"><h4 id="STEP_1._Get_Ant">STEP 1. Get Ant</h4><div class="text">
+<p>
+    Install <a href="http://ant.apache.org/">Ant</a>. The only advice I 
+have is to choose a simple installation path.  Now set an environment variable 
+for ANT_HOME, and then add the location of the Ant/bin directory to your PATH 
+variable.  Consult your Operating system documentation for information on how 
+to do this.  When you are finished verify that you can run ant from the command 
+line.
+</p>
+<p>
+    Ant is used to build the documentation, among other things, and it must be 
+able to see a file called <b>build.xml</b>.  This file is located in the 
+<b>xdocs</b> directory.  In the 
+<b>build.xml</b> file there is a target named <b>all</b> that will be used to build 
+the docs.
+</p>
+</div></div>
+<div class="subsection"><h4 id="STEP_2.__Get_the_sources">STEP 2.  Get the sources</h4><div class="text">
+<p>
+    Get the sources for
+<a href="https://github.com/apache/tomcat-connectors">tomcat-connectors</a>
+from the git repository. You will need a git client. Install the client of
+your choice, if you don't already have one.
+</p>
+<p>
+    You are ready to download the sources now.  Change directory to the 
+location where you want your repository to be.  For simplicity we will call this 
+your <b>GIT_HOME</b>.  Mine is located in C:\build.
+</p>
+<p>
+    Run the following command to <b>clone</b> the sources for the first time.
+You should only need to do this once.
+<div class="codeBox"><pre><code>C:\build\&gt;git clone https://github.com/apache/tomcat-connectors tomcat-connectors
+</code></pre></div>
+</p>
+<p>
+    You should now be watching all the downloads come in.  Now that you have 
+the sources on your machine the hard part is over.  From now on, to update your 
+sources all you have to do is cd into any directory in your repository and run 
+the <b>git pull</b> command.
+</p>
+</div></div>
+<div class="subsection"><h4 id="STEP_3.__Test_your_build_environment">STEP 3.  Test your build environment</h4><div class="text">
+<p>
+    Open a command prompt window and cd to the directory where you downloaded 
+the source.  Now cd into the xdocs directory so that <b>Ant</b> can see the 
+<b>build.xml</b> file. Then from a command prompt, run the following:
+<div class="codeBox"><pre><code>C:\build\tomcat-connectors&gt; cd xdocs
+C:\build\tomcat-connectors\xdocs&gt; ant all
+</code></pre></div>
+</p>.
+<p>
+    You should see the ant compiler messages scrolling by rapidly and then stop 
+with the following:
+<div class="codeBox"><pre><code>[style] Transforming into C:\build\tomcat-connectors\build\docs\news\printer&gt;
+[style] Processing C:\build\tomcat-connectors\xdocs\news\20041100.xml 
+to
+C:\build\tomcat-connectors\build\docs\news/20041100.html
+[style] Loading stylesheet C:\build\tomcat-connectors\xdocs\style.xsl
+[style] Processing C:\build\tomcat-connectors\xdocs\news\20050101.xml 
+to
+C:\build\tomcat-connectors\build\docs\news/20050101.html
+[style] Processing C:\build\tomcat-connectors\xdocs\news\20060101.xml 
+to
+C:\build\tomcat-connectors\build\docs\news/20060101.html
+[style] Transforming into C:\build\tomcat-connectors\build\docs&gt;
+[style] Processing C:\build\tomcat-connectors\xdocs\index.xml 
+to
+C:\build\tomcat-connectors\build\docs\index.html
+[style] Loading stylesheet C:\build\tomcat-connectors\xdocs\style.xsl
+ 
+BUILD SUCCESSFUL
+Total time: 10 seconds
+C:\build\tomcat-connectors&gt;
+</code></pre></div>
+</p>
+<p>
+    All the xml files present in the xdocs directory structure were transformed 
+to html and copied to the <b>GIT_HOME\tomcat-connectors\build\docs</b>
+directory.  Open one of the 
+html files in your browser and see how it looks.
+</p>
+</div></div>
+<div class="subsection"><h4 id="STEP_4.___The_editing_process.">STEP 4.   The editing process.</h4><div class="text">
+<p>
+    I find it easier to use two windows while doing my updates.  One I call my 
+<b>build</b> window.  I keep this one in the <b>GIT_HOME\tomcat-connectors\xdocs</b>
+directory and I only run two commands in this window:
+<note>First I run</note>
+<div class="codeBox"><pre><code>ant clean
+</code></pre></div>
+<note>Then I run</note>
+<div class="codeBox"><pre><code>ant all
+</code></pre></div>
+</p>
+<p>
+    My second window I call my <b>edit</b> window and I keep that one in the 
+<b>GIT_HOME\tomcat-connectors\xdocs</b> directory where I'm doing my
+edits, diffs and git pulls.
+</p>
+<p>
+    Before you start editing you should always update your local repository to 
+prevent conflicts.
+<div class="codeBox"><pre><code>C:\build\tomcat-connectors&gt; git pull
+</code></pre></div>
+</p>
+<p>
+    Now that your repository is up to date you can begin editing.  Find 
+something in the documentation to edit.  When you find something remember the 
+name of the file.  In your <b>edit</b> window find and edit the xml source file 
+with the same name.  After you are done return to the  <b>build</b> window, and 
+in the <b>GIT_HOME\tomcat-connectors\xdocs</b> directory run:
+<div class="codeBox"><pre><code>C:\build\tomcat-connectors\xdocs&gt; ant clean
+</code></pre></div>
+</p>
+<p>
+    This will delete all the previous html files and make the area ready for 
+updated material.  Now to make fresh documents that incorporate your changes 
+run:
+<div class="codeBox"><pre><code>C:\build\tomcat-connectors\xdocs&gt; ant all
+</code></pre></div>
+</p>
+<p>
+    Use your browser to view the edits you just made, they will be in the 
+<b>GIT_HOME\tomcat-connectors\build\docs</b> sub-tree.  If it looks
+good and is ready to go, 
+all that is left to do is to create a patch and submit it.
+</p>
+</div></div>
+<div class="subsection"><h4 id="STEP_5.__Creating_a_patch_and_submitting_it.">STEP 5.  Creating a patch and submitting it.</h4><div class="text">
+<p>
+    From your <b>edit</b> window cd into the directory that contains the xml 
+file you are working on, and run the <b>git pull</b> command.  For example, 
+to produce a diff of the index.xml file and call it patch.txt, you 
+would cd into the directory containing the index.xml file and:
+<div class="codeBox"><pre><code>C:\build\tomcat-connectors\xdocs\&gt;git diff index.xml &gt;  
+patch.txt.
+</code></pre></div>
+</p>
+<p>
+    Now that you have your patch you are ready to send it in.
+</p>
+<p>
+    Patches to the documentation are handled just like a bug report.  You 
+should submit your patches to <a href="http://issues.apache.org/bugzilla/">http://issues.apache.org/bugzilla/</a>
+ and include a good one line subject.  If this is your first time to use the 
+bug database then you should read  <a href="http://issues.apache.org/bugzilla/bugwritinghelp.html">http://issues.apach
+e.org/bugzilla/bugwritinghelp.html.</a>  You will need to create a user 
+account.  At the web site paste your patch into the web form and don't forget 
+to describe what it is your patch is for.  Sooner or later a someone with 
+commit privileges will review your suggestion.
+</p>
+</div></div>
+</div><h3 id="Updating_Web_site">Updating Web site</h3><div class="text">
+<p>
+    Only Committers are able to update the web site (http://tomcat.apache.org/connectors-doc/).
+    To do it:
+    <ul>
+    <li>Connect to people.apache.org.</li>
+    <li>umask 002</li>
+    <li>Copy the changed files to /www/tomcat.apache.org/connectors-doc/.</li>
+    <li>or use ant from a checkout tomcat/jk/trunk/xdocs repository:<br>
+        ant -Dbuild.dir=/www/tomcat.apache.org -Ddist.name=connectors-doc 
+    </li>
+    <li>The changes should sync to tomcat.apache.org within seconds.</li>
+    </ul>
+</p>
+</div><h3 id="Guides_and_Resources">Guides and Resources</h3><div class="text">
+<p>
+    A little help to get you started if you need it
+</p>
+<ul>
+<li>
+<a href="http://www.xml.org/xml/resources_focus_beginnerguide.shtml">XML 
+Beginner's Guide</a>
+</li>
+<li>
+<a href="http://issues.apache.org/bugzilla/">Bugzilla</a>
+</li>
+<li>
+<a href="http://issues.apache.org/bugwritinghelp.html">Bugzilla Bug 
+Writing Guide</a>
+</li>
+<li>
+<a href="http://ant.apache.org/">Ant</a>
+</li>
+<li>
+<a href="https://git-scm.com/">Git Home</a>
+</li>
+<li>
+<a href="https://github.com/apache/tomcat-connectors/tree/master/xdocs">JK Docs repository</a>
+</li>
+</ul>
+</div><div class="noprint"><h3 id="comments_section">
+                  Comments
+                </h3><div class="text"><p class="notice"><strong>Notice:</strong> This comments section collects your suggestions
+                    on improving documentation for Apache Tomcat.<br><br>
+                    If you have trouble and need help, read
+                    <a href="https://tomcat.apache.org/findhelp.html">Find Help</a> page
+                    and ask your question on the tomcat-users
+                    <a href="https://tomcat.apache.org/lists.html">mailing list</a>.
+                    Do not ask such questions here. This is not a Q&amp;A section.<br><br>
+                    The Apache Comments System is explained <a href="../comments.html">here</a>.
+                    Comments may be removed by our moderators if they are either
+                    implemented or considered invalid/off-topic.
+                  </p><div id="comments_thread"></div></div></div></div></div></div></div><footer><div id="footer">
+    Copyright &copy; 1999-yyyy, The Apache Software Foundation
+  </div></footer></div></body></html>

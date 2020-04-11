@@ -1,5 +1,4 @@
 FROM httpd:2.4
-LABEL maintainer="cheesecat47@gmail.com"
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -15,9 +14,7 @@ RUN apt-get install -y cmake
 RUN apt-get install -y wget
 
 # install mod_jk
-RUN wget -c http://apache.tt.co.kr/tomcat/tomcat-connectors/jk/tomcat-connectors-1.2.48-src.tar.gz
-RUN tar zxvf tomcat-connectors-1.2.48-src.tar.gz
-RUN rm tomcat-connectors-1.2.48-src.tar.gz
+COPY ./tomcat-connectors-1.2.48-src/ ./tomcat-connectors-1.2.48-src/
 RUN cd ./tomcat-connectors-1.2.48-src/native/ && \
     ./configure --with-apxs=/usr/local/apache2/bin/apxs && \
     make && \

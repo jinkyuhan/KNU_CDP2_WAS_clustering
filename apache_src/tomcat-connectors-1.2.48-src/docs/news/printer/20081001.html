@@ -1,0 +1,200 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en"><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="../../images/docs-stylesheet.css" rel="stylesheet" type="text/css"><title>The Apache Tomcat Connectors - News (1.2.x) - 2008 News and Status</title><meta name="author" content="Apache Tomcat Connectors Project"><script type="application/javascript" data-comments-identifier="news/">
+    "use strict"; // Enable strict mode
+
+    (function() {
+      var thisScript = document.currentScript;
+      if (!thisScript) { // Workaround for IE <= 11
+        var scripts = document.getElementsByTagName("script");
+        thisScript = scripts[scripts.length - 1];
+      }
+      document.addEventListener("DOMContentLoaded", (function() {
+        var commentsDiv = document.getElementById("comments_thread");
+        var commentsShortname = "tomcat";
+        var commentsIdentifier = "https://tomcat.apache.org/" +
+          thisScript.getAttribute("data-comments-identifier") + ".html";
+
+        (function(w, d) {
+          if (w.location.hostname.toLowerCase() == "tomcat.apache.org") {
+            var s = d.createElement("script");
+            s.type = "application/javascript";
+            s.async = true;
+            s.src = "https://comments.apache.org/show_comments.lua?site=" +
+              encodeURIComponent(commentsShortname) +
+              "&page=" + encodeURIComponent(commentsIdentifier);
+            d.head.appendChild(s);
+          } else {
+            commentsDiv.appendChild(d.createTextNode("Comments are disabled for this page at the moment."));
+          }
+        })(window, document);
+      }), false);
+    })();
+  </script></head><body><div id="wrapper"><header><div id="header"><div><div><div class="logo noPrint"><a href="http://tomcat.apache.org/"><img alt="Tomcat Home" src="../../images/tomcat.png"></a></div><div style="height: 1px;"></div><div class="asfLogo noPrint"><a href="https://www.apache.org/" target="_blank"><img src="../../images/asf-logo.svg" alt="The Apache Software Foundation" style="width: 266px; height: 83px;"></a></div><h1>The Apache Tomcat Connectors - News</h1><div style="height: 1px;"></div><div style="clear: left;"></div></div></div></div></header><div id="middle"><div><div id="mainLeft" class="noprint"><div><nav><div><h2>Links</h2><ul><li><a href="../index.html">Docs Home</a></li></ul></div><div><h2>Common HowTo</h2><ul><li><a href="../common_howto/quick.html">Quick Start</a></li><li><a href="../common_howto/workers.html">All About Workers</a></li><li><a href="../common_howto/timeouts.html">Timeouts</a></li><li><a href="../common_howto/loadbalancers.html">Load Balancing</a></li><li><a href="../common_howto/proxy.html">Reverse Proxy</a></li></ul></div><div><h2>Web Server HowTo</h2><ul><li><a href="../webserver_howto/apache.html">Apache HTTP Server (mod_jk)</a></li><li><a href="../webserver_howto/iis.html">Microsoft IIS (ISAPI redirector)</a></li><li><a href="../webserver_howto/nes.html">iPlanet Web Server (NSAPI redirector)</a></li></ul></div><div><h2>Reference Guide</h2><ul><li><a href="../reference/workers.html">workers.properties</a></li><li><a href="../reference/uriworkermap.html">uriworkermap.properties</a></li><li><a href="../reference/status.html">Status Worker</a></li><li><a href="../reference/apache.html">Apache HTTP Server (mod_jk)</a></li><li><a href="../reference/iis.html">Microsoft IIS (ISAPI redirector)</a></li></ul></div><div><h2>AJP Protocol Reference</h2><ul><li><a href="../ajp/ajpv13a.html">AJPv13 (ajp13)</a></li><li><a href="../ajp/ajpv13ext.html">AJPv13 Extension Proposal</a></li></ul></div><div><h2>Miscellaneous Documentation</h2><ul><li><a href="../miscellaneous/faq.html">Frequently Asked Questions</a></li><li><a href="../miscellaneous/changelog.html">Changelog</a></li><li><a href="http://issues.apache.org/bugzilla/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=&amp;product=Tomcat+Connectors&amp;long_desc_type=substring&amp;long_desc=&amp;bug_file_loc_type=allwordssubstr&amp;bug_file_loc=&amp;keywords_type=allwords&amp;keywords=&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;emailassigned_to1=1&amp;emailtype1=substring&amp;email1=&amp;emailassigned_to2=1&amp;emailreporter2=1&amp;emailcc2=1&amp;emailtype2=substring&amp;email2=&amp;bugidtype=include&amp;bug_id=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;cmdtype=doit&amp;order=Reuse+same+sort+as+last+time&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=">Current Tomcat Connectors bugs</a></li><li><a href="../miscellaneous/doccontrib.html">Contribute documentation</a></li><li><a href="../miscellaneous/jkstatustasks.html">JK Status Ant Tasks</a></li><li><a href="../miscellaneous/reporttools.html">Reporting Tools</a></li><li><a href="http://tomcat.apache.org/connectors-doc-archive/jk2/index.html">Old JK/JK2 documentation</a></li></ul></div><div><h2>News</h2><ul><li><a href="../news/20200201.html">2020</a></li><li><a href="../news/20180301.html">2018</a></li><li><a href="../news/20160901.html">2016</a></li><li><a href="../news/20150101.html">2015</a></li><li><a href="../news/20140201.html">2014</a></li><li><a href="../news/20120301.html">2012</a></li><li><a href="../news/20110701.html">2011</a></li><li><a href="../news/20100101.html">2010</a></li><li><a href="../news/20090301.html">2009</a></li><li><a href="../news/20081001.html">2008</a></li><li><a href="../news/20070301.html">2007</a></li><li><a href="../news/20060101.html">2006</a></li><li><a href="../news/20050101.html">2005</a></li><li><a href="../news/20041100.html">2004</a></li></ul></div></nav></div></div><div id="mainRight"><div id="content"><h2>2008 News and Status</h2><h3 id="2008_News_&amp;_Status">2008 News &amp; Status</h3><div class="text">
+<br>
+<div class="subsection"><h4 id="28_October_-_JK-1.2.27_released">28 October - JK-1.2.27 released</h4><div class="text">
+<a name="20081028.1"></a>
+<br>
+<p>The Apache Tomcat team is proud to announce the immediate availability
+of Tomcat Connectors 1.2.27. This is a stable release adding lots of new features
+and some bug fixes.
+</p><p>
+ Please see the <a href="../miscellaneous/changelog.html">ChangeLog</a> for a full list of changes.
+</p>
+<p>If you find any bugs while using this release, please fill in the
+<a href="https://issues.apache.org/bugzilla/enter_bug.cgi?product=Tomcat%20Connectors">Bugzilla</a>
+Bug Report.
+</p>
+<p>
+The most important new features in this version are:
+</p>
+<h3>Watchdog Thread for Periodic Tasks</h3>
+<p>
+The connector has to run some periodic tasks independant of
+request processing. Examples are probing or closing down idle backend
+connections, adjusting load numbers and recovering workers from error state.
+</p>
+<p>
+Before version 1.2.27 these tasks were done inside the request processing loop.
+When a new request came in and the task was due, the thread handling the
+request first executed the internal task and then handled the request.
+If there were no requests coming in, the tasks would not run. If any of
+the tasks took unexpectedly long, the response time of the request waiting
+for the finishing of the task went up.
+</p>
+<p>
+Starting with this release you can configure a separate watchdog thread inside
+the web server to run all those tasks independantly of request processing.
+This new feature is avaliable for the connector when used with Apache httpd 2.x
+or with Microsoft IIS. To keep the behaviour of the new version consistent
+with previous releases, this feature is turned off by default.
+You can activate the watchdog thread via
+<a href="../reference/apache.html"><code>JkWatchdogInterval</code></a>
+for Apache or
+<a href="../reference/iis.html"><code>watchdog_interval</code></a>
+for IIS.
+</p>
+<h3>Connection Probing</h3>
+<p>
+In previous releases connection probing (checking whether connections still work)
+could only be done immediately after a new connection was established and
+directly before sending each request. Since we now have the watchdog
+thread available, we also added a periodic probing option, which you
+can activate with the worker attribute
+<a href="../reference/workers.html"><code>ping_mode</code></a>.
+This will also be useful as a protection against the infamous firewall
+idle connection drop.
+</p>
+<p>
+The older attributes <code>connect_timeout</code> and <code>prepost_timeout</code>
+still exist and work the same way they did in previous releases.
+Since there are now three different probing options, we recommend to migrate
+your configuration to the newer attributes <code>ping_mode</code>,
+<code>ping_timeout</code> and <code>connection_ping_interval</code>.
+</p>
+<h3>Mount Extensions</h3>
+<p>
+Usually one defines workers and mounts for the connector.
+A worker defines a backend we want to talk to and the configuration parameters of the
+communication, connection pools etc. The mounts define which URIs we want to forward to
+which worker (so we also call a mount an URI map rule).
+In version 1.2.27 you can overwrite certain worker parameter per mount.
+</p>
+<p>
+One easy to understand example is reply timeouts. Until this release you had to specify
+a reply timeout for the whole worker. But reply times depend a lot on the type of
+request. So normally you want to define a general reply timeout and
+for some special URLs you need to relax the reply timeout, because you know those
+URLs take much longer to process (like e.g. reporting or other compute intensive tasks).
+</p>
+<p>
+Another possible case is the activation status. You might use a load balancer worker to
+forward requests to certain webapps in a farm of Tomcat nodes. If you wanted
+to update some webapp on one node, you previously had to stop forwarding requests for
+all webapps on this Tomcat node. What was not possible until now, was stopping forwarding
+requests restricted to the webapp and the node you wanted to update.
+</p>
+<p>
+Starting with this release, you can add so-called
+<a href="../reference/uriworkermap.html#Rule extensions">rule extensions</a>
+to your uriworkermap file to influence worker parameters per mount. This will
+work for all Apache versions and for IIS. Remember, that
+the uriworkermap file automatically gets reloaded after changes without web server
+restart.
+</p>
+<h3>Improved IIS support</h3>
+<p>
+We improved IIS support im various ways. It is now possible to use
+multiple IIS 6 application pools with the ISAPI redirector.
+</p>
+<p>
+Furthermore some improvements were added as compile time features.
+The most notable one is chunked encoding support, which was a major
+refactoring and is therefore still considered experimental. You can
+download binaries with and without chunked encoding support. In future
+versions, chunked encoding will likely be availabe in all builds.
+</p>
+<p>
+Another new feature is an elegant way of configuring error page redirects.
+All new features are documented on the documentation page about
+<a href="../reference/iis.html">configuring IIS</a>.
+</p>
+<h3>Enhanced Status Worker</h3>
+<p>
+The
+<a href="../reference/status.html">status worker</a>
+now can also manage and show statistics for AJP workers that
+are not part of a load balancer. Other improvements are the new <code>dump</code>
+action, the integration of the new configuration attributes, showing average
+request and transfer rates since the last statistics reset and the ability to
+display only a single member of a load balancer.
+</p>
+<p>
+Unfortunately we had to change
+<a href="../reference/status.html#Data Parameters for the standard Update Action">some request parameters</a>
+used for the <code>update</code> action of the status worker.
+</p>
+<h3>Miscellaneous Improvements</h3>
+<p>
+Further enhancements are:
+<ul>
+<li>
+Configurable session stickyness indicator: cookie name and URL path
+parameter name can be freely chosen instead of the servlet spec compliant
+<code>JSESSIONID</code> and <code>;jsessionid</code>.
+</li>
+<li>
+Automatically determining the size of the shared memory segment needed
+to accommodate all workers.
+</li>
+<li>
+New connection establishment timeout <code>socket_connect_timeout</code>.
+</li>
+<li>
+New timeout <code>connection_acquire_timeout</code> for acquiring a free connection from
+the pool.
+</li>
+<li>
+Improved retry handling by adjusting the meaning of the attribute <code>retries</code> for
+AJP workers and for load balancers and by adding the new <code>retry_interval</code>.
+</li>
+<li>
+Allowing the web server to provide error pages instead of Tomcat.
+</li>
+</ul>
+</p>
+</div></div>
+</div><div class="noprint"><h3 id="comments_section">
+                  Comments
+                </h3><div class="text"><p class="notice"><strong>Notice:</strong> This comments section collects your suggestions
+                    on improving documentation for Apache Tomcat.<br><br>
+                    If you have trouble and need help, read
+                    <a href="https://tomcat.apache.org/findhelp.html">Find Help</a> page
+                    and ask your question on the tomcat-users
+                    <a href="https://tomcat.apache.org/lists.html">mailing list</a>.
+                    Do not ask such questions here. This is not a Q&amp;A section.<br><br>
+                    The Apache Comments System is explained <a href="../../comments.html">here</a>.
+                    Comments may be removed by our moderators if they are either
+                    implemented or considered invalid/off-topic.
+                  </p><div id="comments_thread"></div></div></div></div></div></div></div><footer><div id="footer">
+    Copyright &copy; 1999-yyyy, The Apache Software Foundation
+  </div></footer></div></body></html>

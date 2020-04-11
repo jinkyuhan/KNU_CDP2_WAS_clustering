@@ -1,0 +1,414 @@
+<?xml version="1.0"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE document [
+  <!ENTITY project SYSTEM "project.xml">
+]>
+<document url="iis.html">
+
+    &project; 
+
+    <properties>
+        <author email="mturk@apache.org">Mladen Turk</author>
+        <title>Configuring the ISAPI redirector for Microsoft IIS</title>
+    </properties>
+
+<body>
+
+<section name="Requirements">
+<p>
+The Tomcat redirector requires three entities:
+
+<ul>
+<li>
+<b>isapi_redirect.dll</b> - The IIS ISAPI redirector plugin, either obtain a pre-built DLL or build it yourself (see the build section).
+</li>
+<li>
+<b>workers.properties</b> - A file that describes the host(s) and port(s) used by the workers (Tomcat processes). 
+A sample workers.properties can be found under the conf directory.
+</li>
+<li>
+<b>uriworkermap.properties</b> - A file that maps URL-Path patterns to workers. 
+A sample uriworkermap.properties can be found under the conf directory as well.
+</li>
+</ul>
+</p>
+
+<p>
+The installation includes the following parts:
+
+<ul>
+<li>
+Configuring the ISAPI redirector with a default /examples context and checking that you can serve servlets with IIS.
+</li>
+<li>
+Adding more contexts to the configuration.
+</li>
+</ul>
+</p>
+<p>
+Note that in a 64 Bit environment - at least for IIS 7 - the used IIS Application Pool
+should have "Enable 32-bit Applications" set to "False". Otherwise the redirector will
+not be called and returns an http code 404. If you think, the 32bit version of
+isapi_redirect.dll would do the job instead, you will get an http code 500,
+because the library is not loadable into a 64 Bit IIS.
+</p>
+</section>
+<section name="Registry settings">
+<p>
+ISAPI redirector reads configuration from the registry, create a new registry key named:
+</p>
+<p>
+<b>"HKEY_LOCAL_MACHINE\SOFTWARE\Apache Software Foundation\Jakarta Isapi Redirector\1.0"</b>
+</p>
+<p>
+Attributes described below as a "string value representing a boolean"
+can be set either using the numbers <b>0</b> (false) and <b>1</b> (true)
+as values, or <b>off</b> (false) and <b>on</b> (true) or any other string
+starting with the letters <b>f</b> (false), <b>n</b> (false),
+<b>t</b> (true) or <b>y</b> (true).
+The values are taken case insensitive. In this documentation we will stick
+to <b>false</b> and <b>true</b>.
+</p>
+<attributes name="Key Name">
+<attribute name="extension_uri" required="true"><p>
+A string value pointing to the ISAPI extension <b>/jakarta/isapi_redirect.dll</b>
+</p></attribute>
+<attribute name="log_file" required="false"><p>
+A value pointing to location where log file will be created.
+(for example <b>c:\tomcat\logs\isapi.log</b>)
+<br/>If one of the log rotation settings (<b>log_rotationtime</b> or <b>log_filesize</b>) are specified then the actual log file name is based on this setting.
+If the log file name includes any '%' characters, then it is treated as a format string for <code>strftime(3)</code>, 
+e.g. <b>c:\tomcat\logs\isapi-%Y-%m-%d-%H_%M_%S.log</b>. Otherwise, the suffix <em>.nnnnnnnnnn</em> is automatically added and is the time in seconds.
+A full list of format string substitutions can be found in the <a href="http://httpd.apache.org/docs/2.4/programs/rotatelogs.html">Apache rotatelogs documentation</a>
+</p></attribute>
+<attribute name="log_level" required="false"><p>
+A string value for log level 
+(can be debug, info, warn, error or trace).</p>
+<p>This directive was added in version 1.2.31</p>
+</attribute>
+<attribute name="log_rotationtime" required="false"><p>
+The time between log file rotations in seconds.
+Setting this to 0 (the default) disables log rotation based on time.</p>
+<p>This directive was added in version 1.2.31</p>
+</attribute>
+<attribute name="log_filesize" required="false"><p>
+The maximum log file size in megabytes, after which the log file will be rotated. Setting this to 0 (the default) disables log rotation based on file size.
+<br/>The value can have an optional <b>M</b> suffix, i.e. both <b>5</b> and <b>5M</b> will rotate the log file when it grows to 5MB.
+<br/>If <b>log_rotationtime</b> is specified, then this setting is ignored.  
+</p></attribute>
+<attribute name="worker_file" required="true"><p>
+A string value which is the full path to workers.properties file
+(for example <b>c:\tomcat\conf\workers.properties</b>)
+</p></attribute>
+<attribute name="worker_mount_file" required="true"><p>
+A string value which is the full path to uriworkermap.properties file
+(for example <b>c:\tomcat\conf\uriworkermap.properties</b>)
+</p></attribute>
+<attribute name="rewrite_rule_file" required="false"><p>
+A string value which is the full path to rewrite.properties file
+(for example <b>c:\tomcat\conf\rewrite.properties</b>)
+</p></attribute>
+<attribute name="shm_size" required="false"><p>
+A DWORD value size of the shared memory. Set this value to be
+the number of all defined workers * 400.
+(Set this value only if you have <b>more</b> then <b>64</b> workers)
+</p>
+<p>This directive has been added in version 1.2.20</p>
+<p>Starting with version 1.2.27 the size of the shared memory is determined
+automatically, even for large numbers of workers. This attribute is not
+needed any longer.</p>
+</attribute>
+<attribute name="worker_mount_reload" required="false"><p>
+A DWORD value specifying the time in seconds upon which the
+<b>worker_mount_file</b> will be reloaded.
+</p>
+<p>This directive has been added in version 1.2.20</p>
+</attribute>
+<attribute name="strip_session" required="false"><p>
+A string value representing a boolean. If it is set to <b>true</b>,
+URL session suffixes of the form ";jsessionid=..." get stripped of
+URLs, if the are served locally by the web server.
+</p>
+<p>
+The default value is false.
+</p>
+<p>This directive has been added in version 1.2.21</p>
+</attribute>
+<attribute name="auth_complete" required="false"><p>
+A DWORD value representing "0" or "1". This is needed because
+of minor incompatibilities with IIS 5.1.
+</p>
+<p>
+By default its value is 1, which means we use the SF_NOTIFY_AUTH_COMPLETE
+event. If you set this to 0, then we use SF_NOTIFY_PREPROC_HEADERS.
+This might be needed for IIS 5.1 when handling requests using the
+PUT HTTP method.
+</p>
+<p>This directive has been added in version 1.2.21</p>
+</attribute>
+<attribute name="uri_select" required="false"><p>
+A string value which influences, how URIs are decoded and re-encoded
+between IIS and Tomcat. You should leave this at it's default value,
+unless you have a very good reason to change it.
+</p>
+<p>
+If the value is "parsed", the forwarded URI
+will be decoded and explicit path components like ".." will already
+be resolved. This is less spec compliant and is <b>not safe</b>
+if you are using prefix forwarding rules.
+</p>
+<p>
+If the value is "unparsed", the forwarded URI
+will be the original request URI. It's spec compliant and also
+the safest option. Rewriting the URI and then forwarding the rewritten
+URI will not work.
+</p>
+<p>
+If the value is "escaped", the forwarded URI
+will be the re-encoded form of the URI used by "parsed".
+Explicit path components like ".." will already be resolved.
+This will not work in combination with URL encoded session IDs.
+</p>
+<p>
+If the value is "proxy", the forwarded URI
+will be a partially re-encoded form of the URI used by "parsed".
+Explicit path components like ".." will already be resolved.
+and problematic are re-encoded.
+</p>
+<p>The default value since version 1.2.24 is "proxy". Before it was "parsed".</p>
+</attribute>
+<attribute name="reject_unsafe" required="false"><p>
+A string value representing a boolean. If it is set to <b>true</b>,
+URLs still containing percent signs '%' or backslashes '\'
+after decoding will be rejected.
+</p>
+<p>
+Most web apps do not use such URLs. By enabling <b>reject_unsafe</b> you
+can block several well known URL encoding attacks.
+</p>
+<p>
+The default value is false.
+</p>
+<p>This directive has been added in version 1.2.24</p>
+</attribute>
+<attribute name="collapse_slashes" required="false"><p>
+This options is deprecated as of 1.2.44 and will be ignored if used.
+</p>
+<p>
+Before version 1.2.41 collapsing was never done. Starting with
+version 1.2.41 collapsing before looking for unmount matches
+is the default to prevent easy bypassing of unmount rules.
+As of 1.2.44, collpasing is always performed before looking for mount
+or unmount rules.
+</p>
+<p>This directive has been added in version 1.2.41</p>
+</attribute>
+<attribute name="watchdog_interval" required="false"><p>
+A DWORD value representing the watchdog thread interval in seconds.
+The workers are maintained periodically by a background thread
+running periodically every watchdog_interval seconds. Worker maintenance
+checks for idle connections, corrects load status and is able
+to detect backend health status.
+</p>
+<p>
+The maintenance only happens, if since the last maintenance at
+least <a href="workers.html"><code>worker.maintain</code></a>
+seconds have passed. So setting the watchdog_interval
+much smaller than <code>worker.maintain</code> is not useful.
+</p>
+<p>
+The default value is 0 seconds, meaning the watchdog thread
+will not be created, and the maintenance is done in combination
+with normal requests instead.
+</p>
+<p>This directive has been added in version 1.2.27</p>
+</attribute>
+<attribute name="error_page" required="false"><p>
+A string value representing the error page url redirection when
+backend returns non-200 response. This directive can be used
+to customise the error messages returned from backend server.
+</p>
+<p>The url must point to a valid server url and can contain
+format string number <code>(%d)</code> that can be used to
+separate the pages by error number. The redirect url in that
+case is formatted by replacing <code>%d</code> from
+<code>error_page</code> to returned error number.
+</p>
+<p>This directive has been added in version 1.2.27</p>
+</attribute>
+<attribute name="enable_chunked_encoding" required="false"><p>
+A string value representing a boolean. If it is set to <b>true</b>,
+chunked encoding is supported by the server.
+</p>
+<p>
+The default value is false.
+</p>
+<p>This directive has been added in version 1.2.27. Until version 1.2.30 it
+was considered experimental and only available when a special build containing
+chunking support was used. Starting with 1.2.30 it is no longer considered
+experimental.</p>
+</attribute>
+<attribute name="flush_packets" required="false"><p>
+A string value representing a boolean. If it is set to <b>true</b>,
+data is flushed immediately to the client as each AJP packet is received.
+Otherwise, IIS buffers the data and only writes to the client when the buffer
+is full or the response is complete.</p>
+<p>
+The default value is false.
+</p>
+<p>This directive has been added in version 1.2.42</p>
+</attribute>
+</attributes>
+</section> 
+<section name="Using a properties file for configuration">
+<p>
+The ISAPI redirector can read it's configuration from a properties file instead of the registry. 
+This has the advantage that you can use multiple ISAPI redirectors with independent configurations on the same server.
+The redirector will check for the properties file during initialisation, and use it in preference to the registry if present.
+</p>
+<p>
+Create a properties file in the same directory as the ISAPI redirector called <b>isapi_redirect.properties</b> i.e.
+with the same name as the ISAPI redirector DLL but with a <em>.properties</em> extension.
+A sample isapi_redirect.properties can be found under the conf directory.
+</p>
+<p>
+The property names and values in the properties file are the same as for the registry settings described above. For example:
+</p>
+<p>
+<source># Configuration file for the Tomcat ISAPI Redirector
+
+# The path to the ISAPI Redirector Extension, relative to the website
+# This must be in a virtual directory with execute privileges
+extension_uri=/jakarta/isapi_redirect.dll
+
+# Full path to the log file for the ISAPI Redirector
+log_file=c:\tomcat\logs\isapi_redirect.log
+
+# Log level (debug, info, warn, error or trace)
+log_level=info
+
+# Full path to the workers.properties file
+worker_file=c:\tomcat\conf\workers.properties
+
+# Full path to the uriworkermap.properties file
+worker_mount_file=c:\tomcat\conf\uriworkermap.properties
+</source>
+</p>
+<p>
+    Notes: 
+    <ul>
+        <li>
+            Back-slashes - '\' - are not escape characters.
+        </li>
+        <li>
+            Comment lines begin with '#'.
+        </li>
+    </ul>
+</p>
+<p>Starting with version 1.2.27 two environment variables are
+automatically added to the environment that can be used inside
+<code>.properties</code> files.
+    <ul>
+        <li>JKISAPI_PATH - Full path to the ISAPI Redirector.
+        </li>
+        <li>JKISAPI_NAME - Name of the ISAPI Redirector dll without extension
+        </li>
+    </ul>    
+</p>
+<p><source># Use the logs in the installation path of ISAPI Redirector
+log_file=$(JKISAPI_PATH)\$(JKISAPI_NAME).log
+</source></p>
+</section>
+
+<section name="Log file rotation">
+<p>
+The ISAPI redirector with version 1.2.31 can perform log rotation, with configuration and behaviour similar to the 
+<a href="http://httpd.apache.org/docs/2.4/programs/rotatelogs.html">rotatelogs</a> program provided with Apache HTTP Server.
+</p>
+<p>
+To configure log rotation, configure a <b>log_file</b>, and one of the <b>log_rotationtime</b> or <b>log_filesize</b> options.
+If both are specified, the <b>log_rotationtime</b> will take precedence, and <b>log_filesize</b> will be ignored. 
+<br/>For example, to configure daily rotation of the log file:
+</p>
+<source># Configuration file for the Tomcat ISAPI Redirector
+...
+
+# Full path to the log file for the ISAPI Redirector
+log_file=c:\tomcat\logs\isapi_redirect.%Y-%m-%d.log
+
+# Log level (debug, info, warn, error or trace)
+log_level=info
+
+# Rotate the log file every day
+log_rotationtime=86400
+
+...
+</source>
+<p>
+Or to configure rotation of the log file when it reaches 5MB in size:
+</p>
+<source># Configuration file for the Tomcat ISAPI Redirector
+...
+
+# Full path to the log file for the ISAPI Redirector
+log_file=c:\tomcat\logs\isapi_redirect.%Y-%m-%d-%H.log
+
+# Log level (debug, info, warn, error or trace)
+log_level=info
+
+# Rotate the log file at 5 MB
+log_filesize=5M
+
+...
+</source>
+<p>
+The log will be rotated whenever the configured limit is reached, but only if the log file name would change. If you configure
+ a log file name with <code>strftime(3)</code> format codes in it, then ensure it specifies the same granularity
+ as the rotation time configured, e.g. <b>%Y-%m-%d</b> if rotating daily (<b>log_rotationtime=86400</b>).
+<br/>See the <a href="http://httpd.apache.org/docs/2.4/programs/rotatelogs.html">rotatelogs</a> documentation for more examples.
+</p>
+
+</section>
+
+<section name="Using a simple rewrite rules">
+<p>
+The ISAPI redirector with version 1.2.16 can do a simple URL rewriting. Although not
+as powerful as Apache HTTP Server's mod_rewrite, it allows a simple exchange of request URIs
+</p>
+<p>
+The rule is in the form original-url-prefix=forward-url-prefix. For example:
+</p>
+<source># Simple rewrite rules, making examples
+# available under shorter URLs
+/jsp/=/examples/jsp/
+/servlets/=/examples/servlets/
+</source>
+<p>
+You can also use regular expressions, if you prefix the rule with a tilde <code>~</code>:
+</p>
+<source># Complex rewrite rule, prefixing "/examples/"
+# to the first path component of all requests
+~/([^/]*)=/examples/$1
+</source>
+<p>
+Note that uriworkermap.properties must use the URLs before rewriting.
+</p>
+</section>
+
+</body>
+</document>

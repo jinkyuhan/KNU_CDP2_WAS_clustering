@@ -1,0 +1,241 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en"><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="../../images/docs-stylesheet.css" rel="stylesheet" type="text/css"><title>The Apache Tomcat Connectors - Common HowTo (1.2.x) - Load Balancing HowTo</title><meta name="author" content="Mladen Turk"><script type="application/javascript" data-comments-identifier="common_howto/">
+    "use strict"; // Enable strict mode
+
+    (function() {
+      var thisScript = document.currentScript;
+      if (!thisScript) { // Workaround for IE <= 11
+        var scripts = document.getElementsByTagName("script");
+        thisScript = scripts[scripts.length - 1];
+      }
+      document.addEventListener("DOMContentLoaded", (function() {
+        var commentsDiv = document.getElementById("comments_thread");
+        var commentsShortname = "tomcat";
+        var commentsIdentifier = "https://tomcat.apache.org/" +
+          thisScript.getAttribute("data-comments-identifier") + ".html";
+
+        (function(w, d) {
+          if (w.location.hostname.toLowerCase() == "tomcat.apache.org") {
+            var s = d.createElement("script");
+            s.type = "application/javascript";
+            s.async = true;
+            s.src = "https://comments.apache.org/show_comments.lua?site=" +
+              encodeURIComponent(commentsShortname) +
+              "&page=" + encodeURIComponent(commentsIdentifier);
+            d.head.appendChild(s);
+          } else {
+            commentsDiv.appendChild(d.createTextNode("Comments are disabled for this page at the moment."));
+          }
+        })(window, document);
+      }), false);
+    })();
+  </script></head><body><div id="wrapper"><header><div id="header"><div><div><div class="logo noPrint"><a href="http://tomcat.apache.org/"><img alt="Tomcat Home" src="../../images/tomcat.png"></a></div><div style="height: 1px;"></div><div class="asfLogo noPrint"><a href="https://www.apache.org/" target="_blank"><img src="../../images/asf-logo.svg" alt="The Apache Software Foundation" style="width: 266px; height: 83px;"></a></div><h1>The Apache Tomcat Connectors - Common HowTo</h1><div style="height: 1px;"></div><div style="clear: left;"></div></div></div></div></header><div id="middle"><div><div id="mainLeft" class="noprint"><div><nav><div><h2>Links</h2><ul><li><a href="../index.html">Docs Home</a></li></ul></div><div><h2>Common HowTo</h2><ul><li><a href="../common_howto/quick.html">Quick Start</a></li><li><a href="../common_howto/workers.html">All About Workers</a></li><li><a href="../common_howto/timeouts.html">Timeouts</a></li><li><a href="../common_howto/loadbalancers.html">Load Balancing</a></li><li><a href="../common_howto/proxy.html">Reverse Proxy</a></li></ul></div><div><h2>Web Server HowTo</h2><ul><li><a href="../webserver_howto/apache.html">Apache HTTP Server (mod_jk)</a></li><li><a href="../webserver_howto/iis.html">Microsoft IIS (ISAPI redirector)</a></li><li><a href="../webserver_howto/nes.html">iPlanet Web Server (NSAPI redirector)</a></li></ul></div><div><h2>Reference Guide</h2><ul><li><a href="../reference/workers.html">workers.properties</a></li><li><a href="../reference/uriworkermap.html">uriworkermap.properties</a></li><li><a href="../reference/status.html">Status Worker</a></li><li><a href="../reference/apache.html">Apache HTTP Server (mod_jk)</a></li><li><a href="../reference/iis.html">Microsoft IIS (ISAPI redirector)</a></li></ul></div><div><h2>AJP Protocol Reference</h2><ul><li><a href="../ajp/ajpv13a.html">AJPv13 (ajp13)</a></li><li><a href="../ajp/ajpv13ext.html">AJPv13 Extension Proposal</a></li></ul></div><div><h2>Miscellaneous Documentation</h2><ul><li><a href="../miscellaneous/faq.html">Frequently Asked Questions</a></li><li><a href="../miscellaneous/changelog.html">Changelog</a></li><li><a href="http://issues.apache.org/bugzilla/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=&amp;product=Tomcat+Connectors&amp;long_desc_type=substring&amp;long_desc=&amp;bug_file_loc_type=allwordssubstr&amp;bug_file_loc=&amp;keywords_type=allwords&amp;keywords=&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;emailassigned_to1=1&amp;emailtype1=substring&amp;email1=&amp;emailassigned_to2=1&amp;emailreporter2=1&amp;emailcc2=1&amp;emailtype2=substring&amp;email2=&amp;bugidtype=include&amp;bug_id=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;cmdtype=doit&amp;order=Reuse+same+sort+as+last+time&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=">Current Tomcat Connectors bugs</a></li><li><a href="../miscellaneous/doccontrib.html">Contribute documentation</a></li><li><a href="../miscellaneous/jkstatustasks.html">JK Status Ant Tasks</a></li><li><a href="../miscellaneous/reporttools.html">Reporting Tools</a></li><li><a href="http://tomcat.apache.org/connectors-doc-archive/jk2/index.html">Old JK/JK2 documentation</a></li></ul></div><div><h2>News</h2><ul><li><a href="../news/20180301.html">2018</a></li><li><a href="../news/20160901.html">2016</a></li><li><a href="../news/20150101.html">2015</a></li><li><a href="../news/20140201.html">2014</a></li><li><a href="../news/20120301.html">2012</a></li><li><a href="../news/20110701.html">2011</a></li><li><a href="../news/20100101.html">2010</a></li><li><a href="../news/20090301.html">2009</a></li><li><a href="../news/20081001.html">2008</a></li><li><a href="../news/20070301.html">2007</a></li><li><a href="../news/20060101.html">2006</a></li><li><a href="../news/20050101.html">2005</a></li><li><a href="../news/20041100.html">2004</a></li></ul></div></nav></div></div><div id="mainRight"><div id="content"><h2>Load Balancing HowTo</h2><h3 id="Introduction">Introduction</h3><div class="text"> 
+<p>A load balancer is a worker that does not directly communicate with Tomcat.
+Instead it is responsible for the management of several "real" workers,
+called members or sub workers of the load balancer.</p>
+<p>
+This management includes:
+</p>
+<ul>
+<li>
+Instantiating the workers in the web server.
+</li>
+<li>
+Using the worker's load balancing factor, perform weighted load balancing
+(distributing load according to defined strengths of the targets).
+</li>
+<li>
+Keeping requests belonging to the same session executing on the same Tomcat
+(session stickyness).
+</li>
+<li>
+Identifying failed Tomcat workers, suspending requests to them and instead
+failing over on other workers managed by the load balancer.
+</li>
+<li>
+Providing status and load metrics for the load balancer itself and all
+members via the status worker interface.
+</li>
+<li>
+Allowing to dynamically reconfigure load balancing via the status worker
+interface.
+</li>
+</ul>
+<p>
+Workers managed by the same load balancer worker are load balanced
+(based on their configured balancing factors and current request or session load)
+and also secured against failure by providing failover to other members of the same
+load balancer. So a single Tomcat process death will not "kill" the entire site.
+</p>
+<p>Some of the features provided by a load balancer are even interesting, when
+only working with a single member worker (where load balancing is not possible).</p>
+
+<div class="subsection"><h4 id="Basic_Load_Balancer_Properties">Basic Load Balancer Properties</h4><div class="text">
+<p>A worker is configured as a load balancer by setting its worker <code>type</code>
+to <b>lb</b>.
+</p>
+<p>
+The following table specifies some properties used to configure a load balancer worker:
+</p>
+<ul>
+<li><b>balance_workers</b> is a comma separated list of names of the member workers of the
+load balancer. These workers are typically of type <b>ajp13</b>. The member workers do
+not need to appear in the <code>worker.list</code> property themselves, adding the
+load balancer to it suffices.</li>
+<li><b>sticky_session</b> specifies whether requests with SESSION ID's should be routed
+back to the same Tomcat instance that created the session. You can set sticky_session to
+<b>false</b> when Tomcat is using a session manager which can share session data across
+multiple instances of Tomcat - or if your application is stateless.
+By default sticky_session is set to <b>true</b>.</li>
+<li><b>lbfactor</b> can be added to each member worker to configure individual
+strengths for the members. A higher <code>lbfactor</code> will lead to more
+requests being balanced to that worker. The factors must be given by integers and the
+load will be distributed proportional to the factors given. Higher factors lead to
+more requests.</li>
+</ul>
+
+<div class="codeBox"><pre><code># The load balancer worker balance1 will distribute
+# load to the members worker1 and worker2
+worker.balance1.type=lb
+worker.balance1.balance_workers=worker1, worker2
+worker.worker1.type=ajp13
+worker.worker1.host=myhost1
+worker.worker1.port=8009
+worker.worker2.type=ajp13
+worker.worker1.host=myhost2
+worker.worker1.port=8009
+</code></pre></div>
+
+<warn>
+Session stickyness is not implemented using a tracking table for sessions.
+Instead each Tomcat instance gets an individual name and adds its name at
+the end of the session id. When the load balancer sees a session id, it
+finds the name of the Tomcat instance and sends the request via the correct
+member worker. For this to work you must set the name of the Tomcat instances
+as the value of the <code>jvmRoute</code> attribute in the Engine element of
+each Tomcat's server.xml. The name of the Tomcat needs to be equal to the name
+of the corresponding load balancer member. In the above example, Tomcat on host
+"myhost1" needs <code>jvmRoute="worker1"</code>, Tomcat on host "myhost2"
+needs <code>jvmRoute="worker2"</code>.
+</warn>
+
+<p>For a complete reference of all load balancer configuration
+attributes, please consult the worker <a href="../reference/workers.html">reference</a>.
+</p>
+</div></div>
+
+<div class="subsection"><h4 id="Advanced_Load_Balancer_Worker_Properties">Advanced Load Balancer Worker Properties</h4><div class="text">
+<p>The load balancer supports complex topologies and failover configurations.
+Using the member attribute <code>distance</code> you can group members.
+The load balancer will always send a request to a member of lowest distance.
+Only when all of those are broken, it will balance to the members of the
+next higher configured distance. This allows to define priorities between
+Tomcat instances in different data center locations.
+</p>
+<p>When working with shared sessions, either by using session replication
+or a persisting session manager (e.g. via a database), one often splits
+up the Tomcat farm into replication groups. In case of failure of a member,
+the load balancer needs to know, which other members share the session.
+This is configured using the <code>domain</code> attribute. All workers
+with the same domain are assumed to share the sessions.</p>
+<p>For maintenance purposes you can tell the load balancer to not
+allow any new sessions on some members, or even not use them at all.
+This is controlled by the member attribute <code>activation</code>.
+The value <b>Active</b> allows normal use of a member, <b>disabled</b>
+will not create new sessions on it, but still allow sticky requests,
+and <b>stopped</b> will no longer send any requests to the member.
+Switching the activation from "active" to "disabled" some time before
+maintenance will drain the sessions on the worker and minimize disruption.
+Depending on the usage pattern of the application, draining will take from
+minutes to hours. Switching the worker to stopped immediately before
+maintenance will reduce logging of false errors by mod_jk.</p>
+<p>Finally you can also configure hot spare workers by using
+<code>activation</code> set to <b>disabled</b> in combination with
+the attribute <code>redirect</code> added to the other workers:</p>
+
+<div class="codeBox"><pre><code># The advanced router LB worker
+worker.list=router
+worker.router.type=lb
+worker.router.balance_workers=worker1,worker2
+
+# Define the first member worker
+worker.worker1.type=ajp13
+worker.worker1.host=myhost1
+worker.worker1.port=8009
+# Define preferred failover node for worker1
+worker.worker1.redirect=worker2
+
+# Define the second member worker
+worker.worker2.type=ajp13
+worker.worker2.host=myhost2
+worker.worker2.port=8009
+# Disable worker2 for all requests except failover
+worker.worker2.activation=disabled
+</code></pre></div>
+
+<p>
+The <code>redirect</code> flag on worker1 tells the load balancer
+to redirect the requests to worker2 in case that worker1 has a problem.
+In all other cases worker2 will not receive any requests, thus acting
+like a hot standby.
+</p>
+
+<p>A final note about setting <code>activation</code> to <b>disabled</b>:
+The session id coming with a request is send either
+as part of the request URL (<code>;jsessionid=...</code>) or via a cookie.
+When using bookmarks or browsers that are running since a long time,
+it is possible to send a request carrying an old and invalid session id
+pointing at a disabled member.
+Since the load balancer does not have a list of valid sessions, it will
+forward the request to the disabled member. Thus draining takes longer than
+expected. To handle such cases, you can add a Servlet filter to your web
+application, which checks the request attribute <code>JK_LB_ACTIVATION</code>.
+This attribute contains one of the strings "ACT", "DIS" or "STP". If you
+detect "DIS" and the session for the request is no longer active, delete the
+session cookie and redirect using a self-referential URL. The redirected
+request will then no longer carry session information and thus the load
+balancer will not send it to the disabled worker. The request attribute
+<code>JK_LB_ACTIVATION</code> has been added in version 1.2.32.</p>
+</div></div>
+
+<div class="subsection"><h4 id="Status_Worker_properties">Status Worker properties</h4><div class="text">
+<p>
+The status worker does not communicate with Tomcat.
+Instead it is responsible for the worker management. It is
+especially useful when combined with load balancer workers.
+</p>
+<div class="codeBox"><pre><code># Add the status worker to the worker list
+worker.list=jkstatus
+# Define a 'jkstatus' worker using status
+worker.jkstatus.type=status
+</code></pre></div>
+<p>Next thing is to mount the requests to the jkstatus worker. For Apache
+HTTP Servers use:</p>
+<div class="codeBox"><pre><code># Add the jkstatus mount point
+JkMount /jkmanager/* jkstatus 
+</code></pre></div>
+<p>To obtain a higher level of security use the:</p>
+<div class="codeBox"><pre><code># Enable the JK manager access from localhost only
+&lt;Location /jkmanager/&gt;
+  JkMount jkstatus
+  Require ip 127.0.0.1
+&lt;/Location&gt;
+</code></pre></div>
+
+</div></div>
+
+</div><div class="noprint"><h3 id="comments_section">
+                  Comments
+                </h3><div class="text"><p class="notice"><strong>Notice:</strong> This comments section collects your suggestions
+                    on improving documentation for Apache Tomcat.<br><br>
+                    If you have trouble and need help, read
+                    <a href="https://tomcat.apache.org/findhelp.html">Find Help</a> page
+                    and ask your question on the tomcat-users
+                    <a href="https://tomcat.apache.org/lists.html">mailing list</a>.
+                    Do not ask such questions here. This is not a Q&amp;A section.<br><br>
+                    The Apache Comments System is explained <a href="../../comments.html">here</a>.
+                    Comments may be removed by our moderators if they are either
+                    implemented or considered invalid/off-topic.
+                  </p><div id="comments_thread"></div></div></div></div></div></div></div><footer><div id="footer">
+    Copyright &copy; 1999-yyyy, The Apache Software Foundation
+  </div></footer></div></body></html>
