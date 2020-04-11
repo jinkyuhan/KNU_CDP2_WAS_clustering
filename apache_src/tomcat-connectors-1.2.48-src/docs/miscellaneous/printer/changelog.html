@@ -1,0 +1,2960 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en"><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="../../images/docs-stylesheet.css" rel="stylesheet" type="text/css"><title>The Apache Tomcat Connectors - Miscellaneous Documentation (1.2.x) - Changelog</title><meta name="author" content="Mladen Turk"><meta name="author" content="Rainer Jung"><meta name="author" content="Henri Gomez"><meta name="author" content="Tim Whittington"><script type="application/javascript" data-comments-identifier="miscellaneous/">
+    "use strict"; // Enable strict mode
+
+    (function() {
+      var thisScript = document.currentScript;
+      if (!thisScript) { // Workaround for IE <= 11
+        var scripts = document.getElementsByTagName("script");
+        thisScript = scripts[scripts.length - 1];
+      }
+      document.addEventListener("DOMContentLoaded", (function() {
+        var commentsDiv = document.getElementById("comments_thread");
+        var commentsShortname = "tomcat";
+        var commentsIdentifier = "https://tomcat.apache.org/" +
+          thisScript.getAttribute("data-comments-identifier") + ".html";
+
+        (function(w, d) {
+          if (w.location.hostname.toLowerCase() == "tomcat.apache.org") {
+            var s = d.createElement("script");
+            s.type = "application/javascript";
+            s.async = true;
+            s.src = "https://comments.apache.org/show_comments.lua?site=" +
+              encodeURIComponent(commentsShortname) +
+              "&page=" + encodeURIComponent(commentsIdentifier);
+            d.head.appendChild(s);
+          } else {
+            commentsDiv.appendChild(d.createTextNode("Comments are disabled for this page at the moment."));
+          }
+        })(window, document);
+      }), false);
+    })();
+  </script></head><body><div id="wrapper"><header><div id="header"><div><div><div class="logo noPrint"><a href="http://tomcat.apache.org/"><img alt="Tomcat Home" src="../../images/tomcat.png"></a></div><div style="height: 1px;"></div><div class="asfLogo noPrint"><a href="https://www.apache.org/" target="_blank"><img src="../../images/asf-logo.svg" alt="The Apache Software Foundation" style="width: 266px; height: 83px;"></a></div><h1>The Apache Tomcat Connectors - Miscellaneous Documentation</h1><div style="height: 1px;"></div><div style="clear: left;"></div></div></div></div></header><div id="middle"><div><div id="mainLeft" class="noprint"><div><nav><div><h2>Links</h2><ul><li><a href="../index.html">Docs Home</a></li></ul></div><div><h2>Common HowTo</h2><ul><li><a href="../common_howto/quick.html">Quick Start</a></li><li><a href="../common_howto/workers.html">All About Workers</a></li><li><a href="../common_howto/timeouts.html">Timeouts</a></li><li><a href="../common_howto/loadbalancers.html">Load Balancing</a></li><li><a href="../common_howto/proxy.html">Reverse Proxy</a></li></ul></div><div><h2>Web Server HowTo</h2><ul><li><a href="../webserver_howto/apache.html">Apache HTTP Server (mod_jk)</a></li><li><a href="../webserver_howto/iis.html">Microsoft IIS (ISAPI redirector)</a></li><li><a href="../webserver_howto/nes.html">iPlanet Web Server (NSAPI redirector)</a></li></ul></div><div><h2>Reference Guide</h2><ul><li><a href="../reference/workers.html">workers.properties</a></li><li><a href="../reference/uriworkermap.html">uriworkermap.properties</a></li><li><a href="../reference/status.html">Status Worker</a></li><li><a href="../reference/apache.html">Apache HTTP Server (mod_jk)</a></li><li><a href="../reference/iis.html">Microsoft IIS (ISAPI redirector)</a></li></ul></div><div><h2>AJP Protocol Reference</h2><ul><li><a href="../ajp/ajpv13a.html">AJPv13 (ajp13)</a></li><li><a href="../ajp/ajpv13ext.html">AJPv13 Extension Proposal</a></li></ul></div><div><h2>Miscellaneous Documentation</h2><ul><li><a href="../miscellaneous/faq.html">Frequently Asked Questions</a></li><li><a href="../miscellaneous/changelog.html">Changelog</a></li><li><a href="http://issues.apache.org/bugzilla/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=&amp;product=Tomcat+Connectors&amp;long_desc_type=substring&amp;long_desc=&amp;bug_file_loc_type=allwordssubstr&amp;bug_file_loc=&amp;keywords_type=allwords&amp;keywords=&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;emailassigned_to1=1&amp;emailtype1=substring&amp;email1=&amp;emailassigned_to2=1&amp;emailreporter2=1&amp;emailcc2=1&amp;emailtype2=substring&amp;email2=&amp;bugidtype=include&amp;bug_id=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;cmdtype=doit&amp;order=Reuse+same+sort+as+last+time&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=">Current Tomcat Connectors bugs</a></li><li><a href="../miscellaneous/doccontrib.html">Contribute documentation</a></li><li><a href="../miscellaneous/jkstatustasks.html">JK Status Ant Tasks</a></li><li><a href="../miscellaneous/reporttools.html">Reporting Tools</a></li><li><a href="http://tomcat.apache.org/connectors-doc-archive/jk2/index.html">Old JK/JK2 documentation</a></li></ul></div><div><h2>News</h2><ul><li><a href="../news/20180301.html">2018</a></li><li><a href="../news/20160901.html">2016</a></li><li><a href="../news/20150101.html">2015</a></li><li><a href="../news/20140201.html">2014</a></li><li><a href="../news/20120301.html">2012</a></li><li><a href="../news/20110701.html">2011</a></li><li><a href="../news/20100101.html">2010</a></li><li><a href="../news/20090301.html">2009</a></li><li><a href="../news/20081001.html">2008</a></li><li><a href="../news/20070301.html">2007</a></li><li><a href="../news/20060101.html">2006</a></li><li><a href="../news/20050101.html">2005</a></li><li><a href="../news/20041100.html">2004</a></li></ul></div></nav></div></div><div id="mainRight"><div id="content"><h2>Changelog</h2><h3 id="Preface">Preface</h3><div class="text">
+  <p>
+  This is the Changelog for Apache Tomcat Connectors. This changelog
+  does not contain all updates and fixes to the Tomcat connectors (yet).
+  It should contain fixes made only after November 10th 2004, when the
+  new documentation project for JK was started.
+  </p>
+</div><h3 id="Changes_between_1.2.47_and_1.2.48">Changes between 1.2.47 and 1.2.48</h3><div class="text">
+  <ul class="changelog">
+    <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      IIS: Update the installation how-to to remove windows versions that are no
+      longer supported and to add Windows Server 2019. (markt)
+    </li>
+  </ul>
+</div><h3 id="Changes_between_1.2.46_and_1.2.47">Changes between 1.2.46 and 1.2.47</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.46_and_1.2.47/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Apache: Extend trace level logging of method entry/exit to aid debugging
+        of request mapping issues. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Apache: Fix a bug in the normalization checks that prevented file based
+        requests, such as SSI file includes, from being processed. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=63214">63214</a>: Apache: When using <code>JkAutoAlias</code>, ensure
+        that files that include spaces in their name are accessible. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Common: Update the documentation to reflect that the source code for the
+        Apache Tomcat Connectors has moved from Subversion to Git. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=64051">64051</a>: Common. When using <code>set_session_cookie</code>,
+        ensure that an updated session cookie is issued if the load-balancer has
+        to failover to a different worker. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Common: Update config.guess and config.sub from
+        <a href="https://git.savannah.gnu.org/git/config.git">https://git.savannah.gnu.org/git/config.git</a>.
+        (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Common; Update release script for migration to git. (rjung)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.45_and_1.2.46">Changes between 1.2.45 and 1.2.46</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.45_and_1.2.46/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=62751">62751</a>: Apache: Fix regression in 1.2.44 which resulted in
+        socket_connect_timeout to be interpreted in units of seconds
+        instead of milliseconds on platforms that provide poll(). (rjung)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.44_and_1.2.45">Changes between 1.2.44 and 1.2.45</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.44_and_1.2.45/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=62689">62689</a>: Correct regression in 1.2.44 that broke request
+        handling for <code>OPTIONS *</code> requests. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Apache: Update the documentation to note additional limitations of the
+        JkAutoAlias directive. (markt)
+      </li>
+      <li><img alt="Code: " class="icon" src="../../images/code.gif">
+        Common: Optimize path parameter handling. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Improve path parameter parsing so that the session ID specified by the
+        <code>session_path</code> worker property for load-balanced workers can
+        be extracted from a path parameter in any segment of the URI, rather
+        than only from the final segment. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Apache: Improve path parameter handling so that
+        <code>JkStripSession</code> can remove session IDs that are specified on
+        path parameters in any segment of the URI rather than only the final
+        segment. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        IIS: Improve path parameter handling so that <code>strip_session</code>
+        can remove session IDs that are specified on path parameters in any
+        segment of the URI rather than only the final segment. (markt)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.43_and_1.2.44">Changes between 1.2.43 and 1.2.44</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.43_and_1.2.44/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Remove the Novell Netware make files and Netware specific source code
+        since there has not been a supported version of Netware available for
+        over five years. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=57946">57946</a>: Apache: Update the documentation to use httpd 2.4.x
+        style access control directives. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=58287">58287</a>: Common: Use Local, rather than Global, mutexs on
+        Windows to better support multi-user environments. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=59897">59897</a>: Apache: Use poll rather than select to avoid the
+        limitations of select triggering an httpd crash. Patch provided by Koen
+        Wilde. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=60745">60745</a>: ISAPI: Remove the check that rejects requests that
+        contain path segments that match WEB-INF or META-INF as it duplicates
+        a check that Tomcat performs and, because ISAPI does not have visibility
+        of the current context path, it is impossible to implement this check
+        without valid requests being rejected. (markt)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Clarify the behvaiour of lb workers when all ajp13 workers fail with
+        particular reference to the role of the retries attribute. (markt)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=62408">62408</a>: Add the new load-balancer worker property lb_retries
+        to improve the control over the number of retries. Based on a patch
+        provided by Frederik Nosi. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Refactor normalisation of request URIs to a common location and align
+        the normalisation implementation for mod_jk with that implemented by
+        Tomcat. (markt)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Add a note to the documentation that the CollapseSlashes options are
+        now effectively hard-coded to CollpaseSlashesAll due to the changes
+        made to align normalization with that implemented in Tomcat. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Update PCRE bundled with the ISAPI redirector to 8.42. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Update config.guess and config.sub from
+        <a href="https://git.savannah.gnu.org/git/config.git">https://git.savannah.gnu.org/git/config.git</a>.
+        (rjung)
+      </li>
+   </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.42_and_1.2.43">Changes between 1.2.42 and 1.2.43</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.42_and_1.2.43/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=61733">61733</a>: LB: Propagate load factor changes applied by the status worker
+        to a load balancer sub worker correctly to all processes.
+        Based on a patch provided by Jonathan Oddy. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        ISAPI: Align the make files for 32-bit and 64-bit builds. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Update config.guess and config.sub from
+        <a href="http://git.savannah.gnu.org/cgit/config.git">http://git.savannah.gnu.org/cgit/config.git</a>.
+        (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Update PCRE bundled with the ISAPI redirector to 8.41. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Update the ISAPI redirector installation documentation to reflect the
+        currently supported versions of Windows. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Align the normalization performed by the ISAPI redirector with that
+        implemented by Tomcat. (markt)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.41_and_1.2.42">Changes between 1.2.41 and 1.2.42</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.41_and_1.2.42/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Status: Fix displayed number of bytes read from and written
+        to the backend when an AJP worker is used without a load
+        balancer worker. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Apache: Don't try to read remaining request body parts during
+        clean up if reading the request body from the client already
+        failed during earlier processing phases. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=57485">57485</a>: Apache: Propagate errors reading the request body from
+        the client to mod_jk so Tomcat sees an error rather than a truncated
+        body. (markt) 
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=57836">57836</a>: ISAPI: Empty REMOTE_USER should not be
+        translated to "". (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=58249">58249</a>: Add a note the the documentation that max_packet_size
+        will be aligned to the next multiple of 1024 if a value is specified
+        that is not a multiple of 1024. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=58309">58309</a>: ISAPI: Update bundled pcre from version 5.0
+        to 8.38. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=58286">58286</a>: Fix crash in mod_jk and in the ISAPI Redirector.
+        The crash only happens on Windows when retrieving the jk-status
+        for the HTML format (which is the default format). This regression
+        was introduced by the fix to <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=54177">54177</a>. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=58285">58285</a>: Don't use GCC atomics on platforms, for which
+        GCC doesn't provide an atomics implementation. This regression
+        was introduced by the fix to <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=44454">44454</a> and <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=56703">56703</a>.
+        (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=58425">58425</a>: Fix regression in 1.2.41 that prevented  AJP 1.2
+        workers from initialising. Note that the AJP 1.2 protocol is deprecated.
+        Patch provided by yagisita. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=58504">58504</a>: If a background thread is used to perform worker
+        maintenance, ensure that maintenance runs are not skipped. Patch
+        provided by Hiroto Shimizu. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=58608">58608</a>: ISAPI: Add a new registry option "flush_packets"
+        that allows the flushing behaviour of IIS7+ to be controlled. The
+        default is not to flush. Setting the option to "true" with cause IIS to
+        write data to the client as each AJP packet is received. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=58813">58813</a>: ISAPI: Correctly release a mutex allowing the plugin
+        to complete initialization. Prior to this fix, the incomplete
+        initialization was causing a hang on shutdown. Patch provided by Matthew
+        Reiter. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=58895">58895</a>: Correct an off-by-one error in the log messages for
+        the number of attempts made to communicate with the backend server.
+        Patch provided by Hiroto Shimizu. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=59164">59164</a>: Fix crash on first connection if a host name is
+        specified for the worker that cannot be resolved to an IP address.
+        (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=59184">59184</a>: HTTPD: Avoid segmentation fault if mod_jk is
+        configured with an invalid value for JkShmFile. This causes the server
+        startup to fail. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Minor code clean-up and optimization. (markt)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.40_and_1.2.41">Changes between 1.2.40 and 1.2.41</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.40_and_1.2.41/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        AJP, LB: Reduce lock contention during maintenance function.
+        This was observable when using a big number of AJP13 and LB
+        workers, especially in combination with the Apache httpd prefork
+        MPM. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=57060">57060</a>: Allow building from outside of source tree.
+        Patch contributed by Petr Sumbera. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=56703">56703</a>: Status: Fix inflated counter for current number
+        of backend connections especially when a connection timeout occurred
+        on the backend. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=56661">56661</a>: Fix Servlet API getLocalAddr().
+        Works for Tomcat 6.0.42, 7.0.55 and 8.0.11 and Apache and ISAPI
+        plugins. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Status: Log old and new values when changing worker attributes.
+        (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=56667">56667</a>: Status: Fix log message when changing activation
+        state of all members. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=56565">56565</a>: Fix IPV6 address resolve on non-dual
+          network stacks. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=50511">50511</a>: Reduce log level for "OPTIONS *" requests
+        from warning to debug. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Apache: Copy log notes instead of using references to prevent access
+        to memory from closed pool. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Add option to control handling of multiple adjacent slashes in
+        mount and unmount. New default is collapsing the slashes only in
+        unmount. Configuration is done via new JkOption for Apache
+        ("CollapseSlashesAll", "CollapseSlashesNone" or
+        "CollapseSlashesUnmount") and via property "collapse_slashes" for IIS
+        (values "all", "none", "unmount"). This is the fix for CVE-2014-8111.
+        (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Add more checks for shared memory allocation. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=56869">56869</a>: Status: Add maximum number of open backend connections
+        to status worker. Patch contributed by Martin Knoblauch. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=56770">56770</a>: AJP: Add worker name to all log messages.
+        Patch contributed by Martin Knoblauch. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=50186">50186</a>: Docs: Clarify relation between
+        "connection_pool_timeout" and "keepAliveTimeout" or "connectionTimeout"
+        in the Tomcat AJP connector configuration. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=52334">52334</a>: LB: Calculate worker recovery time based on last
+        recovery attempt time instead of original error time after the first
+        recovery attempt. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=54596">54596</a> part 1: IIS: Fix missing last character when parsing
+        relative file names with no ".." directory components from
+        configuration. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=54596">54596</a> part 2: IIS: Fix using relative file names in config
+        with ".." path segments that go up the directory hierarchy higher
+        than the starting point of the relative file name. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Status: Add logging if status worker output was dropped due to
+        insufficient buffer size. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Reduce log buffer from 8KB to 1KB. Add logging in case of failed
+        logging and add trailing "..." to lines which were likely truncated.
+        (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Replace fixed allocation of 32 entries for fail_on_status by
+        dynamic allocation. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Enforce implementation restriction on maximal length "60" of worker
+        attributes "name", "host", "route", "domain", "redirect",
+        "session_cookie", "session_path" and "set_session_cookie". Checks were
+        added to configuration file processing and configuration
+        updates via the status worker. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=52483">52483</a>: Apache: Add debug logging for result
+        of JkOptions configuration processing. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=54177">54177</a>: Status: Use numeric time stamps instead of
+        textual ones to avoid non-well-formed XML output. Textual
+        timestamps are formatted according to locale settings and
+        reencoding them to UTF-8 would be cumbersome. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=56618">56618</a>: Status: Use percent decoding when reading
+        query string parameters. For example this fixes editing IPv6
+        addresses via the status worker if the client encodes
+        ":" as "%3A". Patch contributed by Christopher Schultz. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=56452">56452</a>: Fix crash in debug logging for IPv6 adresses.
+        Patch contributed by Christopher Schultz. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=34526">34526</a>: Apache: Improve compatibility with mod_deflate
+        request body inflation. An automatic detection of mod_deflate
+        inflation is not implemented. Use the new Apache environment variable
+        JK_IGNORE_CL instead, to let mod_jk ignore an existing Content-Length
+        request header. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=44454">44454</a>: LB: Add warning to docs about problems with
+        "busyness" load balancing method. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=44454">44454</a>: Improve busy counter by using atomics. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=56703">56703</a>: Status: Improve connected counter. Use atomics
+        and for mod_jk (Apache) currectly count down connections closed
+        by child processes that are stopped. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=44571">44571</a>: Ensure that we return with status 503 if we
+        can not get and endpoint for a worker. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Apache: Improve log handling during graceful or normal restart.
+        (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Don't update last access time of worker connections during optional
+        checking of idle connections using CPing. Updating the time stamp
+        breaks closing idle connections. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Adjust linger parameters used during connection shutdown. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fix annoying redefine warnings for the autoconf PACKAGE defines
+        during configure based builds. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Status: Use multi-line table headers and fix invalid xml output.
+        (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=44571">44571</a>: Implement an optional limit on concurrent requests
+        allowed for a worker (attribute "busy_limit"). Original patch
+        contributed by zealot0630 at gmail dot com. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Correct log message "all endpoints are disconnected" to
+        "no usable connection found, will create a new one". Tone done
+        from info log level to debug for the common case. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=57536">57536</a>: AJP: Allow to configure connection source address.
+        This should only be used on multi-homed hosts. The feature is
+        experimental. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=57540">57540</a>: AJP: Forward name of SSL protocol used for handling
+        the request (SSLv3, TLSv1, TLSv1.1, TLSv1.2). (rjung)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.39_and_1.2.40">Changes between 1.2.39 and 1.2.40</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.39_and_1.2.40/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fix forwarding of chunked requests, which is broken in version 1.2.39.
+        (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=56352">56352</a>: Fix regression in memory release. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fix status worker display of worker IP address after name or port
+        was changed. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=56297">56297</a>: Improve key hash function. Copied from APR. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=55683">55683</a>: Remove quotes from quoted session cookies. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=53542">53542</a>: ISAPI: Fix grammar in 503 error page. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=55696">55696</a>: Crash on Mac OS X 10.9 during config parsing.
+        (rjung)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.37_and_1.2.39">Changes between 1.2.37 and 1.2.39</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.37_and_1.2.39/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Deprecate nt_service from Apache Tomcat Connectors. (mturk) 
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=56133">56133</a>: Fix possible crash when a request fails during
+        request body transfer to the back end and reply_timeout was set.
+        Patch contributed by Hiroto Shimizu. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fix status worker not updating parameters for all members. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=55853">55853</a>: HTTPD: Use the correct API for setting Content-Length.
+        Patch contributed by areese yahoo-inc.com. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Add IPV6 support for connection to webserver.
+        New directive prefer_ipv6 has been added to control the hostname resolution
+        and preserve backward compatibility. (mturk)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Add --disable-sock-cloexec to configure to disable use of SOCK_CLOEXEC
+        (using FD_CLOEXEC + fnctl instead) so built modules will work with
+        Linux kernels prior to 2.6.27. (timw)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Clean up config file parsing. Worker names are now restricted to
+        60 bytes. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Allow to set a stickyness cookie in case a web framework breaks
+        Tomcat's adding of the routing ID to the end of the JSESSIONID
+        cookie. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Use max_packet_size also for request body forwarding. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Apache 2.4: By default forward logical client address as provided by
+        mod_remoteip. When setting JkOptions ForwardPhysicalAddress mod_jk
+        will instead forward the physical peer address. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Minor documentation improvements. (rjung)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.36_and_1.2.37">Changes between 1.2.36 and 1.2.37</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.36_and_1.2.37/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fix regression which can crash webserver in case worker is
+        defined both as member of load balancer and as standalone worker. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fix core if debug log level is specified and there is no
+        session identifier present. (mturk)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.35_and_1.2.36">Changes between 1.2.35 and 1.2.36</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.35_and_1.2.36/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Use named shared memory objects so that we preserve runtime configured
+        data instead of resetting on each child creation. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fix dead-lock caused by not releasing mutex on close. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fix compilation of mod_jk for HTTPD 1.3. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=46893">46893</a>: HTTPD 1.3: Apply fix to HTTPD 1.3.
+        It was fixed for HTTPD 2.x already in version 1.2.30. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        HTTPD 1.3: Allow to set path parameter used when doing JkStripSession.
+        This was available for HTTPD 2.x already since mod_jk 1.2.27. (rjung)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.33_and_1.2.35">Changes between 1.2.33 and 1.2.35</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.33_and_1.2.35/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        HTTPD: Fix crash on unknown worker names. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        IIS: Fix crash on worker process recycle. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=52659">52659</a>: IIS: Fix shared memory corruption. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=52921">52921</a>: HTTPD: Fix crash in uri mapping. (mturk)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.32_and_1.2.33">Changes between 1.2.32 and 1.2.33</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.32_and_1.2.33/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=52793">52793</a>: AJP: Fix default value of forwarded worker
+        activation state. Contributed by Yoshihito Fukuyama. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        HTTPD: Improve support for HTTPD 2.4 by using client_* instead
+        of remote_* variables. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=52564">52564</a>: Fix building with format checking gcc security
+        hardening cflags. Contributed by Tony Mancill. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=52567">52567</a>: Balancer member in recovery state can switch
+        back into error state if it is idle. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Log error if unable to load URI workermap file, and improve logging
+        of unreadable worker files on IIS. (timw)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Remove deprecated JNI worker and build dependency on Java SDK. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=51253">51253</a>: Forward WWW-Authenticate header when using
+        server generated error pages (rjung, mturk).
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=46406">46406</a>: IIS: Support relative paths in configuration.
+        The paths are presumed to be relative from isapi_redirect.dll. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=50233">50233</a>: Do not use hard limit on uri size (mturk).
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        IIS: Use Windows Server 2003 SP1, Windows XP SP2 as minimal
+        version supported. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=47038">47038</a>: Fix compiler warning when using --enable-flock
+         for configure. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=51326">51326</a>: URI Map: Add "session_cookie" and "session_path"
+        rule extensions. Contributed by Eiji Takahashi. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=51333">51333</a>: IIS: Document configuration
+        requirement for 64 Bit environment. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=51743">51743</a>: HTTPD: Support rule extensions when defining
+        the request worker with an environment variable
+        (e.g. JK_WORKER_NAME). (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=51769">51769</a>: IIS: Allow URIs which contain "META-INF" or
+        "WEB-INF" as long as they are not path components of the URI. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=52056">52056</a>: HTTPD: JK request log does not always log
+        correct response status. Fixed by refactoring JK request
+        log to use the standard request log hook. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        HTTPD: Allow to choose a sticky worker using the environment
+        variable JK_ROUTE. This can be used if sessions and routes
+        are send with the request in a non-standard way. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        URI Map: Add "sticky_ignore" extension attributes to uri worker map.
+        It allows to disable stickyness for individual mounts. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        HTTPD: Allow dynamic disabling of stickyness using the environment
+        variable JK_STICKY_IGNORE. This can be useful to break cookie stickyness
+        for non-sticky requests like login forms. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        LB: New balancing method "Next" to distribute sessions in a round-robin
+        way. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        LB: Add counter for created sessions to status worker and HTTPD notes.
+        It actually counts the number of requests that do not carry a session id.
+        (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        URI Map: Add "stateless" extension attributes to uri worker map.
+        This can improve session load balancing. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        HTTPD: Allow dynamic switching of requests to "stateless" using the
+        environment variable JK_STATELESS. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        AJP: Improve logging when request does not fit into an AJP packet. (rjung)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.31_and_1.2.32">Changes between 1.2.31 and 1.2.32</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.31_and_1.2.32/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=51417">51417</a>: Fix worker busy detection by querying the
+        worker endpoint. Abandoned connections can leave a worker
+        in busy state without decrementing busy counter. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=50339">50339</a>: Fix whitespace trimming when parsing attribute
+        lists. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=41263">41263</a>: Support Servlet API getRemotePort().
+        Works for Tomcat 5.5.28, 6.0.20 and 7.0.0 and Apache and ISAPI
+        plugins. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=41923">41923</a>: AJP: Close AJP connection to Tomcat on client write
+        error when recovery_options 4 is specified, aborting the response
+        write on the Tomcat side. (timw)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        AJP: Cap the lingering bytes that will be read
+        when shutting down an AJP socket at 32k to prevent CPU spikes
+        in the web server when a client aborts on a large response body.
+        Also reduce total linger time to 2s. (timw)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=50839">50839</a>: AJP: Fix 30sec CPU spike due to incorrect counting
+        of lingering bytes causing a busy loop when a client aborts
+        connection during a response write.
+        Fixes regression in 1.2.31. (timw)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        LB: Forward worker activation state as request attribute
+        "JK_LB_ACTIVATION". Possible values are "ACT" (active),
+        "DIS" (disabled) and "STP" (stopped). (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        HTTPD: Forward WWW-Authenticate from backend when status is 401
+        and server generated error pages are used. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=50363">50363</a>: IIS: Prevent chunk encoding of empty message
+        bodies for 204, 205 and 304 responses. (timw)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=50975">50975</a>: IIS: Fix hanging of Transfer-Encoding: chunked
+        requests when Content-Length header is present in request as well.
+        Also addresses situation where IIS appears to create a Content-Length
+        header for a small chunk encoded request when none was present in the
+        original request. (timw)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=47679">47679</a>: IIS: stop truncation of request headers when
+        ISAPI redirector used as an extension without the corresponding
+        filter installed. (timw)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        NSAPI: Use lower case header names for responses.
+        Otherwise the web server might add chunked transfer encoding header
+        in addition to our content length header.
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Docs: Improve load balancer documentation. (rjung)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.30_and_1.2.31">Changes between 1.2.30 and 1.2.31</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.30_and_1.2.31/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=49413">49413</a>: AJP13: Drop flush packets send by the backend
+        after the response has been finished. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        AJP: Log the local and remote socket address. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Watchdog: Move the maintain workers outside the critical
+        section allowing other threads to use the connection
+        pool during maintenance. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Common: Add svn revision to init log message. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Common: Don't destroy errno during trace logging. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Apache: Add support for Apache 2.3/2.4. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Apache: Added version number resource for mod_jk.so on Windows. (timw)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=48501">48501</a>: IIS: Added rotatelogs style log rotation to ISAPI
+        Redirector. (timw)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=38895">38895</a>: IIS: Use RAW headers instead of CGI headers by default
+        to prevent conversion of underscores '_' to hyphens '-' in header names.
+        Old behaviour can be enabled by defining USE_CGI_HEADERS. (timw)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=49511">49511</a>: IIS: Do not override IIS log information when subsequent
+        requests on a keep-alive connection are not mapped into the ISAPI Redirector. (timw)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Docs: Document SSLOptions needed for SSL information forwarding. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Docs: Grammar and style improvements and clarification about serving
+        static content by IIS.
+        Patch provided by Andr&eacute; Warnier. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Docs: Update subversion paths used in docs. (rjung)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.28_and_1.2.30">Changes between 1.2.28 and 1.2.30</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.28_and_1.2.30/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Apache: Improve compatibility with Apache 2.3. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=46632">46632</a>: Apache: Do not register child cleanup for
+        our pools. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=46893">46893</a>: Apache: Log warning only if JkShmSize was actually
+        set in the configuration. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        IIS: Include optional chunking support. Off by default. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=48763">48763</a>: IIS: Do not send Content-Length when using chunked encoding
+        or length larger 4GB. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=48223">48223</a>: IIS: Propagate correct backend error code to IIS. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=47867">47867</a>: IIS: crash during startup, when compiled with VS2008
+        and workers.properties contains unsupported properties.
+        Patch provided by Indrek Juhani (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=47628">47628</a>: IIS: Fix deadlock when restarting the Application Pool
+        caused by not releasing the critical section lock.
+        Patch provided by Bret Prucha. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        IIS/NSAPI: Correct log file flushing after each line. (mturk)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        NSAPI: Add Microsoft Visual C++ Makefile. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        AJP: Improve socket shutdown handling. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        AJP: Ensure we never reuse a non reusable socket. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        AJP: Tolerate a single excess packet when waiting for cpong. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        AJP: Check protocol correctness more strictly. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=48410">48410</a>: AJP: Use poll instead select so we can work with more
+        then 1024 sockets. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=46503">46503</a>: AJP/Status: Garbage data in worker domain and route. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=48276">48276</a>: AJP: When worker contact cannot be resolved mark the
+        worker as disabled instead failing to start the server. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=48169">48169</a>: AJP: Improve CGI interoperability by closing all
+        sockets during EXEC. (mturk)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Status: Add number of open backend connections to status worker.
+        This feature is experimental, the displayed value might not be
+        accurate. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=47224">47224</a>: Status: When address gets changed invalidate
+        all opened sockets in the endpoint cache. This will cause new
+        backend connections to get opened using new address. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=48305">48305</a>: Status: Do not show "secret" property when
+        doing dump. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=45610">45610</a>: Status: Don't accept requests with
+        empty value for sub worker parameter. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=45610">45610</a>: Status: Fix erroneous unsetting of
+        sticky_session and sticky_session_force when updating other
+        load balancer attributes via the status worker. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=47222">47222</a>: Status: Add ping_timeout to the shared memory
+        and allow dynamic configuration. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Status: Remove duplicate "errors" line in property view of
+        AJP13 workers that are part of a load balancer. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        LB: Fix route logging. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Logging: Automatically detect size of thread id for logging. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Logging: Add optional log file locking for Windows when defining
+        JK_LOG_LOCKING. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Configuration: Update example configuration. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Docs: Update information about tools needed to create a release. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=47983">47983</a>: Docs: Fix typo in example config
+        which breaks startup. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Build: Force copy of automake files. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Build: Tomcat code repository structure cleanup reflected in documentation
+        and build script. (rjung, mturk)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.27_and_1.2.28">Changes between 1.2.27 and 1.2.28</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.27_and_1.2.28/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Apache: Add more environment variables to overwrite request
+        information. Useful in case a proxy is in front of Apache and sends
+        us original request information e.g. via custom headers. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Apache: No longer preallocate entries for JK request log. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=46352">46352</a>: Apache: Fix crash when using SetHandler jakarta-servlet
+        in VHost without any JkMount. Crash due to incorrect initialization
+        of mount extensions. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Apache: JkWatchdogInterval had wrong interval calculation
+        causing a 10 times higher watchdog interval then configured. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Apache: Activate forwarding of SSL key size by default. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=46169">46169</a>: Apache 1.3: Backport use_server_errors mount extension. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=46763">46763</a>: Apache 2.0: Survive the log mutex during graceful
+        restart. Patch provided by Eiji Takahashi. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=46416">46416</a>: Apache 2.0 on Windows: Include mstcipip.h even if
+        the apr doesn't include it. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        IIS: Update uriworkermap.properties file on
+        a regular interval. This requires both worker_mount_reload
+        and watchdog_interval to be defined. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        IIS: Remove obsolete entries from registry file. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=46579">46579</a>: IIS: Use local environment table instead environment
+        variables for setting the JKISAPI_PATH and JKISAPI_NAME. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        LB: Add new property error_escalation_time to fine tune
+        escalation of local errors to global errors. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        LB: If the sticky session affinity mark contains a dot, treat the
+        part before the dot as the domain name. This allows to have full node
+        session affinity with domain failover. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        LB: make forced recovery work with local error states. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        LB: Only update error state and error time, if we actually have a new state. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        LB: Set global worker state to error when we reach max_reply_timeouts,
+        or fail_on_status triggered hard error. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        AJP: Add a new error type JK_AJP_PROTOCOL_ERROR. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        AJP: Allow worker ports lower or equal to 1024. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        AJP: Improve some AJP error log messages. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Status: Allow changing worker address and port of AJP workers.
+        The address is resolved on next request for that worker. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Status: Allow update actions to show error messages in the result page. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Status: Refactor update actions. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Status: Do not redirect to the show or list page, if an error occured
+        during an action. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Status: Include error time in display. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Status: Remove redundant port information from worker display.
+        Rename address column and remove its explanation from the legend. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Status: Optimize forced uriworkermap.properties reload. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Status: Fix crash in text display. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Status: Show - Edit - Show always ends in single lb member show,
+        even when started from all members lb show. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Status: Wildcards in sub worker names were broken for update actions. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Status: Add use_server_errors to map display. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        SHM: Move locking into the data pull and push methods. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        JNI: Deprecate JNI workers. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Netware: Missing define for MAX_PATH. Patch by Guenter Knauf. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Docs: Add a new HowTo page about reverse proxies. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Docs: Add an explanation of local error states to the timeouts documentation. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Docs: Clarify relation between socket_timeout and socket_connect_timeout. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Docs: Clarify IIS URL rewrite feature. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=46834">46834</a>,<a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=46734">46734</a>: Docs: Fix a couple of missing or broken links. (markt,rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Docs: Add 2008 news to main page and menues. (mturk, rjung)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.26_and_1.2.27">Changes between 1.2.26 and 1.2.27</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.26_and_1.2.27/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=46109">46109</a>: Decay reply_timeouts even when lb method is
+        busyness. Also reset reply_timeouts during forced recovery. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        AJP13: Recycle connection if previous request didn't complete. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Maintain should not run multiple times in parallel. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Apache: Fix small memory leak during restart. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Improve signal handling during socket shutdown. (mturk)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        URI Map: Add debug dump function for uri worker map. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Add revision number to version info for non-release builds. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        IIS: Optionally allow chunked encoding for responses.
+        At the moment only usable, if build with ISAPI_ALLOW_CHUNKING
+        defined. Based on patch by Tim Whittington. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        IIS: Optionally use raw headers instead of CGI
+        headers. Fixes problem "underscore=dash" problem in
+        header names. At the moment only available, if build with USE_RAW_HEADERS
+        defined. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        IIS: Optionally improve IIS 5.1 compatibility.
+        At the moment only available, if build with AUTOMATIC_AUTH_NOTIFICATION
+        defined. Based on patch by Tim Whittington. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        IIS: Fix memory corruption due to parallel initialization
+        by multiple threads. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Windows: Use non-default socket keepalive interval. (mturk)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        IIS: Add environment variables JKISAPI_PATH and JKISAPI_NAME. (mturk)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Added socket_connect_timeout directive for setting the
+        connect timeout for the socket. This enables to have low
+        connection timeout but higher operational timeouts. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        AJP13:
+        [<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2008-5519"><b>CVE-2008-5519</b></a>]
+        Always send initial POST packet even if the client
+        disconnected after sending request but before providing
+        POST data. In that case or in case the client broke the
+        connection in a middle of read send an zero size packet
+        informing container about broken client connection. (mturk)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        AJP13: Added connection_acquire_timeout directive for setting the
+        absolute timeout the worker will wait for a free endpoint. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Apache: Allow to set path parameter used when doing JkStripSession. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Refactor retries implementation and change semantics of retries attributes. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Status: Allow showing only a single member for a load balancer. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Status: Add display of seconds since last statistics reset and access and
+        transfer rates. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        AJP13: Add a configurable retry_interval time. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Documentation: Enhance description of connection_pool_size. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        IIS: Refactor error page generation. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        IIS: SERVER_NAME variable can be the same for
+        multiple different server instances if requests
+        are handled according to the ip:port combination.
+        Use INSTANCE_ID variable to which the request
+        belongs instead. (mturk)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Allow forwarding server error pages. This can be done
+        on per-uri basis using new use_server_errors extension.
+        (mturk)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Added session_cookie and session_path for configuring
+        default session identifiers. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Use max_packet_size also as TCP send and receive buffer size. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Apache: Do not allow Apache to start in multi-threaded mode if mod_jk
+        was only build for single threaded server (prefork). (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=45812">45812</a>: Add done() service method that
+        causes sending EOS bucket for Apache httpd 2.x.
+        This allows filter chain to work properly. (mturk)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Added connection_ping_interval, ping_timeout and ping_mode directives.
+        (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Apache: Use correct ld flags provided by apxs when building module.
+        Prevents some crashes on AIX for httpd 1.3 module. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Documentation: "val" attribute numbering in status worker
+        needs to start with 0 instead of 1. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Documentation: Remove JNI parameters from sample configuration
+        in the workers common howto. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=45026">45026</a>: For Apache httpd 2.x add "Unknown Reason"
+        as the reason phrase, if we get an empty one from the backend.
+        Otherwise httpd 2.x returns status 500. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Build: Fix Cygwin build. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Documentation: Add info to docs, that variables sent via JkEnvVar
+        are not listed in request.getAttributeNames(). (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Add watchdog background thread for Apache 2.x and IIS
+        doing internal maintenance (idle connection checks, backend probing).
+        See JkWatchdogInternal (Apache) and watchdog_interval (IIS). (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Change log level of some messages from error to info. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Documentation: Fix docs for worker attribute "secret". (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Detect correct plugin name for various web servers via additional
+        preprocessor defines. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        LB: Do not put loadbalancer node in error state if there is opened
+        channel. This fixes the bug when new connection fails due to
+        busyness, causing opened connections fail stickyness.
+        This brings back per-node busy counter and private state array
+        for each request. We can mark the state as error for failover to
+        work while still operating and reporting node as OK if there are
+        opened working connections. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=44738">44738</a>: Fix merging of JkOption ForwardURI* between virtual hosts.
+        Patch contributed by Toshihiro Sasajima. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        URI Map: Add extension attributes to uri worker map.
+        Allowed are reply_timeout, active/disabled/stopped
+        and fail_on_status.
+        Usage currently only implemented for httpd and IIS. (rjung+mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        URI Map: Make dynamic reloading atomic and free memory
+        not needed any longer. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Configure: Don't use post httpd 2.2.0 API functions when building
+        with new --enable-api-compatibility configure switch. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Apache: JkAutoAlias does not work in combination with JkMountCopy
+        if there are no JkMount in virtual host. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        LB: Optimize state macros to improve performance. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Apache: Allow dynamic setting of reply timeout using the environment
+        variable JK_REPLY_TIMEOUT. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Status: Add manageability for ajp parameters of ajp
+        workers and ajp lb members. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Status: Change parameter names of update action to
+        make them more easily distinguishable from other parameters. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Status: Add ajp worker statistics also for
+        workers, that are not lb members. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        AJP: Refactor factories, move ajp13/ajp14 common parts into
+        ajp_factory. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Status: Only sync shm worker config values of the workers
+        for which we changed values. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Status: Set lb_factor instead of distance. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Status: Minor layout changes, use drop down instead of multiple
+        text links. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        SHM: Use local copies of read mostly attributes of lb sub workers
+        in lb and status worker. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Status: Add "dump" action to dump our initial configuration. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Status: Use property table to decide which cmd action uses which
+        output elements. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Common: Include original configuration map in worker_env
+        to make it available for workers, e.g. the status worker. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        LB: Refactor "route" return for httpd note. Don't use a
+        member of the worker_record, because that's not thread safe. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Common: Refactor "retries", remove from service and jk_worker,
+        move into ajp worker instead. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        SHM: Use distinct structs for lb and ajp13 in shm.
+        Improves type safety and saves a few bytes. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        SHM: Remove unused attributes. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        SHM: Automatically determine shm size for all web servers. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        SHM: Make open/attach logging consistent for all web servers. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Status: Include server local time in output. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=44116">44116</a>: Fix handling of multiple JSESSIONID cookies. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=37850">37850</a>: Use thread safe localtime_r where appropriate. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Use thread safe strtok_r on more platforms, especially AIX. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Status: Improve XSS hardening. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=35303">35303</a>: Move initialization of service members with defaults from
+        web server specific code to our generic jk_init_ws_service() function. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=36385">36385</a>: Add missing prepost CPing/CPong directly after connect
+        in case prepost CPing is used, but no connect CPing. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=37322">37322</a>: Apache: Enhance robustness of message formating
+        in jk_error_exit(). (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=44147">44147</a>: Multiple load balancing workers problem. (rjung)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.25_and_1.2.26">Changes between 1.2.25 and 1.2.26</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.25_and_1.2.26/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=42003">42003</a>: Allocate memory instead using fixed size from
+        the stack. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=43229">43229</a>: Load balancer does not do fail over after
+        reply timeouts. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        JKStatus: Repair detailed Apache httpd version display.
+        This was broken for httpd version 2.2.4+. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        LB/AJP: Refactoring of jk_connect.c, jk_ajp_common.c,
+        jk_lb_worker.c (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Configure: Repair broken apxs auto-detection. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Configure: Remove trace logging from compiled code
+        via new --disable-trace configure switch. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Common: Maintain idle connections in decreasing (LRU)
+        slot order. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Apache: Create JK_WORKER_ROUTE and JK_REQUEST_DURATION notes for
+        access log even if no JkRequestLogFormat is set. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        JKStatus: Enhance URI to worker map listing for Apache httpd.
+        We now list maps for all virtual servers and not only
+        the one, in which JKStatus itself was called. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        JKStatus: Enhance URI to worker map listing.
+        Update stale uriworkermap.properties immediately. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=43873">43873</a>: Fix small memory leak occuring during httpd restart. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Common: Allow '*' for the worker name in exclusion rules (resp. JkUnMount)
+        which will override all workers. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=42038">42038</a>: Correct overlay of mounts and unmounts for IIS. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=43684">43684</a>: Replace JkMountFile by JkMountFileReload in
+        uriworkermap.properties docs. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Apache: Add new value "All" for JkMountCopy. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=43516">43516</a>: Memory leak for Apache httpd module
+        of size 8KB for every virtual host without JK directive
+        after each restart. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Apache: Cleanup init and destroy of server configuration. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Apache: Remove global configuration items from per server
+        configuration. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Apache: Remove unused attributes secret_key and
+        automount/JkAutoMount. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Cleanup of jk_uri_worker_map. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Documentation: Small additions to JkShmFile documentation.
+        Contributed by Gerhardus Geldenhuis. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        AJP13: Ignore flush packets before we received the response headers. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fix crash during startup when using worker configuration inheritance
+        (attribute "reference") and log level debug. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        AJP13: Match header names exactly against pre defined constants. Avoid
+        possible confusion with custom header names using a standard header name
+        as a prefix. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        jkstatus: Fix correct parameter validation at JkStatusUpdateTask and
+        JkStatusUpdateLoadbalancerTask ant tasks. Reported by Christian Mittendorf. (pero)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.24_and_1.2.25">Changes between 1.2.24 and 1.2.25</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.24_and_1.2.25/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        IIS: Fix shm shutdown behaviour. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        General: fail_on_status used in a load balancer can optionally
+        do fail over without putting the failed worker in error state. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        NSAPI: Improve build description for Unix. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        NSAPI: Add initialization startup message containing JK version. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        General: Declare static functions as static. (jim)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Documentation: Clarify fail_on_status behaviour. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        General: Do fail_on_status before returning the response headers. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        NSAPI: Fix shm shutdown behaviour. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        NSAPI: Set return status even if request ended with an error. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        NSAPI: Allow using without shm_file on WIN32 and Netware. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        NSAPI: Fix Crash of nsapi for log level debug and unset refect_unsafe. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        NSAPI: Improve Solaris and Linux Makefiles for nsapi build. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Build: Improve pid_t type detection during configure on Solaris. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Build: Experimental build support for gcc on WIN32 and Netware. (fuankg)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Build: Makefile optimizations for Apache httpd 1.3/Netware . (fuankg)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        General: Fix missing flush bug introduced in 1.2.24. (rjung)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.23_and_1.2.24">Changes between 1.2.23 and 1.2.24</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.23_and_1.2.24/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Documentation: Improved workers.properties description in the
+      reference guide. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Documentation: Add a HowTo about the various timeouts. rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Logging: add milliseconds to the default timestamp format,
+      if we have gettimeofday(). (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Apache: add milliseconds (%Q) and microseconds (%q) as possible
+      JkLogStampFormat conversion specifiers. This does not use strftime(),
+      but needs gettimeofday(). (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      IIS &amp; Sun: Log service failures also, if return code is negative. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=42849">42849</a>: Abort startup of Apache httpd 1.3 in case
+        mod_jk initialization failed. We already do the same
+        for Apache httpd 2.x. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=42849">42849</a>: Refuse to operate with IIS in case the
+        initialization failed. Instead requesting isapi_redirect.dll
+        500 will be returned to the user. This is as closest as it
+        can get to Apache Httpd where we refuse to start the server
+        in case of fatal initialization errors. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Load Balancer: Fix a deadlock in lb worker, which was exposed on Solaris
+      for threaded Apache MPMs. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Logging: handle LWP IDs as 32 Bit unsigned. Try to make
+      it work, although pthread IDs are opaque. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      JkStatus: Added manipulation of max_reply_timeouts. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      LB, Status: Add feature max_reply_timeouts, to make lb tolerant against
+      occasional long running requests. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      JkStatus: Added OK/IDLE as the successor of N/A. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Status worker: Renamed runtime states. All states have a major
+      state (OK or ERR) and a substate. Changed the name N/A to OK/IDLE.
+      Added docs about the meaning of the states to the status worker
+      page in the reference guide.
+      No new states have been added to code. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Common: Add recovery options for recovering idempotent http methods
+      HEAD and GET. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Correct documentation for worker attributes retries and
+      recovery_options. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Make writing log lines and line endings more atomic. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Common: Refactored and unified jk_map_read_prop* and jk_map_load_prop*
+      for all use cases. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Common/Apache/IIS/Netscape: Add an option to check decoded URLs for
+      potentially malicious constructions. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      IIS: Document auth_complete and uri_select. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Apache/IIS/Netscape: Change the default forwarding encoding to the new
+      proxy method. (jfclere, rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Common: Optionally reencode URIs before forwarding to the backend.
+      Based on the URI reencoding done bei httpd mod_proxy. (jfclere, rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Common: auto-detect correct print format for pid_t.
+      This fixes at least compiler warnings on Solaris. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=42608">42608</a>: Handle Content-length as unsigned 64Bit
+        to allow for huge up- and downloads. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Apache: Add forwarding uri to debug log. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Docs: Clarify relation between worker names and jvmRoute for load balancing. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Use initial zero timeout for jk_is_socket_connected. The resulting
+      detection is the same but offers a huge performance increase
+      with mod_jk. In most cases the Operating System does not favor
+      the 1 microsecond timeout, but it rather rounds that up to much
+      higher value (frequency of interrupt timer which on most systems
+      defaults to 100Hz).
+      Patch provided by David McLaughlin. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      NSAPI: Check correct log file and shm file configuration during startup. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      NSAPI: Add support for the general options concerning retries, flushing
+      and connection persistance. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      NSAPI: fix crashes due to use of mount attribute in workers.properties.
+      Changed initialization order. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Improved handling of libtool and discrepancies between CC env variable and
+      CC used during apache build by configure script. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Always build with thread support, unless flag --enable-prefork
+      is set during for configure. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Use snprintf/vsnprintf from ap_snprintf.c for platforms other
+      than Windows, which might lack snprintf/vsnprintf implementations
+      when NOT build for Apache httpd 2.x/APR (e.g. Sub Web Server)
+      or without using configure. (fuankg)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Imported ap_snprintf() from Apache 1.3. (fuankg)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Fix incorrect log object cleanup during statup,
+      leading to crashes at least on iSeries. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Add jk_stat() and jk_file_exists() as wrapper functions.
+      i5/OS V5R4 expects filename in ASCII for fopen but requires them
+      in EBCDIC for stat(). (hgomez)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      i5/OS (AS/400) V5R4 port where Apache 2.0 modules should now use UTF8. (hgomez)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Docs: Add comments on i5/OS build for V5R4 and previous releases. (hgomez)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.22_and_1.2.23">Changes between 1.2.22 and 1.2.23</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.22_and_1.2.23/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      [<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-0450"><b>CVE-2007-0450</b></a>]
+      and
+      [<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-1860"><b>CVE-2007-1860</b></a>]:
+      Change the default value of JkOptions to ForwardURICompatUnparsed.
+      The old default value was ForwardURICompat.
+      This should make URL interpretation between Apache httpd and
+      Tomcat consistent (prevent double decoding problems). (rjung)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.21_and_1.2.22">Changes between 1.2.21 and 1.2.22</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.21_and_1.2.22/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Refactor line endings logging to make it correct for all
+      platforms and webservers. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added command line windows make files. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Allow fail_on_status directive to be multi line. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=42076">42076</a>: Fix name of new option from ForwardCertChain to
+        ForwardSSLCertChain as documented. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Docs: Fix a couple of typos, change format of a few tables,
+      fix links to news pages. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Fix correct URL for TC 6 examples in new IIS rewrite.properties
+      configuration example file. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Add svn properties to several files. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Add TC 6 examples to uriworkermap.properties in config examples. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Allow multiple status codes for fail_on_status directive.
+      The status codes can be delimited by space or comma characters. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        IIS. Added pcre like regular expressions for url rewrite rules. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=41922">41922</a>: Apache 1.3. Enable JkEnvVar. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Apache. Add --enable-flock configure parameter for explicit
+        compilation of faster flock() system calls for OS supporting
+        those calls. By default the fcntl system call for locking will
+        be used that is a little bit slower but it can work on NFS
+        mounted volumes as well. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=41562">41562</a>: Add Debug logging for read from client in ISAPI Redirector.
+         Contributed by Tim Whittington. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Apache. Add ForwardSSLCertChain JkOption.
+        Contributed by Patrik Schnellmann. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        IIS. Do not forbid access to web-inf or meta-inf if there is
+        no mapped worker. This allows to have resource with those names
+        that are outside mapped contexts. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Apache. Use process id for creating shared memory name and delete shared
+        memory and shared memory lock files on exit. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        IIS. Fix Keep-Alive regression introduced in 1.2.21. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Delete unused check for empty init_map during startup. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=41770">41770</a>: Fix startup error if no JkWorkersFile is used. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Use JK_TRUE/JK_FALSE instead of OK/!OK as return values in init_jk(). (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Minor adjustments to apache startup log messages (when to use STDERR, remove
+      deprecated NOERRNO flag, shm warning and warnings for usage of default files). (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Replace APR precompiler directive by httpd mpm_query to detect MPM threading.
+      Add a debug log message about auto-detected pool size. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Make MMN check easier to understand and a little more precise
+        (for new ap_get_server_banner()/ap_get_server_description()).
+        We use the new API only for Apache httpd 2.3. This way our binaries are not
+        tightly coupled to a minor 2.0 version, and we don't use ap_get_server_banner()
+        any way. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Use the full description string ap_get_server_description() instead of
+        the truncated info from ap_get_server_banner(), because this info gets used internally
+        (status worker display and ajp14 backend communication) and is not send back to the
+        normal user. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=41757">41757</a>: Document the "--enable-prefork" flag of configure. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Enhance log messages for failures when parsing attribute maps. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Correct log message during worker initialization, in case remote host could not be
+        resolved. We logged the default host name "localhost" instead of the configured one. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=41770">41770</a>: Fix the second part of the bug: local_worker and local_worker_only
+        is missing from the list of deprecated attributes (and not supported either), so prevents
+        the web server from startup. (rjung)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.20_and_1.2.21">Changes between 1.2.20 and 1.2.21</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.20_and_1.2.21/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        [<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-0774"><b>CVE-2007-0774</b></a>]:
+        A denial of service and critical remote code execution vulnerability.
+        Caused by buffer overflow in map_uri_to_worker() when URL were longer that 4095 bytes.
+        Reported by ZDI (www.zerodayintiative.com).
+        Please note this issue only affected versions 1.2.19 and 1.2.20 of the
+        Apache Tomcat JK Web Server Connector and not previous versions.
+        Tomcat 5.5.20 and Tomcat 4.1.34
+        included a vulnerable version in their source packages.
+        Other versions of Tomcat were not affected.
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+      Check the worker. parameters and don't start if the parameter is not a valid one. (jfclere)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=41439">41439</a>: Allow session IDs to get stripped off URLs of static
+        content in Apache by adding JkStripSession
+        directive (configurable per vhost). (mturk)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+      Change semantics of empty defaults for JkEnvVar variables.
+      Until 1.2.19: not allowed. In 1.2.20: send variables as empty strings, if
+      neither set to non empty in config, nor during runtime.
+      Starting with 1.2.21: If config has no second argument only send
+      variable if set (even when set to empty string) during runtime.
+      Allows good combination with condition attribute in tomcat access log. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=41610">41610</a>: Fix incorrect detection of missing Content-Length
+        header leading to duplicate headers. Contributed by Boris Maras. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Better build support for SunONE (Netscape/iPlanet) webservers. (jim)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+      Add warning if duplicate map keys are read and are not allowed,
+      e.g. when parsing uriworkermap.properties. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Don't concat worker names, if uriworkermap.properties has a duplicate
+      pattern, instead overwrite the worker. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Log deprecation message even in duplication case. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      uriworkermap.properties: Fix off-by-one problem when deleting
+      URL mapping during reloading of uriworkermap.properties. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=41439">41439</a>: Allow session IDs to get stripped off URLs of static
+        content in IIS (configurable). (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=41333">41333</a>: Refactoring isapi_plugin configuration reading. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=41332">41332</a>: Add some more errno logging and unify the format. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+      JkStatus: Improved logging by adding status worker name to messages.
+      Added messages to the recover worker action. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+      JkStatus: Refactoring searching for workers and sub workers. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=41318">41318</a>: Add configuration to make status worker user
+        name checks case insensitive. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+      JkStatus: Add estimated time until next global maintenance to other
+      mime types and adopt jkstatus ant task. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+      JkStatus: Show estimated time until next global maintenance.
+      Change displayed time until next recovery to a min/max pair. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+      JkStatus: Allow a user of a read/write status worker to switch it
+      to and from read_only mode temporarily. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      JkStatus: Do not show read/write commands in a read_only status worker. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+      JkStatus: Allow lb sub workers in error state to be marked for recovery
+      administratively from the status worker. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+      Load Balancer: Do not try to recover multiple times in parallel.
+      Use additional runtime states "PROBE" and "FORCED". (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      JkStatus: Improve data synchronization between different processes. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=41381">41381</a>: Fix segfault in feature fail_on_status
+        (wrong order of log arguments). Patch by Juri Haberland. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Use correct windows line endings for log file on WIN32 platform. (rjung)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.19_and_1.2.20">Changes between 1.2.19 and 1.2.20</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.19_and_1.2.20/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+      JkStatus Ant Task documentation page. (pero/rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+      JkStatus Ant Tasks: Add new tasks for update and reset. (pero)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      JkStatus Ant Tasks: Update for new xml status format. (pero)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Allow integer and string values when setting enumeration/boolean
+      attributes via status worker update action. (rjung)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+      Docs: New reference guide page for status worker. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Docs: Renaming the config dir to reference and using the title
+      Reference Guide in the docs. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added retry_on_status for workers directive. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Status Worker: Add directive to make property prefix
+      and good/bad rule configurable. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Status Worker: Omit lb members when att=nosw. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Status Worker: New command cmd=version for a short version output. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Status Worker: New output stype mime=prop produces property lists. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Apache: Fix incorrect handling of JkEnvVar when Vars are set multiple times. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Renamed jvm_route to route. Deprecated jvm_route, but still use it as fallback
+      when parsing the worker configuration. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      IIS: Make uriworkermap file reload check interval configurable. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Apache: Make uriworkermap file reload check interval configurable. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Status Worker: Add directives for customizing the XML
+      output (ns, xmlns, doctype). (mturk)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+      Docs: New page with description of uriworkermap. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Docs: Added short description of max_packet_size to worker
+      reference. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Status Worker: All functions accessible also for xml and txt
+      mime types (list, show, update, reset). (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Status Worker: New global health indicators for load balancers
+      named bad (error, recovering or stopped), degraded (busy or disabled)
+      and good (the rest, active and OK or N/A). (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Status Worker: New edit page, to change one attribute for all
+      members of a load balancer. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Status Worker: Standard logging for status worker. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Status Worker: code refactoring. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Status Worker: New attribute user (list) denies access, if
+      the request user in the sense of remote_user is not in this list.
+      Empty list = no deny (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Status Worker: New attribute read_only disables the parts
+      of the status worker, that change states and configurations. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=36121">36121</a>: Don't change main uri when mod_jk serves
+        included uri. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Apache VHosts: Merge JkOptions +base - -base + +vhost - -vhost. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Apache Docs: Adding requirements, context information, default values and
+      inheritance rules to the Apache config documentation. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Status Worker: Add source type to status worker, remove the redundant "context"
+      column in the map listing (context=uri). (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      uriworkermap: On reload of the file, all old entries from the previous file
+      version get deleted, before the new ones are being read. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Keep normal maps and exclusion maps internally separate. Don't treat them
+      as the same when adding a rule. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Status Worker: Display mapping rules also for non-lb workers and in global view. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Apache VHosts: Use the vhost log files instead of the main log. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Apache VHosts: Allow individual timestamp formats by refactoring the formatting
+      method. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Apache VHosts: Adding all missing config items to the virtual host level.
+      Don't overwrite the settings from the global server, but inherit them
+      in case they are not set in the virtual host. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Apache: remove unnecessary function names from log messages. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Apache: add a default log file location and a message, if the default gets used. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Apache: add missing JK_IS_DEBUG_LEVEL() (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Apache VHosts: Allow JkWorkersFile, JKWorkerProperty, JkShmFile and JkShmFileSize
+      only in global virtual server. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Add some more jk_close_socket() and reduce log level for some info messages. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Load Balancer: Added the Sessions strategy. Contributed by Takayuki Kaneko. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Docs: Minor enhancements and syncing with more recent versions. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=40997">40997</a>: Separate uri mappings from their '!'
+      counterpart when checking for duplicates in uriworkermap
+      reloading. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=40877">40877</a>: Make sure the shared memory is reset on
+      attach for multiple web server child processes. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      IIS: Added shm_size property to be able to deal with over 64
+      workers configurations. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      IIS: Increase default thread count to 250, so its the same as Apache Httpd
+      default configuration. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=40966">40966</a>: Fix socket descriptor checks on windows. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=40965">40965</a>: Initialize missing service parameters. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=40938">40938</a>: Fix releasing of rewrite map.
+      Thanks to Chris Adams for spotting that. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Apache: Added +FlushHeader JkOptions. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added explicit flush when AJP body packet size is zero. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=40856">40856</a>: Fixing case sensitivity bug in URL mapping. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=40793">40793</a>: Documentation: Improvements to Apache HowTo provided by
+      Paul Charles Leddy. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=40774">40774</a>: Fixing wrong recursion termination. This one restricted the
+      "reference" feature unintentionally to 20 workers. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=40716">40716</a>: Adding "reference" feature to IIS and Netscape. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Documentation: Corrected SetEnvIf syntax in JK_WORKER_NAME example. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Documentation: Added forgotten STATE and ACTIVATION notes for load balancer logging in Apache. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Apache: Use instdso.sh instead libtool: libtool does not work on HP-UX for example. (jfclere)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.18_and_1.2.19">Changes between 1.2.18 and 1.2.19</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.18_and_1.2.19/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Docs: Add SetHandler and new env var to Apache config docs. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Apache 1.3: Backport "no-jk" feature. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Apache: Add an environment variable to make SetHandler "jakarta-servlet" more
+      useful. The variable is JK_WORKER_NAME, but can be changed by the
+      new directive JkWorkerIndicator. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      LB: Don't use single worker shortcut, if the single worker is being diabled. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Status worker: Add short explanation of activation and error states to legend. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Docs: Add meaning of zero timeout values for various timeouts
+      in workers.properties. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      LB: Cleanup of Mladens forced recovery. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      LB: Do not change lb_value for recovering workers to max, if
+      we are using BUSYNESS method. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Apache: Since 1.2.14 mod_jk failed to detect client abort. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Docs: Corrected description of JkEnvVar. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Solaris: Detect filio.h in configure to make the new connection detection
+      build on solaris (r432825). (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Add feature to force the recovery of workers that are
+      member of loadbalancer if all the members are in error
+      state. This fixes the time gap where 503 was returned
+      caused by recovery_timeout although the backend was
+      ready to handle the requests. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Docs: Seperate deprecated directives in their own table. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Docs: Allow "-" and "_" in worker names. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Allow multiple lines with attributes "balance_workers" and "mount". (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Make jk_is_some_property match more precisely. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      JkStatus: Make refresh interval changeable. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      JkStatus: Adjust display of recover time wrt. global maintenance. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      LB: Resetting worker state from OK to NA, if worker has been idle
+      too long. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Avoid compiler warnings concerning the use of lb_*_type arrays.
+      Use functions instead. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added %R JkRequestLogFormat option for Apache 1 and Apache 2. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Allow changing jvm Route from status manager. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Do not retun 400 if Tomcat fails in the midle of the post
+      request. Return 500 insted. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      LB: Combine ok/error/recovering/busy runtime states into a single scalar. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      LB: Combine active/disabled/stopped configuration states into a single scalar. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      LB: Add several Apache notes to enable standard logging for load balancer results. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      LB: Reorganisation of the main load balancer service loop. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Implement hierarchical worker configuration via attribute "reference". (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Log deprecated properties. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      IIS: Fix simple_rewrite for the cases where the
+      rewritten url is larger then the original one. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      New JkOption "DisableReuse" to disable connection persistence. (jim)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      LB: Move sessionid retrieval out of get_most_suitable_worker into service. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Code cleanup for all service methods (use TRACE, JK_LOG_NULL_PARAMS, null pointer checks). (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      JKSTATUS: add refresh link. No refresh for updates. Redirect to list view after update. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Add new hook add_log_items into servers. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      APACHE httpd: Rename apache logging notes. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      LB: Rename lock and method constants. Add constants for defaults. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Default log level should be INFO and not DEBUG.
+      Default log level should be the same for all server types. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Make rewrite_rule_map and log_level as non mandatory
+      directives for isapi_redirect. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=40107">40107</a>: Rewrite is_socket_connected function.
+      Non blocking socket is not used any more. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Allow building with VS2005 without too many warnings. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Decide by MMN, which piped log API we should use.
+      mod_jk 1.2.18 broke compilation with Apache 1.3 pre 1.3.28. (rjung)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.17_and_1.2.18">Changes between 1.2.17 and 1.2.18</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.17_and_1.2.18/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Using socklen_t in getsockopt. Also introducing jk_sock_t. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Allow recovery wait time below 60 seconds (new minimum is 1 second). (mturk)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.16_and_JK_1.2.17">Changes between 1.2.16 and JK 1.2.17</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.16_and_JK_1.2.17/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Fix hanging jk status worker when certain attributes are being updated
+      due to double locking. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Allow JkMount to behave like uriworkermap.properties
+      by parsing pipe symbol as two directive marker. (mturk)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.15_and_JK_1.2.16">Changes between 1.2.15 and JK 1.2.16</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.15_and_JK_1.2.16/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added simple rewrite capability for IIS. Although simple it
+      will fulfill most needs. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added RECOVER_ABORT_IF_CLIENTERROR recovery_option that closes
+      the connection if client connection is broken during the request. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Renamed cache_timeout directive to connection_pool_timeout. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added connection_pool_minsize directive. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Deprecate recycle_timeout directive. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Corrected some HTML syntax bugs in output of status worker. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added the refresh=n parameter to the status worker. It will update the display every n seconds. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Balancer: Add attribute distance to balanced workers to express preferences between workers. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Balancer: Add attribute jvm_route to balanced workers to be able to use the same target in different balancers. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Status: Add lb_mult to status. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Balancer: Make different balancing strategies work in a similar way (use lb_value, use decay during global maintenance, use integer factors for weights. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Balancer: Improve locking. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Balancer: Workers start slower after recovering. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Balancer: Make different balancing strategies work in a similar way (use lb_value, use decay during global maintenance, use integer factors lb_mult for weights). (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Balancer: Move recovery check to global maintenance. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Balancer: Add global maintenance method, that is called in only one process. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Extend our use of autoconf to find a 32Bit and a 64Bit unsigned type and their printf formats. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Logging: piped loggers for JkLogFile and Apache 1.3. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Logging: Add PID to log lines for each log level apart from REQUEST. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Logging: flush buffered logs to keep lines in correct order. Output final newline together with log message. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Reducing shm size. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Only log removing of old worker, when we actually do it. (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=37469">37469</a>: Fix shared memory close for forked childs.
+      The shared memory will be closed by the parent process. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=37332">37332</a>: Fix potential misuse of buffer length with
+      snprintf functions. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=38859">38859</a>:
+      [<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2006-7197"><b>CVE-2006-7197</b></a>]
+      Protect mod_jk against buggy or malicious
+      AJP servers in the backend. Patch provided by Ruediger Pluem. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=38889">38889</a>: Use worker map sorting depending on the path
+      elements, to comply with Servlet spec. Patch provided by
+      Steve Revilak. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=36138">36138</a>: Added Busyness lb method. Patch provided
+      by  Chris Lamprecht. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Fix pessimistic locking mode. The patch correctly handles the
+      burst load, by syncing the access to the shared memory data. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=38806">38806</a>: Reclycle worker even if it is disabled.
+      This fixes hot-standby workers in error state. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=37167">37167</a>: Allow building with BSD-ish like make. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      ISAPI plugin (isapi_redirect.dll) did not provide correct request data
+      for IIS
+ to include in the IIS log. (markt)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.14_and_1.2.15">Changes between 1.2.14 and 1.2.15</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.14_and_1.2.15/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Fix AJP13 Cookie2 parsing. Cookie2 was always send as Cookie.
+      Patch provided by Andre Gebers. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=35862">35862</a>: NSAPI plugin attempts to read freed memory and attempts to
+      dereference a null pointer. Patch provided by Brian Kavanagh. (markt)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.13_and_1.2.14">Changes between 1.2.13 and 1.2.14</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.13_and_1.2.14/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fix lb for worker mpm's with cachesize set to lower number then
+        ThreadsPerChild is. If retries is set to value larger then 3 sleep for
+        100 ms on each attempt. This enables to tune the connection cache,
+        and serialize incoming connections instead returning busy if connection
+        count is larger then cachesize. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=36525">36525</a>: Solaris core dump. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=36102">36102</a>: Worker actions do not persist. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=35864">35864</a>: Status worker doesn't list workers.
+      Patch provided by Martin Goldhahn. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=35809">35809</a>: JkMountCopy don't work for Apache 2.0 Patch provided by
+       Christophe Dubach. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=35298">35298</a>: Multiple JK/ISAPI redirectors on a single IIS site are not supported
+       Patch provided by Tim Whittington. (mturk)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.12_and_1.2.13">Changes between 1.2.12 and 1.2.13</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.12_and_1.2.13/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=34397">34397</a>: Emergency was handled as Error. (jfclere)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=34474">34474</a>: // in URL were not handled correctly with Apache-1.3. (jfclere)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Use 64 bits int for transferred/read bytes.
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added JkOptions +FlushPackets used to optimize memory
+      usage when sending large data. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added lock directive for load balancer that allows more acurate
+      load balancing in case of burst load. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added worker.maintain directive to allow customizing default 10
+      second timeout. On busy servers this value needs to be set on
+      higher value. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Fix for NetWare compiler to deal with different types between AP13
+      and AP2 SDKs. (fuankg)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Emit much more legible user.dmp crash analysis output for WIN32. (wrowe)
+      </li>
+     <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+     <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=34558">34558</a>: Fix first failover request. (mturk)
+     </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.11_and_1.2.12">Changes between 1.2.11 and 1.2.12</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.11_and_1.2.12/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added ForwardLocalAddress JkOptions flag for passing local instead remote
+      address. Useful for remote addr valve. (mturk)
+      </li>
+     <li><img alt="Fix: " class="icon" src="../../images/fix.gif">Fix that worker does not get used, when stopped flag is set to
+      <b>true</b>. (pero)
+     </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Add loadbalance default worker secret attribute to the documentation (pero)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.10_and_1.2.11">Changes between 1.2.10 and 1.2.11</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.10_and_1.2.11/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">Backport SC_M_JK_STORED from JK2 for passing arbitrary
+      methods instead failing the request. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">Added missing SEARCH and ACL http methods. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Add worker secret attribute to the documentation (pero)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Add a stopped flag to worker configuration. Set flag to <b>true</b> and
+      the complete traffic to the worker will be stopped.
+      Also update the Ant JkStatusUpdateTask at Tomcat 5.5.10 release.
+      Only usefull in a replicated session cluster.(pero)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">Added worker maintain function that will maintain all
+      the workers instead just the current one. This enables to recycle
+      the connections on all workers. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">Use shutdown when recycling connections instead hard
+      breaking the socket. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">Add unique directives checking. The directives if
+      unique are now overwritten instead concatenated. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">Allow multiple worker.list directives. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=34577">34577</a>: For IIS log original request instead loging
+      the request for ISAPI extension. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=34558">34558</a>: Make sure the returned status codes are the same
+      for ajp and lb workers. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=34423">34423</a>: Use APR_USE_FLOCK_SERIALIZE for setting log lock
+      on platforms like FreeBSD. Patch provided by Allan Saddi. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=33843">33843</a>: Fix obtaining LDFLAGS that were used for building
+      Apache HTTPD. Patch provided by Beat Kneubuehl. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=34358">34358</a>: Enable load balancer method configuration. (glenn)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=34357">34357</a>: In some situations Apache 2 mod_jk could segfault
+      when the JkAutoAlias directive is used. (glenn)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Add --enable-prefork to the documentation (pero)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">Update tomcat_trend.pl for new error log string formatting.
+      (glenn)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.8_and_1.2.10">Changes between 1.2.8 and 1.2.10</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.8_and_1.2.10/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">Set default shared memory to 64K instead 1M. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">Do not mark the worker in error state if headers are
+      larger then AJP13 limit. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      On iSeries you should use the latest PTF for Apache 2.0
+      (which is now 2.0.52) and ad minima SI17402/SI17061 or cumulative
+      including them. (hgomez)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Change the xml status format to xml attribute syntax (pero)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=33248">33248</a>: Fix builds where apxs defines multiple
+      directories for APR includes. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=32696">32696</a>: Return 404 instead 403 when WEB-INF is requested
+      to comply with Servlet spec. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">Added ANT task for managing jkstatus. (pero)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      If socket_timeout is set, check if socket is alive before
+      sending any request to Tomcat. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added JkMountFile for Apache web servers. This file can contain
+      uri mappings in the form (/url=worker), and is checked for
+      updates at regular 60 second interval. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added status worker for managing worker runtime data using
+      web page. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added load balancer method directive that is used for setting
+      the algorithm used for balancing workers. Method can be either
+      Request (default) or Traffic. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added shared memory to allow dynamic configuration. Shared memory
+      is needed only for unix platform and web servers having multiple
+      child processes. For Apache web server two new directives has been
+      added (JkShmFile and JkShmSize). (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added textupdate mode to status worker to handle remote updates
+      from ant tasks.(pero)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=33562">33562</a>: Fix Reply_timeout when recovery_options
+      is larger than 1. Patch provided by Takashi Satou. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=33308">33308</a>: Fix segfaults when ForwardDirectories is enabled
+        with Apache 1.3
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.7_and_1.2.8">Changes between 1.2.7 and 1.2.8</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.7_and_1.2.8/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Allow anyone to debug and diagnose stack dumps using windbg or any
+      other debugging tool, and (if they add the .pdb files to their
+      installation) to make sense of dr watson logs.
+      Patch provided by William A. Rowe (wrowe)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Fix in_addr_t usage by using the real struct ignoring typedef.
+      Patch provided by William A. Rowe (wrowe)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Fix url rewriting by restoring the in place uri from which the
+      jsessionid was removed. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Make load balancer algorithm thread safe by introducing mutex
+      to the load balancer worker. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Fix sending error pages for IIS to client by adding Content-Type header
+      using correct api function call. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=32696">32696</a>: Prevent IIS from crushing when web-inf url was requested. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Use default cachesize for servers that support discovering the number of
+      threads per child process. (mturk).
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Fix Apache content-length header parsing using case insensitive compare. (billbarker)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Fix parsing AJP headers using case insensitive compare. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Use infinite socket timeout if socket_timeout is set to zero or less then zero. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Change <b>balanced_workers</b> to <b>balance_workers</b> but keep
+      backward compatibility preserving the old directive. (mturk).
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Fix ajp initialization for workers with cache_size set to zero. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=32317">32317</a>: Making mod_jk replication aware (Clustering Support).
+      Patch provided by Rainer Jung. (mturk).
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=31132">31132</a>: Core dump when JkLogFile is missing from conf. (mturk)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.6_and_1.2.7">Changes between 1.2.6 and 1.2.7</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.6_and_1.2.7/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added new property named recover_time that can be used to change the
+      default 60 second recover time. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added custom retries for worker, so we don't depend on default setting.
+      If set to a number grater then 3, it will sleep for 100ms on retry greater
+      then 3 and then try again. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added JkWorkerProperty directive that enables omiting workers.properties file.
+      For example: JkWorkerProperty worker.ajp13a.port=8009. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Check all JSESSIONID cookies for a valid jvmRoute. If you have multiple Tomcats
+      with overlapping domains, then you can get multiple cookies without a defined order.
+      This will route correctly as long as the different domains don't have any
+      Tomcats in common. (billbarker)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added JkUnMount directive for negative mappings that works as opposite to JkMount directives.
+      It is used for blocking of particular URL or content type. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added wildchar match uri mappings. One can now use JkMount to
+      map /app/*/servlet/* or /app?/*/*.jsp. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Rewrite the logging by adding Trace options. (mturk)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+      Added socket_timeout property that sets the timeout
+      for the socket itself. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+      Changed socket_timeout property to recycle_timeout. This better
+      explains what the directive actually does. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Changed the load balancer algorithm.
+        The idea behind this new scheduler is the following:
+        lbfactor is <i>how much we expect this worker to work</i>,
+        or <i>the worker's work quota</i>.
+        lbstatus is <i>how urgent this worker has to work to fulfill its quota
+        of work</i>. We distribute each worker's work quota to the worker, and then look
+        which of them needs to work most urgently (biggest lbstatus).  This
+        worker is then selected for work, and its lbstatus reduced by the
+        total work quota we distributed to all workers.  Thus the sum of all
+        lbstatus does not change.(*)
+        If some workers are disabled, the others will
+        still be scheduled correctly. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fix iis redirector that was figuring .properties file on each request. (mturk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Start fixing 64/32 bit compatibility issues. (mturk)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.5_and_1.2.6">Changes between 1.2.5 and 1.2.6</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.5_and_1.2.6/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fix POST Recovery problems in LB mode. (hgomez)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Add CPING/CPONG support to avoid problems with hang tomcats. (hgomez)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Make POST recovery in LB configurable. (hgomez)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Update to Apache License 2.0. (hgomez)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        For Apache 2.0, when the env var no-jk is present, mod_jk didn't handle request (declined)
+        and as such dont forward requests to tomcats even if URL match.
+        To be used with SetEnvIf or BrowserMatch directives for example to exclude some URL/URI or
+        Browser (hgomez).
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Add a fix for iSeries (AS/400) which use XOPEN/Unix98 APIs and need sa_len to be set when
+        calling connect(), it will resolve the error EINVAL in jk_connect. (hgomez)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.4_and_1.2.5">Changes between 1.2.4 and 1.2.5</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.4_and_1.2.5/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fix a thread safe bug when mapping URI's. (billbarker)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fix a thread safe bug when resolving worker host name
+        when using mod_jk with Apache 2 and the worker MPM. (hgomez)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Remove an unnecessary error message when connections to
+        all load balanced workers fail. (glenn)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        When mod_jk cannot connect to a worker include the name of
+        the worker in the error message.  This is especially helpful
+        when you are using load balanced workers. (glenn)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fix problem with mod_jk.log getting opened multiple times for
+        Apache 2. Only one mod_jk.log can be configured. (glenn)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fix Apache 2 connector so that DirectoryIndex works for an
+        index.jsp page if JkOptions ForwardDirectories was configured. (hgomez)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fix exposure of JSP source if a //path/to.jsp URL was requested
+        in Apache 1.3 and Apache 2.0 connector. (billbarker)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.3_and_1.2.4">Changes between 1.2.3 and 1.2.4</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.3_and_1.2.4/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Fix use of libtool for Apache mod_jk builds with more recent
+        versions of Apache 2. (jfclere)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Use reentrant version of strtok() for web server's which use
+        threads. This fixes a thread safe bug under Apache 2 and the
+        worker MPM. (glenn)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fix the Apache 2 mod_jk hook priority so that mod_jk works
+        well with both mod_alias and mod_dir. (glenn)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.2_and_1.2.3">Changes between 1.2.2 and 1.2.3</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.2_and_1.2.3/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Add the ability to configure JkLog to pipe its log output to an
+        executable such as Apache rotatelogs or cronolog.
+        Apache 2.0 only. (glenn)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Add JkAutoAlias to Apache 2.0. (glenn)
+      </li>
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        Apache 2/1.3, if Tomcat returns an error but not content,
+        let Apache handle processing the error returned by Tomcat. (glenn)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Added the load balancer sticky_session property. If set to 0
+        requests with servlet SESSION ID's can be routed to any Tomcat
+        worker. Default is 1, sessions are sticky. (glenn)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Cleaned up detection and reporting of aborted client connections.
+        This cleanup also makes sure that mod_jk does not pass any requests
+        on to Tomcat if the remote client aborted its connection. (glenn)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fixed a bug in Apache 2.0 which caused a POST request forwarded to
+        Tomcat to fail if it generated SSI directives which were post
+        processed by mod_include. (glenn)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fixed a bug in JkRequestLogFormat when printing the request URI that
+        could cause a URI with hex escapes sequences to be formatted wrong. (glenn)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.1_and_1.2.2">Changes between 1.2.1 and 1.2.2</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.1_and_1.2.2/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Update: " class="icon" src="../../images/update.gif">
+        tomcat_trend.pl updated script to support changed logging of
+        aborted requests. (glenn)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        jk set correctly the content-type in Apache 2.0,
+        making it ready to works with mod_deflate and AddOutputFilterByType. (hgomez)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        jk will check result of get_endpoint and handle a failure.
+        This call can fail if the allocation for the endpoint fails because
+        of low memory conditions causing a dereference of NULL when we try and
+        access the endpoint. (mmanders)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Changes_between_1.2.0_and_1.2.1">Changes between 1.2.0 and 1.2.1</h3><div class="text">
+  <div class="subsection"><h4 id="Changes_between_1.2.0_and_1.2.1/Native">Native</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=14282">14282</a>: Don't send initial chunk for chunked encoding. (costin)
+      </li>
+      <li><img alt="Add: " class="icon" src="../../images/add.gif">
+        Add perl scripts for analyzing mod_jk logs and generating graphs/reports. (glenn)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Make JK honor the CanonicalHost directive. (hgomez)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Log cleanup. (costin)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Fix typos in jk xdocs/docs. (hgomez)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Add JkRequestLogFormat to Apache 2.0. (hgomez)
+      </li>
+      <li><img alt="Fix: " class="icon" src="../../images/fix.gif">
+        Final patches to make JK iSeries compliant. (hgomez)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="JK_2">JK 2</h3><div class="text">
+<p>JK2 has been put in maintainer mode and no further development will take place.
+The reason for shutting down JK2 development was the lack of developers interest.
+Other reason was lack of users interest in adopting JK2, caused by configuration
+complexity when compared to JK.
+</p>
+</div><div class="noprint"><h3 id="comments_section">
+                  Comments
+                </h3><div class="text"><p class="notice"><strong>Notice:</strong> This comments section collects your suggestions
+                    on improving documentation for Apache Tomcat.<br><br>
+                    If you have trouble and need help, read
+                    <a href="https://tomcat.apache.org/findhelp.html">Find Help</a> page
+                    and ask your question on the tomcat-users
+                    <a href="https://tomcat.apache.org/lists.html">mailing list</a>.
+                    Do not ask such questions here. This is not a Q&amp;A section.<br><br>
+                    The Apache Comments System is explained <a href="../../comments.html">here</a>.
+                    Comments may be removed by our moderators if they are either
+                    implemented or considered invalid/off-topic.
+                  </p><div id="comments_thread"></div></div></div></div></div></div></div><footer><div id="footer">
+    Copyright &copy; 1999-yyyy, The Apache Software Foundation
+  </div></footer></div></body></html>

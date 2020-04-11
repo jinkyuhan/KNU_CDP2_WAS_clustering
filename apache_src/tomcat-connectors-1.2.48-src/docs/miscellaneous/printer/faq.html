@@ -1,0 +1,336 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en"><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="../../images/docs-stylesheet.css" rel="stylesheet" type="text/css"><title>The Apache Tomcat Connectors - Miscellaneous Documentation (1.2.x) - Frequently Asked Questions</title><meta name="author" content="Henri Gomez"><script type="application/javascript" data-comments-identifier="miscellaneous/">
+    "use strict"; // Enable strict mode
+
+    (function() {
+      var thisScript = document.currentScript;
+      if (!thisScript) { // Workaround for IE <= 11
+        var scripts = document.getElementsByTagName("script");
+        thisScript = scripts[scripts.length - 1];
+      }
+      document.addEventListener("DOMContentLoaded", (function() {
+        var commentsDiv = document.getElementById("comments_thread");
+        var commentsShortname = "tomcat";
+        var commentsIdentifier = "https://tomcat.apache.org/" +
+          thisScript.getAttribute("data-comments-identifier") + ".html";
+
+        (function(w, d) {
+          if (w.location.hostname.toLowerCase() == "tomcat.apache.org") {
+            var s = d.createElement("script");
+            s.type = "application/javascript";
+            s.async = true;
+            s.src = "https://comments.apache.org/show_comments.lua?site=" +
+              encodeURIComponent(commentsShortname) +
+              "&page=" + encodeURIComponent(commentsIdentifier);
+            d.head.appendChild(s);
+          } else {
+            commentsDiv.appendChild(d.createTextNode("Comments are disabled for this page at the moment."));
+          }
+        })(window, document);
+      }), false);
+    })();
+  </script></head><body><div id="wrapper"><header><div id="header"><div><div><div class="logo noPrint"><a href="http://tomcat.apache.org/"><img alt="Tomcat Home" src="../../images/tomcat.png"></a></div><div style="height: 1px;"></div><div class="asfLogo noPrint"><a href="https://www.apache.org/" target="_blank"><img src="../../images/asf-logo.svg" alt="The Apache Software Foundation" style="width: 266px; height: 83px;"></a></div><h1>The Apache Tomcat Connectors - Miscellaneous Documentation</h1><div style="height: 1px;"></div><div style="clear: left;"></div></div></div></div></header><div id="middle"><div><div id="mainLeft" class="noprint"><div><nav><div><h2>Links</h2><ul><li><a href="../index.html">Docs Home</a></li></ul></div><div><h2>Common HowTo</h2><ul><li><a href="../common_howto/quick.html">Quick Start</a></li><li><a href="../common_howto/workers.html">All About Workers</a></li><li><a href="../common_howto/timeouts.html">Timeouts</a></li><li><a href="../common_howto/loadbalancers.html">Load Balancing</a></li><li><a href="../common_howto/proxy.html">Reverse Proxy</a></li></ul></div><div><h2>Web Server HowTo</h2><ul><li><a href="../webserver_howto/apache.html">Apache HTTP Server (mod_jk)</a></li><li><a href="../webserver_howto/iis.html">Microsoft IIS (ISAPI redirector)</a></li><li><a href="../webserver_howto/nes.html">iPlanet Web Server (NSAPI redirector)</a></li></ul></div><div><h2>Reference Guide</h2><ul><li><a href="../reference/workers.html">workers.properties</a></li><li><a href="../reference/uriworkermap.html">uriworkermap.properties</a></li><li><a href="../reference/status.html">Status Worker</a></li><li><a href="../reference/apache.html">Apache HTTP Server (mod_jk)</a></li><li><a href="../reference/iis.html">Microsoft IIS (ISAPI redirector)</a></li></ul></div><div><h2>AJP Protocol Reference</h2><ul><li><a href="../ajp/ajpv13a.html">AJPv13 (ajp13)</a></li><li><a href="../ajp/ajpv13ext.html">AJPv13 Extension Proposal</a></li></ul></div><div><h2>Miscellaneous Documentation</h2><ul><li><a href="../miscellaneous/faq.html">Frequently Asked Questions</a></li><li><a href="../miscellaneous/changelog.html">Changelog</a></li><li><a href="http://issues.apache.org/bugzilla/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=&amp;product=Tomcat+Connectors&amp;long_desc_type=substring&amp;long_desc=&amp;bug_file_loc_type=allwordssubstr&amp;bug_file_loc=&amp;keywords_type=allwords&amp;keywords=&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;emailassigned_to1=1&amp;emailtype1=substring&amp;email1=&amp;emailassigned_to2=1&amp;emailreporter2=1&amp;emailcc2=1&amp;emailtype2=substring&amp;email2=&amp;bugidtype=include&amp;bug_id=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;cmdtype=doit&amp;order=Reuse+same+sort+as+last+time&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=">Current Tomcat Connectors bugs</a></li><li><a href="../miscellaneous/doccontrib.html">Contribute documentation</a></li><li><a href="../miscellaneous/jkstatustasks.html">JK Status Ant Tasks</a></li><li><a href="../miscellaneous/reporttools.html">Reporting Tools</a></li><li><a href="http://tomcat.apache.org/connectors-doc-archive/jk2/index.html">Old JK/JK2 documentation</a></li></ul></div><div><h2>News</h2><ul><li><a href="../news/20180301.html">2018</a></li><li><a href="../news/20160901.html">2016</a></li><li><a href="../news/20150101.html">2015</a></li><li><a href="../news/20140201.html">2014</a></li><li><a href="../news/20120301.html">2012</a></li><li><a href="../news/20110701.html">2011</a></li><li><a href="../news/20100101.html">2010</a></li><li><a href="../news/20090301.html">2009</a></li><li><a href="../news/20081001.html">2008</a></li><li><a href="../news/20070301.html">2007</a></li><li><a href="../news/20060101.html">2006</a></li><li><a href="../news/20050101.html">2005</a></li><li><a href="../news/20041100.html">2004</a></li></ul></div></nav></div></div><div id="mainRight"><div id="content"><h2>Frequently Asked Questions</h2><h3 id="General">General</h3><div class="text">
+<p>
+General Informations and FAQ about JK
+</p>
+<div class="subsection"><h4 id="Where_can_I_get_help/support_for_JK_?">Where can I get help/support for JK ?</h4><div class="text">
+<p>
+The primary mechanism for support is through the JK 
+documentation included in the doc directory.
+Documentation is also available on the Apache Tomcat web site devoted to the
+<a href="http://tomcat.apache.org/connectors-doc/">
+Apache Tomcat Connectors Project</a>
+For additional help, the best resource is the Tomcat Users Discussion list.  
+You should start by searching
+<a href="http://mail-archives.apache.org/mod_mbox/tomcat-users/">
+the mail list archive</a>
+before you post questions to the list.  
+If you are unable to locate the answer to your question in the archive, 
+you can post questions about JK to the user list for assistance.  
+Make sure that you include the version of your web server, 
+that you are using as well as the platform you are running on
+and go 
+<a href="http://tomcat.apache.org/lists.html">
+here</a>
+to determine how to subscribe to tomcat mailing list.
+</p>
+</div></div>
+
+<div class="subsection"><h4 id="I_can't_find_JK_anywhere._Where_is_it?">I can't find JK anywhere. Where is it?</h4><div class="text">
+<p>
+Now that JK moved to the <b>tomcat-connectors</b> repository, 
+the source and the binaries for JK can be downloaded from a mirror at the
+<a href="http://tomcat.apache.org/download-connectors.cgi">
+Tomcat Connectors (mod_jk, mod_jk2) Downloads</a> page.
+</p>
+</div></div>
+
+<div class="subsection"><h4 id="What's_the_difference_between_JK_and_mod_jk_?">What's the difference between JK and mod_jk ?</h4><div class="text">
+<p>
+<b>JK</b> is a project covering web servers to Tomcat connectors.
+</p>
+<p>
+<a href="../webserver_howto/apache.html">Apache HTTP Server</a> support is implemented on JK, using a plugin
+called the <b>mod_jk module</b>.
+</p>
+
+<p>
+<a href="../webserver_howto/iis.html">Microsoft IIS</a> support is implemented on JK, using a plugin
+called the <b>ISAPI redirector</b>.
+</p>
+
+<p>
+<a href="../webserver_howto/nes.html">iPlanet Web Server</a> support is implemented on JK, using a plugin
+called the <b>NSAPI redirector</b>.
+</p>
+
+</div></div>
+
+<div class="subsection"><h4 id="Where_can_I_get_more_information_?">Where can I get more information ?</h4><div class="text">
+<p>
+For <b>JK 1.2.x</b>, you should read:
+</p>
+
+<ul>
+
+<li>
+<a href="../common_howto/quick.html">Quick Start</a>
+</li>
+
+<li>
+<a href="../webserver_howto/apache.html">Apache HTTP Server and JK (mod_jk)</a>
+</li>
+
+<li>
+<a href="../webserver_howto/iis.html">Microsoft IIS and JK (ISAPI redirector)</a>
+</li>
+
+<li>
+<a href="../webserver_howto/nes.html">iPlanet Web Server and JK (NSAPI redirector)</a>
+</li>
+
+<li>
+<a href="../common_howto/workers.html">Workers configuration</a>
+</li>
+</ul>
+
+<p> 
+For more detailed information, have a look at the Reference Guide.
+You could also try searching the mailing list archives for "JK" or look at the source.
+</p>
+</div></div>
+
+<div class="subsection"><h4 id="Which_protocol_should_I_use_-_ajp12,_ajp13_or_ajp14?">Which protocol should I use - ajp12, ajp13 or ajp14?</h4><div class="text">
+<p>
+<a href="../ajp/ajpv13a.html">ajp13</a> is the standard. The old
+<strong>ajp12 is deprecated</strong> and <strong>ajp14 is experimental</strong>.
+</p>
+<p> 
+Also ajp13 is supported by all Apache Tomcat versions starting with Tomcat 3.2
+and by other servlet engines like <b>Jetty</b> and <b>JBoss</b>.
+</p>
+</div></div>
+
+<div class="subsection"><h4 id="I've_got_a_firewall_between_my_web_server_and_Tomcat_which_drops_ajp13_connections_after_some_time">I've got a firewall between my web server and Tomcat which drops ajp13 connections after some time</h4><div class="text">
+<p>
+The ajp13 protocol uses persistant connections where the traffic could be null if there is no request to be sent to Tomcat. 
+Firewalls use to drop inactive connections and will make your web server and Tomcat think the connection is valid. 
+</p>
+<p>
+Starting with JK 1.2.0, a <b>socket_keepalive</b> property as been added to ajp13 settings, and you should take a look at 
+it in <a href="../common_howto/workers.html">Workers HowTo</a> and
+<a href="../reference/workers.html">workers.properties reference</a>.
+If nothing else helps, you can try <b>JkOptions +DisableReuse</b>, but this will have strong performance implications.
+</p>
+</div></div>
+
+<div class="subsection"><h4 id="Under_heavy_load,_I've_got_many_threads_in_Tomcat_even_if_my_Apache_HTTP_Server_handles_much_of_the_load">Under heavy load, I've got many threads in Tomcat even if my Apache HTTP Server handles much of the load</h4><div class="text">
+<p>
+Under heavy load, the Apache HTTP Server creates many children to handle the load,
+which will in turn create many connections 
+to Tomcat to forward the requests they should handle. 
+The Apache HTTP Server will normally kill the children/threads when the load decreases.
+But if the load is still there and even if only Apache handles the requests,
+ie static contents, the children are kept and with them all the ajp13 connections, 
+even if they are no more used. 
+</p>
+<p>
+To close connections after some time of inactivity you can use <b>connection_pool_timeout</b>,
+for more informations refer to <a href="../reference/workers.html">workers.properties reference</a>.
+</p>
+</div></div>
+
+</div><h3 id="Apache_HTTP_Server">Apache HTTP Server</h3><div class="text">
+<p>
+Informations and FAQ about mod_jk and the Apache HTTP Server. 
+</p>
+<div class="subsection"><h4 id="Whenever_I_restart_Tomcat,_Apache_locks_up!">Whenever I restart Tomcat, Apache locks up!</h4><div class="text">
+<p>
+The ajp13 protocol keeps an open socket between Tomcat and Apache.
+Release of mod_jk present in Tomcat Connectors handles the network failure. 
+But with very ancient releases of mod_jk, you may have to restart Apache as well.
+</p>
+</div></div>
+
+<div class="subsection"><h4 id="Why_do_there_exist_two_files_mod_jk.so_(-eapi_ad_-noeapi)_in_download_directories_for_Apache_1.3?">Why do there exist two files mod_jk.so (-eapi ad -noeapi) in download directories for Apache 1.3?</h4><div class="text">
+<p>
+Many versions of Apache use a modified API, known at Extended API, developed for use with the
+<a href="http://www.modssl.org">mod_ssl module</a>. Starting with Apache 2.0 there is no more difference.
+</p>
+
+<p>
+For example, Apache 1.3 present in certains recent Linux distributions include the
+<b>mod_ssl</b> module.
+</p>
+
+<p>
+So if you got such 'Extended Apache', you need to use <b>mod_jk.so-eapi</b>.
+</p>
+
+<p> 
+You should use <b>mod_jk.so-noeapi</b> only for 'Standard Apache' (ie without mod_ssl).
+</p>
+
+<p>
+It's wise to avoid using EAPI modules on STD API Apache or to use standard API modules on EAPI Apache. 
+Allways be sure to have the <b>mod_jk.so</b> which match your version of Apache.
+</p>
+</div></div>
+
+<div class="subsection"><h4 id="What's_that_message_about_'garbled_DSO_?'">What's that message about 'garbled DSO ?'</h4><div class="text">
+<p>
+It's related to Apache EAPI, the message <code>'mod_jk.so is garbled - perhaps this is not an Apache module DSO ?'</code> 
+just told you, that your're trying to install a mod_jk.so DSO module that was compiled on an Apache using EAPI, 
+like apache-mod_ssl or apache from Redhat distro 6.2/7.0 but your system use the standard Apache with normal API.
+</p>
+</div></div>
+
+<div class="subsection"><h4 id="And_the_message_about_'module_might_crash_under_EAPI!">And the message about 'module might crash under EAPI!</h4><div class="text">
+<p>
+Also related to EAPI, the message <code>'[warn] Loaded DSO /usr/lib/apache/mod_jk.so uses plain Apache 1.3 API, 
+this module might crash under EAPI! (please recompile it with -DEAPI)'</code>, the mod_jk.so was compiled under normal 
+Apache with standard API and you try to install the module on an Apache using EAPI.
+</p>
+</div></div>
+
+<div class="subsection"><h4 id="APXS_is_getting_an_error_during_the_build_of_mod_jk,_like_rc=0_or_rc=255.__I_tried_all_of_the_steps_in_the_build_section,_what_do_I_do_now_?">APXS is getting an error during the build of mod_jk, like rc=0 or rc=255.  I tried all of the steps in the build section, what do I do now ?</h4><div class="text">
+<p>
+APXS is a Perl script that is created when you build the Apache web server from source.  
+Chances are that if you are getting these errors and you obtained Apache as a binary distribution, 
+that APXS is not configured correctly for your system.  
+Your best bet is to get the Apache source from the <a href="http://httpd.apache.org/">Apache HTTP Server homepage</a> and build it yourself.  
+Use the following for a basic build (read the Apache docs for other options):
+<div class="codeBox"><pre><code>[user@host] ~ $ cd /usr/local/src
+[user@host] ~ $ gzip -dc apache_1.3.19.tar.gz|tar xvf -
+[user@host] ~ $ cd apache_1.3.19
+[user@host] ~ $ ./configure --prefix=/usr/local/apache \
+            --enable-module=most \
+            --enable-shared=max
+[user@host] ~ $ make
+[user@host] ~ $ make install
+</code></pre></div>
+</p>
+<p>
+Note: The above steps assume that you downloaded the Apache source and placed it in your /usr/local/src directory.
+</p>
+</div></div>
+
+<div class="subsection"><h4 id="Apache_complains_about_incorrect_module_version">Apache complains about incorrect module version</h4><div class="text">
+<p>
+Since the Apache API can change between versions, any Apache module contains the
+Apache API version used to compile the module. This is called the Magic Module Number.
+</p>
+<p>
+At start time Apache checks that the version in the module header is compatible
+with the Apache server. If not it will deny to start and log an error.
+</p>
+<p>
+Note that minor versions are forward compatible. If the module was compiled using
+Apache 2.x.y the resulting binary should work with any other version 2.x.z where z
+is bigger or equals to y. If you also need compatibility for versions 2.x.z
+with z smaller than y, use the configure flag --enable-api-compatibility. Note
+that the module compiled with any 2.x will never be compatible with 2.y for
+x different from y. In this case you need to recompile the module.
+</p>
+</div></div>
+
+<div class="subsection"><h4 id="Does_it_work_for_the_latest_Apache_2.x?">Does it work for the latest Apache 2.x?</h4><div class="text">
+<p>
+mod_jk works well with Apache 2.x from 2.0 to 2.4.
+</p>
+<p>
+Important parts of the functionality of mod_jk have been reimplemented in the Apache HTTP Server modules mod_proxy_ajp
+and mod_proxy_balancer. These are part of the standard distribution of Apache 2.2 and 2.4. The new modules do not contain
+all features of mod_jk, but on the other hand you get the modules automatically with every new Apache release.
+</p>
+</div></div>
+
+<div class="subsection"><h4 id="JNI_doesn't_work_with_Apache_1.3">JNI doesn't work with Apache 1.3</h4><div class="text">
+<warn>JNI workers have been deprecated. They will likely not work. Do not use them.</warn>
+<p>
+JNI support requires a multi-threaded environment which is not the general case for Apache 1.3. 
+You should verify if Apache 1.3 has been build with thread support and if not you could add the 
+the pthreads library to your <b>httpd.conf</b> file. 
+</p>
+
+<div class="codeBox"><pre><code># Add pthread to Apache in httpd.conf
+LoadModule "/usr/lib/libpthreads.so"
+</code></pre></div>
+
+<p>
+Also keep in mind that JNI is suited for multi-threaded servers and you should consider upgrading 
+to Apache 2.x to support JNI.
+</p>
+</div></div>
+
+<div class="subsection"><h4 id="JNI_report_that_JVM_couldn't_be_started_under_Linux">JNI report that JVM couldn't be started under Linux</h4><div class="text">
+<warn>JNI workers have been deprecated. They will likely not work. Do not use them.</warn>
+<p>
+Under Linux, you should set some environment variables BEFORE launching your Apache HTTP Server:
+</p>
+
+<div class="codeBox"><pre><code>export LD_LIBRARY_PATH=$jre/bin:$jre/bin/classic:$LD_LIBRARY_PATH
+</code></pre></div>
+
+<p>
+Also some Linux distributions have enabled a GLIBC feature called 'floating stacks' which may not works with kernel 
+less than 2.4.10 on SMP machines. You should disable floating stacks by exporting an environment variable:
+</p>
+
+<div class="codeBox"><pre><code>export LD_ASSUME_KERNEL=2.2.5
+</code></pre></div>
+
+<p>
+You could have to update your service scripts, ie <b>/etc/rc.d/init.d/httpd</b>, to set these env vars 
+before your Apache server starts.
+</p>
+</div></div>
+
+<div class="subsection"><h4 id="Mixed_errors_when_building_via_configure">Mixed errors when building via configure</h4><div class="text">
+<p>
+configure assume you have some GNU tools already installed and configured for your system, and ad minima <b>libtool</b>.
+</p>
+<p>
+Also some systems may have mixed cc and gcc setup which may make you puzzled when trying to link an Apache built with native
+c compiler with a jk/jk2 build with gcc.
+</p>
+<p>
+In case the make processing doesn't work as expected, you should use a GNU make <b>gmake</b>.
+</p>
+</div></div>
+
+</div><div class="noprint"><h3 id="comments_section">
+                  Comments
+                </h3><div class="text"><p class="notice"><strong>Notice:</strong> This comments section collects your suggestions
+                    on improving documentation for Apache Tomcat.<br><br>
+                    If you have trouble and need help, read
+                    <a href="https://tomcat.apache.org/findhelp.html">Find Help</a> page
+                    and ask your question on the tomcat-users
+                    <a href="https://tomcat.apache.org/lists.html">mailing list</a>.
+                    Do not ask such questions here. This is not a Q&amp;A section.<br><br>
+                    The Apache Comments System is explained <a href="../../comments.html">here</a>.
+                    Comments may be removed by our moderators if they are either
+                    implemented or considered invalid/off-topic.
+                  </p><div id="comments_thread"></div></div></div></div></div></div></div><footer><div id="footer">
+    Copyright &copy; 1999-yyyy, The Apache Software Foundation
+  </div></footer></div></body></html>

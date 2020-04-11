@@ -1,0 +1,508 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en"><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="../images/docs-stylesheet.css" rel="stylesheet" type="text/css"><title>The Apache Tomcat Connectors - Web Server HowTo (1.2.x) - iPlanet Web Server HowTo</title><meta name="author" content="Henri Gomez"><meta name="author" content="Jim Jagielski"><meta name="author" content="Gal Shachor"><meta name="author" content="Mladen Turk"><script type="application/javascript" data-comments-identifier="webserver_howto/">
+    "use strict"; // Enable strict mode
+
+    (function() {
+      var thisScript = document.currentScript;
+      if (!thisScript) { // Workaround for IE <= 11
+        var scripts = document.getElementsByTagName("script");
+        thisScript = scripts[scripts.length - 1];
+      }
+      document.addEventListener("DOMContentLoaded", (function() {
+        var commentsDiv = document.getElementById("comments_thread");
+        var commentsShortname = "tomcat";
+        var commentsIdentifier = "https://tomcat.apache.org/" +
+          thisScript.getAttribute("data-comments-identifier") + ".html";
+
+        (function(w, d) {
+          if (w.location.hostname.toLowerCase() == "tomcat.apache.org") {
+            var s = d.createElement("script");
+            s.type = "application/javascript";
+            s.async = true;
+            s.src = "https://comments.apache.org/show_comments.lua?site=" +
+              encodeURIComponent(commentsShortname) +
+              "&page=" + encodeURIComponent(commentsIdentifier);
+            d.head.appendChild(s);
+          } else {
+            commentsDiv.appendChild(d.createTextNode("Comments are disabled for this page at the moment."));
+          }
+        })(window, document);
+      }), false);
+    })();
+  </script></head><body><div id="wrapper"><header><div id="header"><div><div><div class="logo noPrint"><a href="http://tomcat.apache.org/"><img alt="Tomcat Home" src="../images/tomcat.png"></a></div><div style="height: 1px;"></div><div class="asfLogo noPrint"><a href="https://www.apache.org/" target="_blank"><img src="../images/asf-logo.svg" alt="The Apache Software Foundation" style="width: 266px; height: 83px;"></a></div><h1>The Apache Tomcat Connectors - Web Server HowTo</h1><div style="height: 1px;"></div><div style="clear: left;"></div></div></div></div></header><div id="middle"><div><div id="mainLeft" class="noprint"><div><nav><div><h2>Links</h2><ul><li><a href="../index.html">Docs Home</a></li></ul></div><div><h2>Common HowTo</h2><ul><li><a href="../common_howto/quick.html">Quick Start</a></li><li><a href="../common_howto/workers.html">All About Workers</a></li><li><a href="../common_howto/timeouts.html">Timeouts</a></li><li><a href="../common_howto/loadbalancers.html">Load Balancing</a></li><li><a href="../common_howto/proxy.html">Reverse Proxy</a></li></ul></div><div><h2>Web Server HowTo</h2><ul><li><a href="../webserver_howto/apache.html">Apache HTTP Server (mod_jk)</a></li><li><a href="../webserver_howto/iis.html">Microsoft IIS (ISAPI redirector)</a></li><li><a href="../webserver_howto/nes.html">iPlanet Web Server (NSAPI redirector)</a></li></ul></div><div><h2>Reference Guide</h2><ul><li><a href="../reference/workers.html">workers.properties</a></li><li><a href="../reference/uriworkermap.html">uriworkermap.properties</a></li><li><a href="../reference/status.html">Status Worker</a></li><li><a href="../reference/apache.html">Apache HTTP Server (mod_jk)</a></li><li><a href="../reference/iis.html">Microsoft IIS (ISAPI redirector)</a></li></ul></div><div><h2>AJP Protocol Reference</h2><ul><li><a href="../ajp/ajpv13a.html">AJPv13 (ajp13)</a></li><li><a href="../ajp/ajpv13ext.html">AJPv13 Extension Proposal</a></li></ul></div><div><h2>Miscellaneous Documentation</h2><ul><li><a href="../miscellaneous/faq.html">Frequently Asked Questions</a></li><li><a href="../miscellaneous/changelog.html">Changelog</a></li><li><a href="http://issues.apache.org/bugzilla/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=&amp;product=Tomcat+Connectors&amp;long_desc_type=substring&amp;long_desc=&amp;bug_file_loc_type=allwordssubstr&amp;bug_file_loc=&amp;keywords_type=allwords&amp;keywords=&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;emailassigned_to1=1&amp;emailtype1=substring&amp;email1=&amp;emailassigned_to2=1&amp;emailreporter2=1&amp;emailcc2=1&amp;emailtype2=substring&amp;email2=&amp;bugidtype=include&amp;bug_id=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;cmdtype=doit&amp;order=Reuse+same+sort+as+last+time&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=">Current Tomcat Connectors bugs</a></li><li><a href="../miscellaneous/doccontrib.html">Contribute documentation</a></li><li><a href="../miscellaneous/jkstatustasks.html">JK Status Ant Tasks</a></li><li><a href="../miscellaneous/reporttools.html">Reporting Tools</a></li><li><a href="http://tomcat.apache.org/connectors-doc-archive/jk2/index.html">Old JK/JK2 documentation</a></li></ul></div><div><h2>News</h2><ul><li><a href="../news/20200201.html">2020</a></li><li><a href="../news/20180301.html">2018</a></li><li><a href="../news/20160901.html">2016</a></li><li><a href="../news/20150101.html">2015</a></li><li><a href="../news/20140201.html">2014</a></li><li><a href="../news/20120301.html">2012</a></li><li><a href="../news/20110701.html">2011</a></li><li><a href="../news/20100101.html">2010</a></li><li><a href="../news/20090301.html">2009</a></li><li><a href="../news/20081001.html">2008</a></li><li><a href="../news/20070301.html">2007</a></li><li><a href="../news/20060101.html">2006</a></li><li><a href="../news/20050101.html">2005</a></li><li><a href="../news/20041100.html">2004</a></li></ul></div></nav></div></div><div id="mainRight"><div id="content"><h2>iPlanet Web Server HowTo</h2><h3 id="Introduction">Introduction</h3><div class="text">
+<p>
+This document explains how to set up the iPlanet Web Server
+to cooperate with Tomcat. The iPlanet Web Server was previously known under
+various names, including Netscape Enterprise Server, SunOne Web Server and
+Sun Enterprise System web server.
+</p>
+
+<p>
+Normally the iPlanet Web Server comes with its own Servlet engine, 
+but you can also configure it to send servlet and JSP requests to Tomcat 
+using the NSAPI redirector plugin.
+</p>
+
+<p>
+It is recommended that you also read the <a href="../common_howto/workers.html">Workers HowTo</a> document
+to learn how to setup the working entities between your web server and Tomcat Engines.
+</p>
+
+
+<div class="subsection"><h4 id="Document_Conventions_and_Assumptions">Document Conventions and Assumptions</h4><div class="text">
+<p>
+${tomcat_home} is the root directory of tomcat. 
+Your Tomcat installation should have the following subdirectories:
+
+<ul>
+<li>
+${tomcat_home}\conf - Where you can place various configuration files
+</li>
+<li>
+${tomcat_home}\webapps - Containing example applications
+</li>
+<li>
+${tomcat_home}\bin - Where you place web server plugins
+</li>
+</ul>
+</p>
+<p>
+In all the examples in this document ${tomcat_home} will be <b>c:\tomcat</b>.
+A worker is defined to be a tomcat process that accepts work from the iPlanet Web Server.
+</p>
+</div></div>
+
+
+<div class="subsection"><h4 id="Supported_Configuration">Supported Configuration</h4><div class="text">
+<p>
+The NSAPI redirector was developed and tested on:
+<ul>
+<li>
+WINNT 2000/XP/2003 (should be able to work with other service packs) and some Unixes
+</li>
+<li>
+Sun ONE Web Server 6.1
+</li>
+<li>
+Tomcat 4.1 to Tomcat 8.
+</li>
+</ul>
+</p>
+
+<p>
+The redirector uses the AJP protocol to send requests to the Tomcat containers.
+The AJP version typically used is <b>ajp13</b>.
+</p>
+</div></div>
+
+<div class="subsection"><h4 id="Who_supports_AJP_protocols?">Who supports AJP protocols?</h4><div class="text">
+<p>
+Tomcat supports ajp13 since Tomcat 3.2.
+Others servlet engines such as <b>Jetty</b> or <b>JBoss</b> also support the ajp13 protocol
+</p>
+
+<p>
+The <b>ajp12</b> protocol has been <b>deprecated</b> and you should no longer use it.
+The <b>ajp14</b> protocol is considered experimental.
+</p>
+
+</div></div>
+
+<div class="subsection"><h4 id="How_does_it_work_?">How does it work ?</h4><div class="text">
+<p>
+<ol>
+<li>
+The NSAPI redirector is a web server plugin based on the NSAPI web server API.
+The web server loads the NSAPI redirector plugin and calls its service handler 
+function for all requests that are assigned to the "servlet" configuration object.
+</li>
+<li>
+For each in-coming request the web server will execute the set of NameTrans directives 
+that we added to obj.conf, the assign-name function will check if it's <code>from</code> 
+parameter matches the request URL.
+</li>
+<li>
+If a match is found, assign-name will assign the servlet object name to the request. 
+This will cause the web server to send the request to the servlet configuration object.
+</li>
+<li>
+The web server will execute our jk_service extension. The extension collects the 
+request parameters and forwards them to the appropriate worker using the ajp13 protocol 
+(the worker="defworker" parameter in jk_service inform it that the worker for this request is named <b>defworker</b>).
+the workers properties files, <b>workers.properties</b>, will indicate that defworker use ajp13 protocol.
+</li>
+<li>
+The extension collects the response from the worker and returns it to the browser.
+</li>
+</ol>
+</p>
+</div></div>
+
+</div><h3 id="Installation">Installation</h3><div class="text">
+<p>
+A pre-built version of the NSAPI redirector, nsapi_redirect.dll, may be available under 
+the win32/i386 directory of the Tomcat Connectors distribution. 
+You can also build a copy locally from the Tomcat Connectors source distribution.
+</p>
+<p>
+The NSAPI redirector requires two files:
+<ul>
+<li>
+nsapi_redirect.dll (Windows) -or- nsapi_redirector.so (Unix) - The NSAPI web server plugin, either obtain a pre-built DLL/so or build it yourself 
+(see the build section).
+</li>
+<li>
+workers.properties - A file that describes the host(s) and port(s) used by the workers (Tomcat processes). 
+A sample workers.properties can be found under the conf directory of the source distribution.
+</li>
+</ul>
+
+The installation includes the following parts:
+
+<ul>
+<li>
+Configuring the NSAPI redirector with a default /examples context and checking that you can serve servlets 
+with your browser.
+</li>
+<li>
+Adding your own contexts to the configuration.
+</li>
+</ul>
+
+</p>
+</div><h3 id="Configuring_the_NSAPI_Redirector">Configuring the NSAPI Redirector</h3><div class="text">
+<p>
+In this document we'll assume that nsapi_redirect.dll is placed in 
+<b>c:\jk\lib\nsapi_redirect.dll</b>, the properties file is in<b>c:\jk\conf</b>
+and you created a log directory <b>c:\jk\logs</b>
+</p>
+
+<ul>
+<li>
+If the built in servlet support is working disable it.
+</li>
+<li>
+Add the NSAPI redirector plugin into the iPlanet Web Server configuration. 
+Edit your server <b>magnus.conf</b> and add the following lines:
+</li>
+</ul>
+
+<div class="codeBox"><pre><code>Init fn="load-modules" funcs="jk_init,jk_service" shlib="c:/jk/lib/nsapi_redirect.dll" shlib_flags="(global|now)"
+Init fn="jk_init" worker_file="c:/jk/conf/workers.properties" log_level="debug" log_file="c:/jk/logs/nsapi.log" shm_file="c:/jk/logs/jk_shm"
+</code></pre></div>
+<ul>
+<li>
+Edit your server <b>obj.conf</b> and add the following lines:
+</li>
+</ul>
+<div class="codeBox"><pre><code>In the default object NameTrans section
+&lt;Object name="default"&gt;
+    
+NameTrans fn="assign-name" from="/examples(|/*)" name="jknsapi" 
+....
+&lt;/Object&gt;
+  
+Create a new configuration object by adding the following lines to the end of the obj.conf file
+  
+&lt;Object name="jknsapi"&gt;
+ObjectType fn=force-type type=text/plain
+Service fn="jk_service" method="*" worker="worker1"
+&lt;/Object&gt;
+</code></pre></div>
+
+<ul>
+<li>
+Edit your worker definition file <b>workers.properties</b>. You should at least choose a connection pool size:
+</li>
+</ul>
+
+<div class="codeBox"><pre><code>#An entry that lists all the workers defined. For example:
+worker.list=worker1
+  
+# Entries that define the host and port associated with these workers.
+worker.worker1.host=localhost
+worker.worker1.port=8009
+worker.worker1.type=ajp13
+worker.worker1.connection_pool_size=50
+</code></pre></div>
+
+<ul>
+<li>
+Restart the web server (stop and start the server)
+</li>
+</ul>
+
+<p>
+That's all, now you should start tomcat and ask for http://server:port/examples/
+</p>
+<warn>
+The file <b>obj.conf</b> seems to be sensitive to leading white space in lines, especially in
+the <b>Object</b> element. Make sure you have no leading white space (no indentation)
+on any line of this file.
+</warn>
+
+<div class="subsection"><h4 id="Adding_additional_Contexts">Adding additional Contexts</h4><div class="text">
+<p>
+The examples context is useful for verifying your installation, but you will also need to add your own contexts. 
+Adding a new context requires two operations:
+</p>
+<ul>
+<li>
+Adding the context to Tomcat (I am not going to talk about this).
+</li>
+<li>
+Assigning the NSAPI redirector to handle this context.
+</li>
+</ul>
+
+<p>
+Assigning the NSAPI redirector to handle this context is simple, 
+all you need to do is to edit <b>obj.conf</b> and add a NameTrans line that looks like:
+</p>
+
+<div class="codeBox"><pre><code>NameTrans fn="assign-name" from="/&lt;context_name&gt;/*" name="jknsapi"
+</code></pre></div>
+
+<p>
+After saving <b>obj.conf</b> restart the web server and it will serve the new context.
+</p>
+</div></div>
+
+<div class="subsection"><h4 id="Advanced_Context_Configuration">Advanced Context Configuration</h4><div class="text">
+<p>
+Sometimes it is better to have the web server serve the static pages (html, gif, jpeg etc.) 
+even if these files are part of a context served by Tomcat. For example, consider the html and gif files in the examples context, there is no need to serve them from the Tomcat process. The web server can do it on its own.
+</p>
+<p>
+Making the web server serve static files that are part of the Tomcat contexts requires the following:
+</p>
+<ul>
+<li>
+Configuring the web server to know about the Tomcat contexts
+</li>
+<li>
+Make sure that the WEB-INF and META-INF directories are protected from access.
+</li>
+<li>
+Configuring the web server to assign the NSAPI redirector only specific requests that requires JSP/Servlet handling.
+</li>
+</ul>
+
+<p>
+Adding the contents of a Tomcat context to the web server requires the addition of a new virtual directory 
+that covers the Tomcat context.
+</p>
+
+<p>
+For example, adding a /example virtual directory that 
+covers the <b>c:\tomcat\webapps\examples</b> directory. 
+</p>
+
+<p>
+To add a new virtual directory add the following line to your <b>obj.conf</b>:
+</p>
+
+<div class="codeBox"><pre><code>NameTrans fn=pfx2dir from=/examples dir="c:/tomcat/webapps/examples"
+</code></pre></div>
+
+<p>
+WEB-INF protection requires some explanation; Each servlet application (context) has a special directory named <b>WEB-INF</b>,
+this directory contains sensitive configurations data and Java classes and must be kept hidden from web users. 
+A second directory that should be protected is META-INF.
+Those directories can be protected by adding the following line to the PathCheck section in the default configuration object:
+</p>
+
+<div class="codeBox"><pre><code>PathCheck fn="deny-existence" path="*/WEB-INF/*"
+PathCheck fn="deny-existence" path="*/META-INF/*"
+</code></pre></div>
+
+These lines instruct the web server to reject any request with a URL that contains the path /WEB-INF/
+or /META-INF/.
+
+<p>
+Configuring the web server to assign the NSAPI redirector only specific requests is somewhat harder, 
+you will need to specify the exact URL-Path pattern(s) that you want Tomcat to handle 
+(usually only JSP files and servlets). 
+</p>
+
+<p>
+This requires a change to NameTrans portion of <b>obj.conf</b>. 
+</p>
+
+<div class="codeBox"><pre><code>For the examples context it requires to replace the following line:
+  
+NameTrans fn="assign-name" from="/examples/*" name="jknsapi"
+  
+with the following two lines:
+  
+NameTrans fn="assign-name" from="/examples/jsp/*.jsp" name="jknsapi"
+NameTrans fn="assign-name" from="/examples/servlet/*" name="jknsapi"
+</code></pre></div>
+
+<p>
+As you can see the second configuration is more explicit, it actually instructs 
+the web server to assign the redirector with only requests to resources under 
+<b>/examples/servlet/</b> and resources under <b>/examples/</b> whose name ends with <b>.jsp</b>.
+</p>
+
+<p>
+You can be even more explicit and provide lines such as:
+</p>
+
+<div class="codeBox"><pre><code>NameTrans fn="assign-name" from="/examples/servlets/chat" name="jknsapi"
+  
+Instructs the web server to assign the redirector requests whose URL path equals /example/servlets/chat
+</code></pre></div>
+
+</div></div>
+
+<div class="subsection"><h4 id="Advanced_Worker_Configuration">Advanced Worker Configuration</h4><div class="text">
+<p>
+Sometimes you want to serve different contexts with different Tomcat processes 
+(for example to spread the load among different machines). 
+To achieve such goal you will need to define several workers and assign each context with its own worker.
+</p>
+
+<p>
+Defining workers is done in <b>workers.properties</b>, this file includes two types of entries:
+</p>
+
+<div class="codeBox"><pre><code>#An entry that lists all the workers defined. For example:
+worker.list=worker1,worker2
+  
+# Entries that define the host and port associated with these workers.
+worker.worker1.host=localhost
+worker.worker1.port=8009
+worker.worker1.type=ajp13
+
+worker.worker2.host=otherhost
+worker.worker2.port=8009
+worker.worker2.type=ajp13
+</code></pre></div>
+
+<p>
+The above examples defined two workers, now we can use these workers to serve two different 
+contexts each with it's own worker. 
+Submitting requests to different workers is accomplished by using multiple Service directives 
+in the servlet configuration Object, each with a different path pattern parameter. 
+</p>
+
+<p>
+For example, if we want to submit the <b>/examples</b> context to the worker named <b>worker1</b> and the 
+<b>/webpages</b> context to the worker named <b>worker2</b> we should use the following configuration:
+</p>
+
+<div class="codeBox"><pre><code>&lt;Object name="jknsapi"&gt;
+ObjectType fn=force-type type=text/plain
+Service fn="jk_service" worker="worker1" path="/examples/*"
+Service fn="jk_service" worker="worker2" path="/webpages/*"
+Service fn="jk_service" worker="worker1"
+&lt;/Object&gt;
+</code></pre></div>
+
+<p>
+More informations on using and configuring workers in the <a href="../common_howto/workers.html">Workers HowTo</a>
+and in the <a href="../reference/workers.html">worker.properties configuration reference</a>.
+
+</p>
+</div></div>
+
+</div><h3 id="Building_the_NSAPI_redirector_for_Windows">Building the NSAPI redirector for Windows</h3><div class="text">
+<p>
+The redirector was developed using Visual C++ Ver.6.0, so having this environment is a prereq if you want 
+to perform a custom build. You should also have web server developer SDK for your version of the web server.
+
+The steps that you need to take are:
+<ul>
+<li>
+Change directory to the <code>native/netscape</code> source directory.
+</li>
+<li>
+Edit <b>nsapi.dsp</b> and update the include and library path to reflect your own web server installation 
+(search for a <b>/I compiler</b> option and <b>/libpath</b> linker option)
+</li>
+<li>
+Make the source with MSDEV
+</li>
+</ul>
+<screendos>
+<notedos>Change directory to the NSAPI redirector source directory</notedos>
+<typedos>cd c:\tomcat-connectors-xxx-src\native\netscape</typedos>
+<notedos>Build the sources using MSDEV</notedos>
+<typedos>MSDEV nsapi.dsp /MAKE ALL</typedos>
+</screendos>
+</p>
+<p>
+If msdev is not in your path, enter the full path to msdev.exe. 
+This will build both release and debug versions of the NSAPI redirector plugin.
+An alternative will be to open the nsapi workspace file (nsapi.dsw) in msdev and 
+build it using the build menu.
+</p>
+<p>
+After the build, you will have the required nsapi_redirect.dll plugin.
+</p>
+</div><h3 id="Building_the_NSAPI_redirector_for_Unix">Building the NSAPI redirector for Unix</h3><div class="text">
+<p>
+The redirector requires either gcc (Linux) or gcc or the Sun cc compiler (Solaris).
+
+The steps that you need to take are:
+<ul>
+<li>
+Change directory to the <code>native</code> source directory.
+</li>
+<li>
+configure for the iPlanet Web Server.
+</li>
+<li>
+Change directory to the <code>netscape</code> sub directory.
+</li>
+<li>
+Set environment variables JAVA_HOME resp. SUITSPOT_HOME to the location of your Java installation
+resp. web server server installation. Depending on the web server version, you must add the subdirectory
+"plugins" to SUITSPOT_HOME.
+The variable is correct, if the file $SUITSPOT_HOME/include/nsapi.h exists.
+</li>
+<li>
+Edit <b>Makefile.solaris</b> resp. <b>Makefile.linux</b> and update the variables according to your needs.
+In the Solaris Makefile, you need to switch the commented lines in order to use the Sun compiler cc
+instead of GNU gcc.
+</li>
+<li>
+Make the source with gmake.
+</li>
+</ul>
+<screendos>
+<notedos>Change directory to the NSAPI redirector source directory</notedos>
+<typedos>cd /usr/local/src/tomcat-connectors-xxx-src/native</typedos>
+<notedos>configure for iPlanet Web Server</notedos>
+<typedos>./configure --enable-netscape</typedos>
+<notedos>Change directory to the netscape directory</notedos>
+<typedos>cd netscape</typedos>
+<notedos>Set JAVA_HOME (ksh example)</notedos>
+<typedos>export JAVA_HOME=/path/to/my/java</typedos>
+<notedos>Set SUITSPOT_HOME (ksh example)</notedos>
+<typedos>export SUITSPOT_HOME=/path/to/my/netscape/server</typedos>
+<notedos>Edit the Makefile</notedos>
+<typedos>vi Makefile.solaris</typedos>
+<notedos>Make the source with gmake</notedos>
+<typedos>gmake -f Makefile.solaris</typedos>
+</screendos>
+</p>
+<p>
+After the build, you will have the required nsapi_redirector.so plugin.
+</p>
+</div><div class="noprint"><h3 id="comments_section">
+                  Comments
+                </h3><div class="text"><p class="notice"><strong>Notice:</strong> This comments section collects your suggestions
+                    on improving documentation for Apache Tomcat.<br><br>
+                    If you have trouble and need help, read
+                    <a href="https://tomcat.apache.org/findhelp.html">Find Help</a> page
+                    and ask your question on the tomcat-users
+                    <a href="https://tomcat.apache.org/lists.html">mailing list</a>.
+                    Do not ask such questions here. This is not a Q&amp;A section.<br><br>
+                    The Apache Comments System is explained <a href="../comments.html">here</a>.
+                    Comments may be removed by our moderators if they are either
+                    implemented or considered invalid/off-topic.
+                  </p><div id="comments_thread"></div></div></div></div></div></div></div><footer><div id="footer">
+    Copyright &copy; 1999-yyyy, The Apache Software Foundation
+  </div></footer></div></body></html>

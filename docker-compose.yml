@@ -1,20 +1,6 @@
 version: "3"
 
 services: 
-    httpd:
-        build:
-            context: ./apache_src/
-            dockerfile: ./Dockerfile
-        image: myapache
-        container_name: apache-server
-        ports: 
-            - "80:80"
-        logging: 
-            driver: "json-file"
-            options: 
-                max-file: "10"
-                max-size: "10m"
-
     tomcat1:
         build:
             context: ./tomcat_src/
@@ -46,3 +32,21 @@ services:
             options: 
                 max-file: "10"
                 max-size: "10m"
+
+    httpd:
+        build:
+            context: ./apache_src/
+            dockerfile: ./Dockerfile
+        image: myapache
+        container_name: apache-server
+        ports: 
+            - "80:80"
+        logging: 
+            driver: "json-file"
+            options: 
+                max-file: "10"
+                max-size: "10m"
+        links:
+            - tomcat1
+            - tomcat2
+            

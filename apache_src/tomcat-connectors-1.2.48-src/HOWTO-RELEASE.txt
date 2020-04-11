@@ -1,0 +1,206 @@
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+How to do a mod_jk 1.2 Release
+==============================
+
+Clone a clean copy of tomcat/connectors from git to make sure you don't have
+any lingering configure or build files. This will make sure that the source
+distribution created is clean.
+
+We assume, that you cloned out git@github.com:apache/tomcat-connectors.git
+to a directory named mod_jk. All further path names will be relative to this
+directory.
+
+If you haven't already, add your public PGP key to KEYS.
+
+Add a preliminary note about the new release to the docs
+--------------------------------------------------------
+
+Candidate pages are:
+
+xdocs/index.xml
+xdocs/news/<THISYEAR0101>.xml
+
+We can't add a final release date though.
+
+Update version numbers as needed
+--------------------------------
+
+Do a find for all the docs which include the previous version string
+and replace it with the new version.  These are the docs I found which
+had to be updated:
+
+native/iis/README
+native/netscape/README
+xdocs/index.xml
+xdocs/news/<THISYEAR0101>.xml
+tools/dist/binaries/windows/README.html
+
+Check version numbers in the files that are listed in the section
+"Update source for next version" below:
+
+native/configure.ac
+native/common/jk_version.h
+xdocs/miscellaneous/changelog.xml
+
+Update the JK_VERISRELEASE define in native/common/jk_version.h, here is
+a git diff that shows what I changed:
+
+Index: native/common/jk_version.h
+===================================================================
+--- native/common/jk_version.h  (revision 417260)
++++ native/common/jk_version.h  (working copy)
+@@ -32,7 +32,7 @@
+ #define JK_VERBETA      0
+ #define JK_BETASTRING   "0"
+ /* set JK_VERISRELEASE to 1 when release (do not forget to commit!) */
+-#define JK_VERISRELEASE 0
++#define JK_VERISRELEASE 1
+ #define JK_VERRC        0
+ #define JK_RCSTRING     "0"
+
+After updating revision numbers, commit your changes to git.
+
+Tag tomcat-connectors in git
+----------------------------
+
+Use the pattern below for tagging the tomcat-connectors directory.
+
+TAG=JK_{MAJOR_REVISION}_{MINOR_REVISION}_{RELEASE}
+
+Here is an example for mod_jk 1.2.48
+
+git commit -a -m "Tag JK_1_2_48"
+git tag JK_1_2_48
+git push origin JK_1_2_48
+# reset master
+
+
+Build the mod_jk 1.2 documentation
+----------------------------------
+
+cd xdocs
+ant
+
+
+After checking the documentation carefully (produced in build/docs),
+see https://svn.apache.org/viewvc/tomcat/site/trunk/README.txt?view=markup
+for instructions on how to deploy the site docs.
+
+Create the new source distribution
+----------------------------------
+
+A tool named jkrelease.sh in the directory tools creates
+a release tarball and a zip including signature files.
+
+
+
+Upload source distribution and documentation to www.apache.org
+-------------------------------------------------------------------
+First update the KEYS on the server if you have added a new pgp key.
+
+scp KEYS to the
+/www/www.apache.org/dist/tomcat/tomcat-connectors
+directory on the people.apache.org server.
+
+scp tomcat-connectors-1.2.29-src.tar.gz* to 
+/www/www.apache.org/dist/tomcat/tomcat-connectors/jk/source
+scp tomcat-connectors-1.2.29-src.zip* to   
+/www/www.apache.org/dist/tomcat/tomcat-connectors/jk/source
+
+ssh to people.apache.org and cd to the
+/www/www.apache.org/dist/tomcat/tomcat-connectors/jk directory.
+
+Modify README.html and update it to the current version.
+
+Remove the symlinks for current if present and replace them with a soft link
+to the new source distribution files.
+
+ln -s source/tomcat-connectors-1.2.29-src.tar.gz tomcat-connectors-src-current.tar.gz
+ln -s source/tomcat-connectors-1.2.29-src.tar.gz.asc tomcat-connectors-src-current.tar.gz.asc
+ln -s source/tomcat-connectors-1.2.29-src.tar.zip tomcat-connectors-src-current.zip
+ln -s source/tomcat-connectors-1.2.29-src.zip.asc tomcat-connectors-src-current.zip.asc
+
+Make sure the group write bit is set on all files and directories
+in the jk directory.
+
+chmod -R g+w /www/www.apache.org/dist/tomcat/tomcat-connectors/jk
+
+Build binaries and upload distributions to www.apache.org
+--------------------------------------------------------------
+
+Build mod_jk for a specific web server and OS.  Package it as appropriate for
+the OS and sign the archive using PGP. Please include the ASF License, the
+generated docs, and the tools.  Please name the distribution as follows:
+
+tomcat-connectors-{version}-{os-version-cpu}-{web server-version}.(tar.gz|zip)
+
+scp the binary distribution and pgp signature file to the appropriate binaries/{os} directory.
+
+Make sure the group write bit is on for all files you upload.
+
+Update source for next version
+------------------------------
+
+native/configure.ac: Update version in AC_INIT macro.
+native/common/jk_version.h: Update variables JK_VERMAJOR, JK_VERMINOR, JK_VERFIX,
+                            JK_VERSTRING, and JK_VERISRELEASE.
+native/iis/installer/isapi-redirector-win32-msi.ism: Update ProductVersion.
+xdocs/miscellaneous/changelog.xml: Start a new section for the new version.
+
+Remove old release distributions from www.apache.org
+----------------------------------------------------
+
+Verify that the old versions of the source and binary distributions are
+available at /www/archive.apache.org/dist/tomcat/tomcat-connectors/jk .
+Copy old source distributions and binaries as needed, then remove the
+old source and binary distributions.
+
+Arrange the downloads_tomcat-connectors.cgi
+-------------------------------------------
+
+Check tomcat-site out:
+
+svn co https://svn.apache.org/repos/asf/tomcat/site site-tomcat
+
+Arrange the file: xdocs/download-connectors.xml, updating all occurrences
+of the version number to the just released version.
+
+Update xdocs/index.xml to reflect the new release of Tomcat Connectors.
+
+Run ant from the site-tomcat directory to regenerate the corresponding html file:
+docs/site/download-connectors.html
+
+Commit it after checking carefully the changes.
+
+Connect to people.apache.org and update the tomcat.apache.org site image,
+the site tomcat.apache.org should reflect the change after a while:
+
+cd /x1/www/tomcat.apache.org/site/downloads
+svn update downloads_tomcat-connectors.html
+
+Announcements
+-------------
+
+The release distribution directories are mirrored so that the
+releases can be downloaded from multiple sites.  Please wait
+24 hours before sending out the announcement so that the mirrors
+get a chance to get the new release distributions.
+
+Send an email announcement to announce@tomcat.apache.org,
+users@tomcat.apache.org, dev@tomcat.apache.org and
+announce@apache.org.
+
