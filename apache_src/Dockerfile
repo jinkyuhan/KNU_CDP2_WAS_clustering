@@ -16,7 +16,7 @@ RUN apt-get install -y wget
 
 # install mod_jk
 RUN wget -c http://apache.tt.co.kr/tomcat/tomcat-connectors/jk/tomcat-connectors-1.2.48-src.tar.gz
-RUN tar zxvf tomcat-connector*
+RUN tar zxvf tomcat-connectors-1.2.48-src.tar.gz
 RUN rm tomcat-connectors-1.2.48-src.tar.gz
 RUN cd ./tomcat-connectors-1.2.48-src/native/ && \
     ./configure --with-apxs=/usr/local/apache2/bin/apxs && \
