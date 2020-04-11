@@ -46,7 +46,3 @@ services:
             options: 
                 max-file: "10"
                 max-size: "10m"
-        links:
-            - tomcat1
-            - tomcat2
-            
