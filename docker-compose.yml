@@ -1,0 +1,48 @@
+version: "3"
+
+services: 
+    tomcat1:
+        build:
+            context: ./tomcat_src/
+            dockerfile: ./Dockerfile
+        image: mytomcat
+        container_name: tomcat-server1
+        ports: 
+            - "8080:8080"
+            - "8009:8009"  # for sync with apache
+        logging: 
+            driver: "json-file"
+            options: 
+                max-file: "10"
+                max-size: "10m"
+
+    tomcat2:
+        # build:
+        #     context: ./tomcat_src/
+        #     dockerfile: ./Dockerfile
+        image: mytomcat
+        depends_on:
+            - tomcat1
+        container_name: tomcat-server2
+        ports: 
+            - "8180:8080"
+            - "8109:8009"  # for sync with apache
+        logging: 
+            driver: "json-file"
+            options: 
+                max-file: "10"
+                max-size: "10m"
+
+    httpd:
+        build:
+            context: ./apache_src/
+            dockerfile: ./Dockerfile
+        image: myapache
+        container_name: apache-server
+        ports: 
+            - "80:80"
+        logging: 
+            driver: "json-file"
+            options: 
+                max-file: "10"
+                max-size: "10m"
