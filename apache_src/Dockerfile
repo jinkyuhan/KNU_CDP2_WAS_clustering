@@ -14,8 +14,9 @@ RUN apt-get install -y cmake
 RUN apt-get install -y wget
 
 # install mod_jk
-COPY ./tomcat-connectors-1.2.48-src/ ./tomcat-connectors-1.2.48-src/
-RUN cd ./tomcat-connectors-1.2.48-src/native/ && \
+COPY ./tomcat-connectors-1.2.48-src.tar.gz ./tomcat-connectors-1.2.48-src.tar.gz
+RUN tar zxvf ./tomcat-connectors-1.2.48-src.tar.gz && \ 
+    cd ./tomcat-connectors-1.2.48-src/native/ && \
     ./configure --with-apxs=/usr/local/apache2/bin/apxs && \
     make && \
     make install
