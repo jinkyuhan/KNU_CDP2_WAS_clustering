@@ -5,8 +5,9 @@ ENV DEBIAN_FRONTEND noninteractive
 # Copy Local's config file into Container
 COPY ./conf/* /usr/local/apache2/conf/
 
-
 # Install Dependencies
+RUN cd /etc/apt && \
+    sed -i 's/deb.debian.org/ftp.kr.debian.org/g' sources.list
 RUN apt-get update && apt-get install -y gcc cmake wget
 # RUN apt-get -y upgrade --no-install-recommends apt-utils
 
