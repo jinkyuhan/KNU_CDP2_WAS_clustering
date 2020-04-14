@@ -7,11 +7,9 @@ COPY ./conf/* /usr/local/apache2/conf/
 
 
 # Install Dependencies
-RUN apt-get update
-RUN apt-get -y upgrade --no-install-recommends apt-utils
-RUN apt-get install -y gcc
-RUN apt-get install -y cmake
-RUN apt-get install -y wget
+RUN apt-get update && apt-get install -y gcc cmake wget
+# RUN apt-get -y upgrade --no-install-recommends apt-utils
+
 
 # install mod_jk
 COPY ./tomcat-connectors-1.2.48-src.tar.gz ./tomcat-connectors-1.2.48-src.tar.gz
