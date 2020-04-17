@@ -20,10 +20,13 @@ services:
         build:
             context: ./tomcat_src/
             dockerfile: ./Dockerfile
-        image: mytomcat
+            args:
+                workername: "node1"
+        image: mytomcat1
+        hostname: tomcat-server1
         container_name: tomcat-server1
         ports: 
-            - "8080:8080"
+            # - "8080:8080"
             - "8009:8009"  # for sync with apache
         logging: 
             driver: "json-file"
@@ -32,12 +35,16 @@ services:
                 max-size: "10m"
 
     tomcat2:
-        image: mytomcat
+        build:
+            context: ./tomcat_src/
+            dockerfile: ./Dockerfile
+            args:
+                workername: "node2"
+        image: mytomcat2
+        hostname: tomcat-server2
         container_name: tomcat-server2
-        depends_on:
-            - tomcat1
         ports: # May be need to erase 
-            - "8180:8080"
+            # - "8180:8080"
             - "8109:8009"  # for sync with apache
         logging: 
             driver: "json-file"
