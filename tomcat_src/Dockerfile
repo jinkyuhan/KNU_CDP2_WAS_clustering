@@ -1,5 +1,6 @@
 FROM tomcat:9.0
 ARG workername
+ARG clustermate
 
 # RUN apt-get update && \
 #     apt-get -y upgrade
@@ -16,3 +17,5 @@ COPY ./webcontents/* /usr/local/tomcat/webapps/ROOT/
 
 # Replace "WORKER_NAME" in server.xml with $workername
 RUN sed -i "s/WORKER_NAME/$workername/g" /usr/local/tomcat/conf/server.xml
+
+
