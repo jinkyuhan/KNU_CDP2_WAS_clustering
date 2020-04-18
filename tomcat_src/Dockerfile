@@ -1,8 +1,8 @@
 FROM tomcat:9.0
-ARG workername
-ARG clustermate
 
-# RUN apt-get update && \
+RUN cd /etc/apt && \
+    sed -i 's/deb.debian.org/ftp.kr.debian.org/g' sources.list && \
+    apt-get update
 #     apt-get -y upgrade
 
 # Copy Local's config file into Container
@@ -14,8 +14,4 @@ RUN rm -rf /usr/local/tomcat/webapps && \
     mv /usr/local/tomcat/webapps.dist /usr/local/tomcat/webapps && \
     rm -rf /usr/local/tomcat/webapps/ROOT/*
 COPY ./webcontents/* /usr/local/tomcat/webapps/ROOT/
-
-# Replace "WORKER_NAME" in server.xml with $workername
-RUN sed -i "s/WORKER_NAME/$workername/g" /usr/local/tomcat/conf/server.xml
-
 
