@@ -1,5 +1,4 @@
 FROM tomcat:9.0
-ARG workername
 
 # RUN apt-get update && \
 #     apt-get -y upgrade
@@ -15,4 +14,5 @@ RUN rm -rf /usr/local/tomcat/webapps && \
 COPY ./webcontents/* /usr/local/tomcat/webapps/ROOT/
 
 # Replace "WORKER_NAME" in server.xml with $workername
-RUN sed -i "s/WORKER_NAME/$workername/g" /usr/local/tomcat/conf/server.xml
+CMD sed -i "s/WORKER_NAME/$WORKER_NAME/g" /usr/local/tomcat/conf/server.xml && \
+    catalina.sh run
