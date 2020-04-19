@@ -22,13 +22,7 @@ services:
             dockerfile: ./Dockerfile2
         image: mytomcat
         hostname: node1
-        container_name: tomcat-server1
-        command: 
-            - bash
-            - -c
-            - |
-              sed -i "s/WORKER_NAME/node1/g" /usr/local/tomcat/conf/server.xml
-              /usr/local/tomcat/bin/catalina.sh run
+        container_name: tomcat-node1
         logging: 
             driver: "json-file"
             options: 
@@ -41,13 +35,7 @@ services:
             dockerfile: ./Dockerfile2
         image: mytomcat
         hostname: node2
-        container_name: tomcat-server2
-        command: 
-            - bash
-            - -c
-            - |
-              sed -i "s/WORKER_NAME/node2/g" /usr/local/tomcat/conf/server.xml
-              /usr/local/tomcat/bin/catalina.sh run
+        container_name: tomcat-node2
         logging: 
             driver: "json-file"
             options: 

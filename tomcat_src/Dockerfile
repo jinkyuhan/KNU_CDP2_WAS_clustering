@@ -15,3 +15,6 @@ RUN rm -rf /usr/local/tomcat/webapps && \
     rm -rf /usr/local/tomcat/webapps/ROOT/*
 COPY ./webcontents/* /usr/local/tomcat/webapps/ROOT/
 
+# Replace "WORKER_NAME" in server.xml with $HOSTNAME
+CMD sed -i "s/WORKER_NAME/$HOSTNAME/g" /usr/local/tomcat/conf/server.xml && \
+    catalina.sh run

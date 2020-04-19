@@ -7,3 +7,6 @@ COPY ./conf/web.xml /usr/local/tomcat/conf/web.xml
 # Replace webapps directory with local contents
 COPY ./webcontents/* /usr/local/tomcat/webapps/ROOT/
 
+# Replace "WORKER_NAME" in server.xml with $HOSTNAMEㄴ
+CMD sed -i "s/WORKER_NAME/$HOSTNAME/g" /usr/local/tomcat/conf/server.xml && \
+    catalina.sh run
