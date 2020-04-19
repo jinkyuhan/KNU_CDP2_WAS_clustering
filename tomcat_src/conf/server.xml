@@ -130,13 +130,32 @@
     <!-- You should set jvmRoute to support load-balancing via AJP ie :
     <Engine name="Catalina" defaultHost="localhost" jvmRoute="jvm1">
     -->
-    <Engine name="Catalina" defaultHost="localhost">
+    <Engine name="Catalina" defaultHost="localhost" jvmRoute="WORKER_NAME">
 
       <!--For clustering, please take a look at documentation at:
           /docs/cluster-howto.html  (simple how to)
           /docs/config/cluster.html (reference documentation) -->
       
-      <Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster"/>
+        <Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster">
+            <Manager className="org.apache.catalina.ha.session.DeltaManager"
+                    expireSessionsOnShutdown="false"
+                    notifyListenersOnReplication="true"/>
+			
+            <Channel className="org.apache.catalina.tribes.group.GroupChannel">
+                <Membership className="org.apache.catalina.tribes.membership.McastService"
+                    address="228.0.0.4"
+                    port="45564"
+                    frequency="500"
+                    dropTime="3000"/>
+                <Receiver className="org.apache.catalina.tribes.transport.nio.NioReceiver"
+                    address="auto"
+                    port="4000"
+                    autoBind="100"
+                    selectorTimeout="5000"
+                    maxThreads="6"/>
+            </Channel>
+        </Cluster>
+
      
 
       <!-- Use the LockOutRealm to prevent attempts to guess user passwords
