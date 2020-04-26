@@ -19,10 +19,12 @@ services:
     tomcat1:
         build:
             context: ./tomcat_src/
-            dockerfile: ./Dockerfile2
+            dockerfile: ./Dockerfile
+        environment:
+          - WORKER_NAME=node1
         image: mytomcat
-        hostname: node1
-        container_name: tomcat-node1
+        hostname: tomcat-server1
+        container_name: tomcat-server1
         logging: 
             driver: "json-file"
             options: 
@@ -32,10 +34,12 @@ services:
     tomcat2:
         build:
             context: ./tomcat_src/
-            dockerfile: ./Dockerfile2
+            dockerfile: ./Dockerfile
+        environment:
+          - WORKER_NAME=node2
         image: mytomcat
-        hostname: node2
-        container_name: tomcat-node2
+        hostname: tomcat-server2
+        container_name: tomcat-server2
         logging: 
             driver: "json-file"
             options: 
