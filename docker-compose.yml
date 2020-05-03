@@ -20,9 +20,9 @@ services:
         build:
             context: ./tomcat_src/
             dockerfile: ./Dockerfile
-            args:
-                workername: "node1"
-        image: mytomcat1
+        environment:
+          - WORKER_NAME=node1
+        image: mytomcat
         hostname: tomcat-server1
         container_name: tomcat-server1
         logging: 
@@ -35,9 +35,9 @@ services:
         build:
             context: ./tomcat_src/
             dockerfile: ./Dockerfile
-            args:
-                workername: "node2"
-        image: mytomcat2
+        environment:
+          - WORKER_NAME=node2
+        image: mytomcat
         hostname: tomcat-server2
         container_name: tomcat-server2
         logging: 
