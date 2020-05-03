@@ -9,7 +9,6 @@ COPY ./conf/* /usr/local/apache2/conf/
 RUN cd /etc/apt && \
     sed -i 's/deb.debian.org/ftp.kr.debian.org/g' sources.list
 RUN apt-get update && apt-get install -y gcc cmake wget
-# RUN apt-get -y upgrade --no-install-recommends apt-utils
 
 
 # install mod_jk
