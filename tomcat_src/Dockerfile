@@ -13,7 +13,9 @@ COPY ./conf/web.xml /usr/local/tomcat/conf/web.xml
 RUN rm -rf /usr/local/tomcat/webapps && \
     mv /usr/local/tomcat/webapps.dist /usr/local/tomcat/webapps && \
     rm -rf /usr/local/tomcat/webapps/ROOT/*
-COPY ./webcontents/* /usr/local/tomcat/webapps/ROOT/
+COPY ./webcontents/*.jsp /usr/local/tomcat/webapps/ROOT/
+COPY ./webcontents/WEB-INF /usr/local/tomcat/webapps/ROOT/WEB-INF
+COPY ./webcontents/assets /usr/local/tomcat/webapps/ROOT/assets
 
 # Replace "WORKER_NAME" in server.xml with $workername
 CMD sed -i "s/WORKER_NAME/$WORKER_NAME/g" /usr/local/tomcat/conf/server.xml && \
