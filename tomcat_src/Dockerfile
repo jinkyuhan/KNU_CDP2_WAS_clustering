@@ -1,6 +1,8 @@
 FROM tomcat:9.0
 
-# RUN apt-get update && \
+RUN cd /etc/apt && \
+    sed -i 's/deb.debian.org/ftp.kr.debian.org/g' sources.list && \
+    apt-get update
 #     apt-get -y upgrade
 
 # Copy Local's config file into Container
