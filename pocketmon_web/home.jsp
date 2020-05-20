@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%@ include file="head.jsp" %>
+    <%@ include file="include/head.jsp" %>
 </head>
 <body>
-    <%@ include file="navbar.jsp" %>
+    <%@ include file="include/navbar.jsp" %>
     <h2>내가 잡은 포켓몬</h2>
     <table>
         <tr>
@@ -31,7 +31,7 @@
 
 
 
-    <%@ include file="bootstrapjs.jsp" %>
+    <%@ include file="include/bootstrapjs.jsp" %>
 </body>
 
 </html>
