@@ -14,11 +14,11 @@
                   <h5 class="card-title text-center">Sign In</h5>
                   <form class="form-signin" action="login_process.jsp" method="post">
                     <div class="form-label-group">
-                      <input type="text" name="id" id="inputEmail" class="form-control" placeholder="ID" required autofocus>
+                      <input type="text" name="id" id="id" class="form-control" placeholder="ID" required autofocus>
                     </div>
                     <br>
                     <div class="form-label-group">
-                      <input type="password" name="pw" id="inputPassword" class="form-control" placeholder="Password" required>
+                      <input type="password" name="pw" id="pw" class="form-control" placeholder="Password" required>
                     </div>
                     <br>
                     <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Log in</button>
