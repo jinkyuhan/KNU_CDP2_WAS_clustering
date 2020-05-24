@@ -20,6 +20,26 @@
                   <div class="form-label-group">
                     <h5>Session ID:</h5>
                     <h5><%=session.getId()%></h5>
+                    <%@ page import="java.util.*" %>
+                    <%
+                    //session data를 arraylist에 저장
+                    int cnt=0;
+                    ArrayList<String> list = (ArrayList)session.getAttribute("sessionlist");
+                    String sessionId = session.getId();
+
+                    if(list==null)
+                    {
+                      list = new ArrayList<String>();
+                      session.setAttribute("sessionlist",list);
+                    }
+
+                    for(int i=0;i<list.size();i++)
+                      if(list.get(i)==sessionId)
+                        cnt = 1;
+
+                    if(cnt==0)
+                      list.add(sessionId);
+                    %>
                   </div>
                   <br>
               </div>
@@ -31,10 +51,11 @@
     <%@ include file="include/bootstrapjs.jsp" %>
     <script>
         setTimeout(function(){
-          // 세션 정보 있으면
-          // window.location.href = "home.jsp";
-          // 아니면
-          window.location.href = "login.jsp";
+        	var c = "<%=cnt%>";
+        	if(c==0)
+          		window.location.href = "login.jsp";
+        	else
+          		window.location.href = "home.jsp";
         }, 5000);
     </script>
   </body>
