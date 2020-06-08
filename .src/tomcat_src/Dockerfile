@@ -14,6 +14,9 @@ RUN rm -rf /usr/local/tomcat/webapps && \
     mv /usr/local/tomcat/webapps.dist /usr/local/tomcat/webapps
 COPY ./webapps/ /usr/local/tomcat/webapps/
 
+COPY ./scripts/* /usr/local/tomcat/scripts/
+RUN /usr/local/tomcat/scripts/java_compile.sh
+
 # Replace "WORKER_NAME" in server.xml with $workername
 CMD sed -i "s/WORKER_NAME/$WORKER_NAME/g" /usr/local/tomcat/conf/server.xml && \
     catalina.sh run
