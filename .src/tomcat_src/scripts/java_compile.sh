@@ -10,10 +10,10 @@ echo "########################################"
 # reference
 # https://m.blog.naver.com/PostView.nhn?blogId=sakangs&logNo=110153627869&proxyReferer=https:%2F%2Fwww.google.com%2F
 
-USER_APP_NAME="example-project"
-USER_APP_PATH=$CATALINA_HOME/webapps/$USER_APP_NAME
+APP_PATH=$CATALINA_HOME/webapps/ROOT
+JAVA_SOURCES_PATH=$APP_PATH/src
+JAVABEANS_PATH=$APP_PATH/WEB-INF/classes
 
-JAVABEANS_PATH=$USER_APP_PATH/WEB-INF/classes
 mkdir -p $JAVABEANS_PATH
 if [ $? -ne 0 ]
 then
@@ -22,7 +22,7 @@ then
 fi
 
 # check if user app has packages
-cd $USER_APP_PATH/src
+cd $JAVA_SOURCES_PATH
 ls | while read each
 do
     if [ -d "$each" ]; then

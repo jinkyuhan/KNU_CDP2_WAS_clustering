@@ -10,8 +10,6 @@ COPY ./conf/server.xml /usr/local/tomcat/conf/server.xml
 COPY ./conf/web.xml /usr/local/tomcat/conf/web.xml
 
 # Replace webapps directory with local contents
-RUN rm -rf /usr/local/tomcat/webapps && \
-    mv /usr/local/tomcat/webapps.dist /usr/local/tomcat/webapps
 COPY ./webapps/ /usr/local/tomcat/webapps/
 
 COPY ./scripts/* /usr/local/tomcat/scripts/
