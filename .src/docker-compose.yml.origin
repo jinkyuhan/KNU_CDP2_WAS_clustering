@@ -9,7 +9,7 @@ services:
         image: myapache
         container_name: apache-server
         ports: 
-            - "8090:80"
+            - "PORT_NUM:80"
         logging: 
             driver: "json-file"
             options:

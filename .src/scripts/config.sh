@@ -33,8 +33,8 @@ until [ $port_num_checked = true ]; do
     fi
 done
 
-echo $app_name > $CLUSTER_ROOT/.config
-echo $port_num >> $CLUSTER_ROOT/.config
+echo $app_name > $CLUSTER_ROOT/.app_config
+echo $port_num > $CLUSTER_ROOT/.server_config
 
 
 
