@@ -69,6 +69,7 @@ $ ./quitserver.sh
 
 2. http://localhost:(지정한 포트넘버)/*.jsp로 웹 브라우저 접속![](https://lh4.googleusercontent.com/gAHZQ_UjJhOPPMrEOghxI-wIFJZE5UgP3EWHfnNrR8EiEKMnthSoJp_6zcogEJxJu0VnRs0DKSHVs0NA14wD0MUR4JMf0ah68s96pT8nWTvocRC4gfbCGMZFSmMpygqvsIGb2Gko6q0)
 3. tomcat-sever1의 에러가 발생하여 문제가 생기더라도 세션유지를 하고 있는 모습  
+
 ![](https://lh3.googleusercontent.com/LgZcckrJFi5njalZPM8X-bU6__u-YskzwJdUyaBHa6O9LaYy5nl71B7zVfUmbIujudT8Ibl3vv6lTNru1t2fYZGdA3rHbXNxhuAiO4DjRXFaqYYHmibqENiyVIZ4S5_SIzf7CBhg1VA)![](https://lh6.googleusercontent.com/XUlpwIePQhbZPiioBMinp3lsl-r0CLWV3Wr0scgc1ajrG-krpUlovjRkTzuDttZJBUuJZhdxv7DCedipjWjAzISEpiG_WS2H8fcCl9eHjitJRHw3L42zZaWTK0vJoCLWBJmGG9OKj3M)  
 
 
