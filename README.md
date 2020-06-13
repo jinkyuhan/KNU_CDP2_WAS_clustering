@@ -55,28 +55,6 @@ $ ./quitserver.sh
 
 - 실행중인 모든 서버를 종료.
 
-## 사용 예제(Usage example)
-
-  
-
-스크린샷을 더하여 설명
-
-1. $ ./runserver.sh
-
-
-	- 사용자가 원하는 프로젝트 이름 입력
-	- 사용자가 외부로 노출할 포트번호 입력
-
-2. http://localhost:(지정한 포트넘버)/*.jsp로 웹 브라우저 접속
-
-3. tomcat-sever1의 에러가 발생하여 문제가 생기더라도 세션유지를 하고 있는 모습  
-
-
-
-4. $ ./quitserver.sh 	
-
-  
-
 ## 개발 환경 설정(Dev-env, Dependency)
 
   
