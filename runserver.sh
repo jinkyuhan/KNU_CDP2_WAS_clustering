@@ -27,7 +27,7 @@ else
 fi
 
 #Start config.sh
-sh ./src/scripts/config.sh
+sh ./.src/scripts/config.sh
 
 #Start build_server.sh
-sh ./src/scripts/build_server.sh
+sh ./.src/scripts/build_server.sh
