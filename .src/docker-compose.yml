@@ -1,0 +1,47 @@
+version: "3"
+
+services: 
+
+    httpd:
+        build:
+            context: ./apache_src/
+            dockerfile: ./Dockerfile
+        image: myapache
+        container_name: apache-server
+        ports: 
+            - "8080:80"
+        logging: 
+            driver: "json-file"
+            options:
+                max-file: "10"
+                max-size: "10m"
+
+    tomcat1:
+        build:
+            context: ./tomcat_src/
+            dockerfile: ./Dockerfile
+        environment:
+          - WORKER_NAME=node1
+        image: mytomcat
+        hostname: tomcat-server1
+        container_name: tomcat-server1
+        logging: 
+            driver: "json-file"
+            options: 
+                max-file: "10"
+                max-size: "10m"
+
+    tomcat2:
+        build:
+            context: ./tomcat_src/
+            dockerfile: ./Dockerfile
+        environment:
+          - WORKER_NAME=node2
+        image: mytomcat
+        hostname: tomcat-server2
+        container_name: tomcat-server2
+        logging: 
+            driver: "json-file"
+            options: 
+                max-file: "10"
+                max-size: "10m"

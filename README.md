@@ -1,6 +1,5 @@
 
 # CDP2_WAS_clustering
-
   
 
 > 이 프로젝트는 WAS 세션 이중화 솔루션으로써 사용자가 WAS 세션 이중화를 위한 특별한 설정을 할 필요가 없도록 Docker-compose기반의 자동적인 Web Application Server 이중화 스크립트를 제공합니다. 하나의 웹서버에게 오는 요청을 다른 두 웹 어플리케이션 서버로 분산합니다. 웹 어플리케이션 서버의 예측 불가능한 종료에 장애 극복 및 세션의 지속을 보장합니다.
@@ -95,9 +94,10 @@ hgh1146, *hgh1146@naver.com*
 
 	- **tomcat-server1**, **tomcat-server2**: 서로를 지원하여 동적 데이터에 대한 웹 요청을 처리하는 웹 어플리케이션 서버입니다. **Failover**와 **Load balancing**을 지원합니다.
 
-  
+
 
 ## Explanation (in English)
+
 
 - This solution contributes to productivity improvement of service development by reducing the labor of the setting process for WAS session redundancy by automated scripts and changing the contents of the WAS configuration file according to the user's needs.
 
@@ -106,3 +106,4 @@ hgh1146, *hgh1146@naver.com*
 	- **apache-server**: Static web server to distribute requests to other Web Application Servers(tomcat)
 
 	- **tomcat-server1**, **tomcat-server2**: Web Application Server(WAS) supporting each other. It provides **Failover** and **Load Balancing**
+
