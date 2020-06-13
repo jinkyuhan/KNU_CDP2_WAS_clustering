@@ -113,9 +113,9 @@ hgh1146, *hgh1146@naver.com*
 
 - Docker-compose로부터 2개의 이미지를 빌드하고 3개의 컨테이너 인스턴스를 생성합니다. 생성되는 컨테이너는 다음과 같습니다.
 
-- **apache-server**: 정적 데이터에 대한 웹 요청을 처리하는 웹 서버 입니다. 필요에 따라 다른 웹 어플리케이션 서버로 요청을 분산합니다.
+	- **apache-server**: 정적 데이터에 대한 웹 요청을 처리하는 웹 서버 입니다. 필요에 따라 다른 웹 어플리케이션 서버로 요청을 분산합니다.
 
-- **tomcat-server1**, **tomcat-server2**: 서로를 지원하여 동적 데이터에 대한 웹 요청을 처리하는 웹 어플리케이션 서버입니다. **Failover**와 **Load balancing**을 지원합니다.
+	- **tomcat-server1**, **tomcat-server2**: 서로를 지원하여 동적 데이터에 대한 웹 요청을 처리하는 웹 어플리케이션 서버입니다. **Failover**와 **Load balancing**을 지원합니다.
 
   
 
@@ -125,6 +125,6 @@ hgh1146, *hgh1146@naver.com*
 
 - Build 2 images from Docker-compose and create 3 container instances. The containers created are:
 
-- **apache-server**: Static web server to distribute requests to other Web Application Servers(tomcat)
+	- **apache-server**: Static web server to distribute requests to other Web Application Servers(tomcat)
 
-- **tomcat-server1**, **tomcat-server2**: Web Application Server(WAS) supporting each other. It provides **Failover** and **Load Balancing**
+	- **tomcat-server1**, **tomcat-server2**: Web Application Server(WAS) supporting each other. It provides **Failover** and **Load Balancing**
