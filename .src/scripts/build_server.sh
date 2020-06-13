@@ -47,7 +47,7 @@ echo "Strating to build servers for your webapp..."
 
 mkdir -p $TOMCAT_SRC_DIR/webapps/ROOT/
 cp -r $APP_DIR/* $TOMCAT_SRC_DIR/webapps/ROOT/ 
-cd $CLUSTER_ROOT/.src/ && docker-compose up --build
+cd $CLUSTER_ROOT/.src/ && docker-compose up -d --build
 
 # mkdir -p $TOMCAT_SRC_DIR/webapps/ROOT
 

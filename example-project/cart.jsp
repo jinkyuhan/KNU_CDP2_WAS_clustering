@@ -78,6 +78,9 @@
                 </th>
                 <th></th>
             </tr>
+            <script>
+                console.log(<%= cartList.size() %>)
+            </script> 
         </table>
         <a href="./products.jsp" class="btn btn-secondary"> &laquo; 쇼핑 계속하기 </a>
     </div>
